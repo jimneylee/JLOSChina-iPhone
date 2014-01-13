@@ -12,7 +12,6 @@
 typedef void (^ShowIndexPathsBlock)(NSArray* indexPaths, NSError *error);
 
 @interface OSCBaseTableModel : JLNimbusTableModel<NSXMLParserDelegate>
-@property (nonatomic, strong) NSArray* entityElementNames;
 @property (nonatomic, copy) NSString* listElementName;
 @property (nonatomic, copy) NSString* itemElementName;
 @property (nonatomic, copy) NSString* superElementName;
