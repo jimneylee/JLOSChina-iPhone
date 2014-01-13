@@ -17,6 +17,7 @@
 #import "RCKeywordEntity.h"
 #import "JLFullScreenPhotoBrowseView.h"
 #import "OSCCommonRepliesListC.h"
+#import "OSCTweetC.h"
 //#import "RCUserHomepageC.h"
 
 // 自定义链接协议
@@ -169,6 +170,9 @@
 {
     [super prepareForReuse];
     
+    if (self.headView.image) {
+        [self.headView setImage:nil];
+    }
     if (self.contentImageView.image) {
         [self.contentImageView setImage:nil];
     }
@@ -317,13 +321,18 @@
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)commentAction
 {
-//    SMCommentOrRetweetC* c = [[SMCommentOrRetweetC alloc] initWithBlogId:self.statusEntity.blogID];
-//    if (self.viewController) {
-//        [self.viewController.navigationController pushViewController:c animated:YES];
-//    }
-    BOOL isLogined = NO;
-    if (isLogined && 0 == self.tweetEntity.repliesCount) {
-        // do reply action
+    // if logined, and do reply action
+    if (0 == self.tweetEntity.repliesCount) {
+        UIViewController* superviewC = self.viewController;
+        if ([OSCGlobalConfig loginedUserEntity]) {
+            if ([superviewC isKindOfClass:[OSCTweetC class]]) {
+                OSCTweetC* tweetC = (OSCTweetC*)superviewC;
+                [tweetC showReplyAsInputAccessoryViewWithTweetId:self.tweetEntity.tweetId];
+            }
+        }
+        else {
+            [OSCGlobalConfig showLoginControllerFromNavigationController:superviewC.navigationController];
+        }
     }
     else {
         [self showRepliesListView];
