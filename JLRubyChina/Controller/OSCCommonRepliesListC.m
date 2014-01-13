@@ -51,7 +51,7 @@
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
-        self.title = @"浏览帖子";
+        self.title = @"热情回复";
         self.navigationItem.rightBarButtonItems =
         [NSArray arrayWithObjects:
          [OSCGlobalConfig createRefreshBarButtonItemWithTarget:self
