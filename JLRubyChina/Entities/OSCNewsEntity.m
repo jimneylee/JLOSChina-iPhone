@@ -23,7 +23,7 @@
     if (self) {
         
         self.newsId = [dic[XML_ID] longLongValue];
-        self.newsTitle = dic[XML_TITLE];
+        self.title = dic[XML_TITLE];
         
         self.createdAtDate = [NSDate normalFormatDateFromString:dic[@"pubDate"]];
         self.repliesCount = [dic[@"commentCount"] longLongValue];

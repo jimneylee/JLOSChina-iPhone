@@ -14,8 +14,6 @@
 @property (nonatomic, copy) NSString* body;
 @property (nonatomic, copy) NSAttributedString* attributedBody;
 @property (nonatomic, strong) NSArray* atPersonRanges;
-@property (nonatomic, strong) NSArray* sharpFloorRanges;
-@property (nonatomic, strong) NSArray* emotionRanges;
 @property (nonatomic, strong) NSArray* imageUrlsArray;
 
 @end

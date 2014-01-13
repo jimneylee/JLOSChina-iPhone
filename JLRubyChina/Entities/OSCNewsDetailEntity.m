@@ -46,18 +46,12 @@
 - (void)parseAllKeywords
 {
     if (self.body.length) {
-        // parse emotion first
-        self.body = [self.body emojizedString];
-        
         NSString* trimedString = self.body;
         self.imageUrlsArray = [RCRegularParser imageUrlsInString:self.body trimedString:&trimedString];
         self.body = trimedString;
         
         if (!self.atPersonRanges) {
             self.atPersonRanges = [RCRegularParser keywordRangesOfAtPersonInString:self.body];
-        }
-        if (!self.sharpFloorRanges) {
-            self.sharpFloorRanges = [RCRegularParser keywordRangesOfSharpFloorInString:self.body];
         }
     }
 }

@@ -13,7 +13,6 @@
 
 @property (nonatomic, strong) OSCUserEntity* user;
 @property (nonatomic, assign) unsigned long newsId;
-@property (nonatomic, copy) NSString* newsTitle;
 @property (nonatomic, strong) NSDate* createdAtDate;
 @property (nonatomic, assign) unsigned long repliesCount;
 
