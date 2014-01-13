@@ -82,7 +82,7 @@
                     forControlEvents:UIControlEventValueChanged];
     }
     
-    NSArray* sectionNames = [NSArray arrayWithObjects:@"最新资讯", @"最新博客", @"推荐博客", nil];
+    NSArray* sectionNames = @[@"最新资讯", @"最新博客", @"推荐博客"];
     for (int i = 0; i < sectionNames.count; i++) {
         [self.segmentedControl insertSegmentWithTitle:sectionNames[i]
                                               atIndex:i
@@ -93,8 +93,28 @@
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)segmentedDidChange
 {
+    // first cancel request operation
+    [self.model cancelRequstOperation];
+    
+    // scroll top
     ((OSCHomeTimelineModel*)self.model).homeType = self.segmentedControl.selectedSegmentIndex;
+    [self scrollToTopAnimated:NO];
+    
+    // remove all, sometime crash, fix later on
+//    if (self.model.sections.count > 0) {
+//        [self.model removeSectionAtIndex:0];
+//    }
+    
+    // load cache
     [self refreshData:YES];
+}
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+- (void)scrollToTopAnimated:(BOOL)animated
+{
+    [self.tableView scrollRectToVisible:CGRectMake(0.f, 0.f,
+                                                   self.tableView.width, self.tableView.height)
+                               animated:animated];
 }
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
