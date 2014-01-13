@@ -52,7 +52,7 @@
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
-        self.title = @"浏览帖子";
+        self.title = @"详细";
         self.navigationItem.rightBarButtonItems =
         [NSArray arrayWithObjects:
          [OSCGlobalConfig createBarButtonItemWithTitle:@"查看回复" Target:self
