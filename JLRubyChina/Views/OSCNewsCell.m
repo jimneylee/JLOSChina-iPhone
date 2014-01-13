@@ -46,7 +46,7 @@
         CGFloat kTitleLength = tableView.width -  sideMargin * 2;
 #if 1
         NSAttributedString *attributedText =
-        [[NSAttributedString alloc] initWithString:o.newsTitle
+        [[NSAttributedString alloc] initWithString:o.title
                                         attributes:@{NSFontAttributeName:TITLE_FONT_SIZE}];
         CGRect rect = [attributedText boundingRectWithSize:(CGSize){kTitleLength, CGFLOAT_MAX}
                                                    options:NSStringDrawingUsesLineFragmentOrigin
@@ -188,7 +188,7 @@
         OSCNewsEntity* o = (OSCNewsEntity*)object;
         self.topicEntity = o;
         self.repliesCountLabel.text = [NSString stringWithFormat:@"%lu", o.repliesCount];
-        self.topicTitleLabel.text = o.newsTitle;
+        self.topicTitleLabel.text = o.title;
 
         self.createdLabel.text = [NSString stringWithFormat:@"%@发表于%@",
                                           o.user.authorName, [o.createdAtDate formatRelativeTime]];
