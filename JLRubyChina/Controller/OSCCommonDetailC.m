@@ -127,8 +127,8 @@
     
     // call layoutSubviews at first to calculte view's height, dif from setNeedsLayout
     [self.topicBodyView layoutIfNeeded];
-    if (!self.tableView.tableFooterView) {
-        self.tableView.tableFooterView = self.topicBodyView;
+    if (!self.tableView.tableHeaderView) {
+        self.tableView.tableHeaderView = self.topicBodyView;
     }
 }
 
@@ -293,6 +293,8 @@
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)didFinishLoadBodyContent
 {
+    // TODO: fix bug
+#if 0
     NSUInteger rowCount = [self.tableView numberOfRowsInSection:0];
     if (rowCount > 0) {
         UITableViewCell* cell = [self.tableView cellForRowAtIndexPath:
@@ -303,6 +305,7 @@
             
         }];
     }
+#endif
 }
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
