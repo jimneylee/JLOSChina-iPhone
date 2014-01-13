@@ -23,9 +23,11 @@
 {
 	self = [super initWithDelegate:delegate];
 	if (self) {
+        // TODO: change JLNimbusModel hasMoreData default NO
+        self.hasMoreData = NO;
+        
         self.listElementName = @"relativies";
-        self.itemElementName = @"relative";       
-
+        self.itemElementName = @"relative";
 	}
 	return self;
 }
@@ -117,7 +119,17 @@
 - (void)parserDidEndDocument:(NSXMLParser *)parser
 {
     self.topicDetailEntity = [OSCCommonDetailEntity entityWithDictionary:self.detailDictionary];
+// TODO: show relative reading
+#if 0
     [super parserDidEndDocument:parser];
+#else
+    NSArray* indexPaths = nil;
+    // just set empty array, show empty data but no error
+    indexPaths = [NSArray array];
+    if (self.showIndexPathsBlock) {
+        self.showIndexPathsBlock(indexPaths, nil);
+    }
+#endif
 }
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
