@@ -30,11 +30,6 @@
 	if (self) {
         self.listElementName = @"posts";
         self.itemElementName = @"post";
-        self.entityElementNames = [NSArray arrayWithObjects:
-                                   @"id", @"title", @"answerCount",
-                                   @"author", @"authorid", @"pubDate",
-                                   //@"", @"", //TODO:last answer
-                                   nil];
 	}
 	return self;
 }
@@ -60,6 +55,20 @@
 - (Class)cellClass
 {
     return [OSCNewsCell class];
+}
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////////////////////////
+#pragma mark - NSXMLParserDelegate
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+- (void)parser:(NSXMLParser *)parser didEndElement:(NSString *)elementName namespaceURI:(NSString *)namespaceURI qualifiedName:(NSString *)qName
+{
+    if ([elementName isEqualToString:@"catalog"]) {
+        self.catalogId = [self.tmpInnerElementText integerValue];
+    }
+    // super will set nil to self.tmpInnerElementText
+    [super parser:parser didEndElement:elementName namespaceURI:namespaceURI qualifiedName:qName];
 }
 
 @end

@@ -46,20 +46,12 @@
                                                         perpageCount:self.perpageCount];
             self.listElementName = @"newslist";
             self.itemElementName = @"news";
-            self.entityElementNames = [NSArray arrayWithObjects:
-                                       @"id", @"title", @"commentCount",
-                                       @"author", @"authorid", @"pubDate",
-                                       nil];
             break;
         case OSCContentType_LatestBlog:
             path = [OSCAPIClient relativePathForLatestBlogsListWithPageCounter:self.pageCounter
                                                              perpageCount:self.perpageCount];
             self.listElementName = @"blogs";
             self.itemElementName = @"blog";
-            self.entityElementNames = [NSArray arrayWithObjects:
-                                       @"id", @"title", @"commentCount",
-                                       @"authorname", @"authoruid", @"pubDate",
-                                       nil];
             break;
             
         case OSCContentType_RecommendBlog:
@@ -67,10 +59,6 @@
                                                                 perpageCount:self.perpageCount];
             self.listElementName = @"blogs";
             self.itemElementName = @"blog";
-            self.entityElementNames = [NSArray arrayWithObjects:
-                                       @"id", @"title", @"commentCount",
-                                       @"authorname", @"authoruid", @"pubDate",
-                                       nil];
             break;
             
         default:
@@ -103,6 +91,21 @@
 - (Class)cellClass
 {
     return [OSCNewsCell class];
+}
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////////////////////////
+#pragma mark - NSXMLParserDelegate
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+- (void)parser:(NSXMLParser *)parser didEndElement:(NSString *)elementName namespaceURI:(NSString *)namespaceURI qualifiedName:(NSString *)qName
+{
+    if ([elementName isEqualToString:@"catalog"]) {
+        self.catalogId = [self.tmpInnerElementText integerValue];
+    }
+    // super will set nil to self.tmpInnerElementText
+    [super parser:parser didEndElement:elementName namespaceURI:namespaceURI qualifiedName:qName];
+    
 }
 
 @end

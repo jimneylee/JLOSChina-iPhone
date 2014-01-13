@@ -11,5 +11,6 @@
 @interface OSCHomeTimelineModel : OSCBaseTableModel
 
 @property (nonatomic, assign) OSCContentType homeType;
+@property (nonatomic, assign) unsigned int catalogId;
 
 @end
