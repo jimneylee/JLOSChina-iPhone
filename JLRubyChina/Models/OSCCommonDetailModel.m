@@ -13,7 +13,6 @@
 #import "OSCRelativeCell.h"
 
 @interface OSCCommonDetailModel()
-@property (nonatomic, strong) NSArray* detailEntityElementNames;
 @property (nonatomic, copy) NSString* detailItemElementName;
 @property (nonatomic, strong) NSMutableDictionary* detailDictionary;
 @end
@@ -25,11 +24,7 @@
 	self = [super initWithDelegate:delegate];
 	if (self) {
         self.listElementName = @"relativies";
-        self.itemElementName = @"relative";
-        self.entityElementNames = [NSArray arrayWithObjects:
-                                   @"rtitle", @"rurl",
-                                   nil];
-        
+        self.itemElementName = @"relative";       
 
 	}
 	return self;
@@ -49,31 +44,17 @@
         case OSCContentType_LatestNews:
             path = [OSCAPIClient relativePathForNewsDetailWithId:self.topicId];
             self.detailItemElementName = @"news";
-            self.detailEntityElementNames = [NSArray arrayWithObjects:
-                                             @"id", @"title", @"body", @"pubDate",
-                                             @"author", @"authorid", @"portrait",
-                                             nil];//TODO: other elements
             break;
             
         case OSCContentType_LatestBlog:
         case OSCContentType_RecommendBlog:
             path = [OSCAPIClient relativePathForBlogDetailWithId:self.topicId];
             self.detailItemElementName = @"blog";
-            self.detailEntityElementNames = [NSArray arrayWithObjects:
-                                             @"id", @"title", @"body", @"pubDate",
-                                             @"author", @"authorid", @"portrait",
-                                             nil];//TODO: other elements
             break;
             
-        case OSCContentType_ForumTopic:
-            // www.oschina.net/action/api/post_detail?id=140167
+        case OSCContentType_Forum:
             path = [OSCAPIClient relativePathForTopicDetailWithId:self.topicId];
             self.detailItemElementName = @"post";
-            self.detailEntityElementNames = [NSArray arrayWithObjects:
-                                             @"id", @"title", @"body", @"pubDate",
-                                             @"author", @"authorid", @"portrait",
-                                             //@"answerCount", @"viewCount", @"favorite",
-                                             nil];//TODO: other elements
             break;
             
         default:
@@ -81,7 +62,6 @@
     }
     return path;
 }
-
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (Class)objectClass
@@ -94,7 +74,6 @@
 {
     return [OSCRelativeCell class];
 }
-
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 ///////////////////////////////////////////////////////////////////////////////////////////////////
