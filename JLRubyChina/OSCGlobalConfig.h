@@ -9,12 +9,13 @@
 #import <Foundation/Foundation.h>
 #import "OSCLoginC.h"
 
-// 可归纳为：资讯、博客、帖子、动弹（微博）类型
+// 内容类型：资讯、博客、帖子、动弹（微博）类型
 typedef enum {
-    OSCContentType_LatestNews,//资讯
-    OSCContentType_LatestBlog,//博客
-    OSCContentType_RecommendBlog,//推荐阅读
-    OSCContentType_ForumTopic//社区帖子
+    OSCContentType_LatestNews,//资讯  catalog:1
+    OSCContentType_LatestBlog,//博客  catalog:none
+    OSCContentType_RecommendBlog,//推荐阅读    catalog:none
+    OSCContentType_Forum,//社区帖子    catalog:2
+    OSCContentType_Tweet//社区帖子  catalog:3
 }OSCContentType;
 
 // 社区活动类型
@@ -26,11 +27,11 @@ typedef enum {
     OSCForumTopicType_Feedback//站务
 }OSCForumTopicType;
 
-// 资讯博客类型
+// 动弹类型
 typedef enum {
-    OSCTweetType_Latest,//最新
-    OSCTweetType_Hot,//热门
-    OSCTweetType_Mine,//我的
+    OSCTweetType_Latest,//最新 uid=0
+    OSCTweetType_Hot,//热门   uid=-1
+    OSCTweetType_Mine,//我的  uid=
 }OSCTweetType;
 
 @interface OSCGlobalConfig : NSObject
