@@ -22,7 +22,6 @@
     if (body.length) {
         NSMutableDictionary* parameters = [NSMutableDictionary dictionary];
         [parameters setObject:body forKey:@"body"];
-        [parameters setObject:[OSCGlobalConfig myToken] forKey:@"token"];
         
         NSString* path = nil;//[OSCAPIClient relativePathForReplyTopicId:topicId];
         [[OSCAPIClient sharedClient] postPath:path parameters:parameters
@@ -56,7 +55,6 @@
     if (body.length) {
         NSMutableDictionary* parameters = [NSMutableDictionary dictionary];
         [parameters setObject:body forKey:@"body"];
-        [parameters setObject:[OSCGlobalConfig myToken] forKey:@"token"];
         
         NSString* path = [OSCAPIClient relativePathForReply];
         NSError *error = nil;
