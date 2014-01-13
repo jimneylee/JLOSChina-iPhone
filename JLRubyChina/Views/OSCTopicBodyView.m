@@ -145,11 +145,11 @@
     CGFloat height = sideMargin;
     
     // title
-    self.titleLabel.text = self.topicDetailEntity.newsTitle;
+    self.titleLabel.text = self.topicDetailEntity.title;
     CGFloat kTitleLength = self.width - sideMargin * 2;
 #if 1
     NSAttributedString *attributedText =
-    [[NSAttributedString alloc] initWithString:self.topicDetailEntity.newsTitle
+    [[NSAttributedString alloc] initWithString:self.topicDetailEntity.title
                                     attributes:@{NSFontAttributeName:TITLE_FONT_SIZE}];
     CGRect rect = [attributedText boundingRectWithSize:(CGSize){kTitleLength, CGFLOAT_MAX}
                                                options:NSStringDrawingUsesLineFragmentOrigin
@@ -273,15 +273,6 @@
         for (int i = 0; i < o.atPersonRanges.count; i++) {
             k = (RCKeywordEntity*)o.atPersonRanges[i];
             url =[NSString stringWithFormat:@"%@%@", PROTOCOL_AT_SOMEONE, [k.keyword urlEncoded]];
-            [contentLabel addLink:[NSURL URLWithString:url]
-                            range:NSMakeRange(k.range.location + location, k.range.length)];
-            
-        }
-    }
-    if (o.sharpFloorRanges.count) {
-        for (int i = 0; i < o.sharpFloorRanges.count; i++) {
-            k = (RCKeywordEntity*)o.sharpFloorRanges[i];
-            url = [NSString stringWithFormat:@"%@%@", PROTOCOL_SHARP_FLOOR, [k.keyword urlEncoded]];
             [contentLabel addLink:[NSURL URLWithString:url]
                             range:NSMakeRange(k.range.location + location, k.range.length)];
             
