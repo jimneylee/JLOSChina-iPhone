@@ -301,24 +301,15 @@
 {
     RCKeywordEntity* k = nil;
     NSString* url = nil;
-//    if (o.atPersonRanges.count) {
-//        for (int i = 0; i < o.atPersonRanges.count; i++) {
-//            k = (RCKeywordEntity*)o.atPersonRanges[i];
-//            url =[NSString stringWithFormat:@"%@%@", PROTOCOL_AT_SOMEONE, [k.keyword urlEncoded]];
-//            [contentLabel addLink:[NSURL URLWithString:url]
-//                            range:NSMakeRange(k.range.location + location, k.range.length)];
-//            
-//        }
-//    }
-//    if (o.sharpFloorRanges.count) {
-//        for (int i = 0; i < o.sharpFloorRanges.count; i++) {
-//            k = (RCKeywordEntity*)o.sharpFloorRanges[i];
-//            url = [NSString stringWithFormat:@"%@%@", PROTOCOL_SHARP_FLOOR, [k.keyword urlEncoded]];
-//            [contentLabel addLink:[NSURL URLWithString:url]
-//                            range:NSMakeRange(k.range.location + location, k.range.length)];
-//            
-//        }
-//    }
+    if (o.atPersonRanges.count) {
+        for (int i = 0; i < o.atPersonRanges.count; i++) {
+            k = (RCKeywordEntity*)o.atPersonRanges[i];
+            url =[NSString stringWithFormat:@"%@%@", PROTOCOL_AT_SOMEONE, [k.keyword urlEncoded]];
+            [contentLabel addLink:[NSURL URLWithString:url]
+                            range:NSMakeRange(k.range.location + location, k.range.length)];
+            
+        }
+    }
 }
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////

@@ -19,10 +19,6 @@
 	if (self) {
         self.listElementName = @"comments";
         self.itemElementName = @"comment";
-        self.entityElementNames = [NSArray arrayWithObjects:
-                                   @"id", @"title", @"content", @"pubDate",
-                                   @"author", @"authorid", @"portrait",
-                                   nil];//TODO:refers
 	}
 	return self;
 }
@@ -40,16 +36,31 @@
     // 由于接口未统一，不得不怎么做，dirty!
     switch (self.homeType) {
         case OSCContentType_LatestNews:
-            path = [OSCAPIClient relativePathForRepliesListWithNewsId:self.topicId
-                                                         pageCounter:self.pageCounter
-                                                        perpageCount:self.perpageCount];
-
+            path = [OSCAPIClient relativePathForRepliesListWithCatalogId:CATALOG_NEWS
+                                                               contentId:self.topicId
+                                                             pageCounter:self.pageCounter
+                                                            perpageCount:self.perpageCount];
             break;
+            
         case OSCContentType_LatestBlog:
         case OSCContentType_RecommendBlog:
             path = [OSCAPIClient relativePathForRepliesListWithBlogId:self.topicId
                                                          pageCounter:self.pageCounter
                                                         perpageCount:self.perpageCount];
+            break;
+            
+        case OSCContentType_Forum:
+            path = [OSCAPIClient relativePathForRepliesListWithCatalogId:CATALOG_FORUM
+                                                               contentId:self.topicId
+                                                             pageCounter:self.pageCounter
+                                                            perpageCount:self.perpageCount];
+            break;
+            
+        case OSCContentType_Tweet:
+            path = [OSCAPIClient relativePathForRepliesListWithCatalogId:CATALOG_TWEET
+                                                               contentId:self.topicId
+                                                             pageCounter:self.pageCounter
+                                                            perpageCount:self.perpageCount];
             break;
             
         default:

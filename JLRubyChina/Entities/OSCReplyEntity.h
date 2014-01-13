@@ -17,7 +17,7 @@
 @property (nonatomic, strong) NSDate* createdAtDate;
 @property (nonatomic, assign) NSUInteger floorNumber;
 @property (nonatomic, copy) NSString* floorNumberString;
-@property (nonatomic, strong) NSArray* emotionRanges;
+@property (nonatomic, strong) NSArray* atPersonRanges;
 @property (nonatomic, strong) NSArray* imageUrlsArray;
 
 @end

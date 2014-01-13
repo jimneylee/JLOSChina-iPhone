@@ -10,6 +10,8 @@
 #import "OSCNewsDetailEntity.h"
 
 @interface OSCRepliesTimelineModel : OSCBaseTableModel
+
 @property (nonatomic, assign) OSCContentType homeType;
 @property (nonatomic, assign) unsigned long topicId;
+
 @end
