@@ -40,9 +40,11 @@
 	<key>HOST_API_URL</key>
 	<string>http://www.oschina.net/action/api/</string>
 	<key>HOST_INTRO</key>
-	<string>Ruby China，对！没错！这里就是 Ruby 社区，目前这里已经是国内最权威的 Ruby 社区，拥有国内所有资深的 Ruby 工程师。</string>
+	<string>开源中国 www.oschina.net 成立于2008年8月，是中国最大的开源技术社区。</string>
 	<key>HOST_URL</key>
 	<string>http://www.oschina.net</string>
+	<key>CODE_SOURCE_URL</key>
+	<string></string>
 	<key>LSRequiresIPhoneOS</key>
 	<true/>
 	<key>UILaunchImages</key>
