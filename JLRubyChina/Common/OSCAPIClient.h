@@ -78,13 +78,18 @@
 + (NSString*)relativePathForRecommendBlogsListWithPageCounter:(unsigned int)pageCounter
                                              perpageCount:(unsigned int)perpageCount;
 
+// 内容详细接口
 + (NSString*)relativePathForNewsDetailWithId:(unsigned long)newsId;
 
 + (NSString*)relativePathForBlogDetailWithId:(unsigned long)blogId;
 
-+ (NSString*)relativePathForRepliesListWithNewsId:(unsigned long)newsId
-                                      pageCounter:(unsigned int)pageCounter
-                                     perpageCount:(unsigned int)perpageCount;
++ (NSString*)relativePathForTopicDetailWithId:(unsigned long)blogId;
+
+// 回复列表接口
++ (NSString*)relativePathForRepliesListWithCatalogId:(unsigned int)catalogId
+                                           contentId:(unsigned long)contentId
+                                         pageCounter:(unsigned int)pageCounter
+                                        perpageCount:(unsigned int)perpageCount;
 
 + (NSString*)relativePathForRepliesListWithBlogId:(unsigned long)blogId
                                       pageCounter:(unsigned int)pageCounter
@@ -95,7 +100,10 @@
                                      pageCounter:(unsigned int)pageCounter
                                     perpageCount:(unsigned int)perpageCount;
 
-+ (NSString*)relativePathForTopicDetailWithId:(unsigned long)blogId;
+// 最新动弹
++ (NSString*)relativePathForTweetListWithUserId:(NSString*)uid
+                                    pageCounter:(unsigned int)pageCounter
+                                   perpageCount:(unsigned int)perpageCount;
 
 //================================================================================
 // topic write

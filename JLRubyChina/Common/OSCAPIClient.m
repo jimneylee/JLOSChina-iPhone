@@ -123,13 +123,19 @@ NSString *const kAPIBaseURLString = @"http://www.oschina.net/action/api/";
     return [NSString stringWithFormat:@"blog_detail?id=%ld", blogId];
 }
 
-+ (NSString*)relativePathForRepliesListWithNewsId:(unsigned long)newsId
-                                      pageCounter:(unsigned int)pageCounter
-                                     perpageCount:(unsigned int)perpageCount
++ (NSString*)relativePathForTopicDetailWithId:(unsigned long)blogId
+{
+    return [NSString stringWithFormat:@"post_detail?id=%ld", blogId];
+}
+
++ (NSString*)relativePathForRepliesListWithCatalogId:(unsigned int)catalogId
+                                           contentId:(unsigned long)contentId
+                                         pageCounter:(unsigned int)pageCounter
+                                        perpageCount:(unsigned int)perpageCount
 {
     // TODO:for news comment, set category: 1, and dor other I donot know now
-    return [NSString stringWithFormat:@"comment_list?catalog=1&id=%ld&pageIndex=%u&pageSize=%u",
-                                        newsId, pageCounter, perpageCount];
+    return [NSString stringWithFormat:@"comment_list?catalog=%u&id=%ld&pageIndex=%u&pageSize=%u",
+                                        catalogId, contentId, pageCounter, perpageCount];
 }
 
 + (NSString*)relativePathForRepliesListWithBlogId:(unsigned long)blogId
@@ -149,9 +155,12 @@ NSString *const kAPIBaseURLString = @"http://www.oschina.net/action/api/";
                                         type+1, pageCounter, perpageCount];
 }
 
-+ (NSString*)relativePathForTopicDetailWithId:(unsigned long)blogId
++ (NSString*)relativePathForTweetListWithUserId:(NSString*)uid
+                                    pageCounter:(unsigned int)pageCounter
+                                   perpageCount:(unsigned int)perpageCount
 {
-    return [NSString stringWithFormat:@"post_detail?id=%ld", blogId];
+    return [NSString stringWithFormat:@"tweet_list?uid=%@&pageIndex=%u&pageSize=%u",
+                                        uid, pageCounter, perpageCount];
 }
 
 + (NSString*)relativePathForReply
