@@ -22,7 +22,9 @@
 {
 	self = [super initWithDelegate:delegate];
 	if (self) {
-
+        self.superElementName = nil;
+        self.itemElementName = nil;
+        self.listElementName = nil;
 	}
 	return self;
 }
@@ -137,15 +139,22 @@
 {
     if ([elementName isEqualToString:self.listElementName]) {
         self.listDataArray = [NSMutableArray arrayWithCapacity:self.perpageCount];
-        self.superElementName = self.listElementName;
     }
-    else if ([elementName isEqualToString:self.itemElementName]) {
+    
+    // set super element and create dic
+    else if ([elementName isEqualToString:self.itemElementName]
+             || [elementName isEqualToString:XML_RESULT]
+             || [elementName isEqualToString:XML_NOTICE]) {
         self.currentDictionary = [NSMutableDictionary dictionary];
+        self.superElementName = elementName;
     }
-    else if ([self.superElementName isEqualToString:self.listElementName]) {
+    
+    // tmptext to store value in <e>value</e>
+    if ([self.superElementName isEqualToString:self.itemElementName]
+        || [self.superElementName isEqualToString:XML_RESULT]
+        || [self.superElementName isEqualToString:XML_NOTICE]) {
         self.tmpInnerElementText = [[NSMutableString alloc] init];;
     }
-    // TODO:notice
 }
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
@@ -158,30 +167,37 @@
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)parser:(NSXMLParser *)parser didEndElement:(NSString *)elementName namespaceURI:(NSString *)namespaceURI qualifiedName:(NSString *)qName
 {
-    if ([elementName isEqualToString:self.superElementName]) {
+    // add each item's dictionary to list array
+    if ([elementName isEqualToString:self.itemElementName]) {
+        [self.listDataArray addObject:self.currentDictionary];
+        self.currentDictionary = nil;
         self.superElementName = nil;
     }
-    else if ([self.superElementName isEqualToString:self.listElementName]) {
-        
-        // ultimize with element array, and for each parse
-        if ([elementName isEqualToString:self.itemElementName]) {
-            [self.listDataArray addObject:self.currentDictionary];
-        }
-        else {
-            if (self.currentDictionary && self.tmpInnerElementText) {
-                [self.currentDictionary setObject:self.tmpInnerElementText forKey:elementName];
-            }
+    // get result error entity
+    else if ([elementName isEqualToString:XML_RESULT]) {
+        self.errorEntity = [OSCErrorEntity entityWithDictionary:self.currentDictionary];
+        self.currentDictionary = nil;
+        self.superElementName = nil;
+    }
+    // get notice entity
+    else if ([elementName isEqualToString:XML_NOTICE]) {
+        self.noticeEntiy = [OSCNoticeEntity entityWithDictionary:self.currentDictionary];
+        self.currentDictionary = nil;
+        self.superElementName = nil;
+    }
+    // set objects to item's dictionary
+    else if ([self.superElementName isEqualToString:self.itemElementName]) {
+        if (self.currentDictionary && self.tmpInnerElementText) {
+            [self.currentDictionary setObject:self.tmpInnerElementText forKey:elementName];
         }
     }
-    if (self.tmpInnerElementText) {
-        self.tmpInnerElementText = nil;
-    }
+    
+    self.tmpInnerElementText = nil;
 }
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)parserDidEndDocument:(NSXMLParser *)parser
 {
-    //NSLog(@"%@", self.listDataArray);
     [self parseDataToIndexPaths];
 }
 
@@ -191,7 +207,7 @@
     NSLog(@"Paser Error = %@", parseError);
     NSError* error = [[NSError alloc] init];
     if (self.showIndexPathsBlock) {
-        self.showIndexPathsBlock(nil, error);
+        self.showIndexPathsBlock(nil, error);//TODO: error -> error entity
     }
 }
 

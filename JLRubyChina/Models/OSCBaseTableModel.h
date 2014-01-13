@@ -8,6 +8,8 @@
 
 #import "JLNimbusTableModel.h"
 #import "OSCAPIClient.h"
+#import "OSCErrorEntity.h"
+#import "OSCNoticeEntity.h"
 
 typedef void (^ShowIndexPathsBlock)(NSArray* indexPaths, NSError *error);
 
@@ -19,6 +21,8 @@ typedef void (^ShowIndexPathsBlock)(NSArray* indexPaths, NSError *error);
 @property (nonatomic, strong) NSMutableString* tmpInnerElementText;//mutable must retain->www.stackoverflow.com/questions/3686341/nsmutablestring-appendstring-generates-a-sigabrt
 
 @property (nonatomic, strong) NSMutableArray* listDataArray;
+@property (nonatomic, strong) OSCErrorEntity* errorEntity;
+@property (nonatomic, strong) OSCNoticeEntity* noticeEntiy;
 @property (nonatomic, strong) ShowIndexPathsBlock showIndexPathsBlock;
 
 @end
