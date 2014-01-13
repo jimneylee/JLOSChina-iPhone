@@ -15,6 +15,7 @@
 
 #import "JASidePanelController.h"
 #import "OSCHomeC.h"
+#import "OSCTweetC.h"
 #import "OSCLeftMenuC.h"
 
 @interface OSCAppDelegate()<RCNetworkSpyDelegate>
@@ -112,7 +113,7 @@
     // Override point for customization after application launch.
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
 #if 1
-    OSCHomeC *forumTopics = [[OSCHomeC alloc] init];
+    OSCTweetC *forumTopics = [[OSCTweetC alloc] init];
     UINavigationController *nav = [[UINavigationController alloc] initWithRootViewController:forumTopics];
     nav.navigationBar.translucent = NO;
     OSCLeftMenuC *leftSideC = [[OSCLeftMenuC alloc] initWithStyle:UITableViewStylePlain];
@@ -124,7 +125,7 @@
     [self.window makeKeyAndVisible];
     [[LTUpdate shared] update];
     [self appearanceChange];
-#else
+#else// for screenshot
     RCAboutAppC* c = [[RCAboutAppC alloc] initWithNibName:@"RCAboutAppC" bundle:nil];
     self.window.rootViewController = c;
     [self.window makeKeyAndVisible];
