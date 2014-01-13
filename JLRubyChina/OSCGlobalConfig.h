@@ -8,6 +8,7 @@
 
 #import <Foundation/Foundation.h>
 #import "OSCLoginC.h"
+#import "OSCUserFullEntity.h"
 
 // 内容类型：资讯、博客、帖子、动弹（微博）类型
 typedef enum {
@@ -37,10 +38,8 @@ typedef enum {
 @interface OSCGlobalConfig : NSObject
 
 //Global Data
-+ (NSString*)myToken;
-+ (void)setMyToken:(NSString*)token;
-+ (NSString*)myLoginId;
-+ (void)setMyLoginId:(NSString*)loginId;
++ (OSCUserFullEntity*)loginedUserEntity;
++ (void)setLoginedUserEntity:(OSCUserFullEntity*)userEntity;
 
 // App Info
 + (NSString *)getIOSGuid;

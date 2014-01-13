@@ -8,8 +8,7 @@
 
 #import "OSCGlobalConfig.h"
 
-static NSString* myToken = nil;
-static NSString* myLoginId = nil;
+static OSCUserFullEntity* loginedUserEntity = nil;
 
 @implementation OSCGlobalConfig
 
@@ -18,27 +17,15 @@ static NSString* myLoginId = nil;
 #pragma mark - Global Data
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
-+ (NSString*)myToken
++ (OSCUserFullEntity*)loginedUserEntity
 {
-    return myToken;
+    return loginedUserEntity;
 }
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
-+ (void)setMyToken:(NSString*)token
++ (void)setLoginedUserEntity:(OSCUserFullEntity*)userEntity
 {
-    myToken = [token copy];
-}
-
-///////////////////////////////////////////////////////////////////////////////////////////////////
-+ (NSString*)myLoginId
-{
-    return myLoginId;
-}
-
-///////////////////////////////////////////////////////////////////////////////////////////////////
-+ (void)setMyLoginId:(NSString*)loginId
-{
-    myLoginId = [loginId copy];
+    loginedUserEntity = userEntity;
 }
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
