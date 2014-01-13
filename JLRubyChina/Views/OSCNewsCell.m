@@ -24,7 +24,6 @@
 
 @interface OSCNewsCell()<NIAttributedLabelDelegate>
 @property (nonatomic, strong) OSCCommonEntity* topicEntity;
-@property (nonatomic, strong) UILabel* topicTitleLabel;
 @property (nonatomic, strong) UILabel* repliesCountLabel;
 @property (nonatomic, strong) NIAttributedLabel* createdLabel;
 @end
@@ -77,11 +76,10 @@
         self.selectionStyle = UITableViewCellSelectionStyleBlue;
         
         // topic title
-        self.topicTitleLabel = [[UILabel alloc] initWithFrame:CGRectZero];
-        self.topicTitleLabel.numberOfLines = 0;
-        self.topicTitleLabel.font = TITLE_FONT_SIZE;
-        self.topicTitleLabel.textColor = [UIColor blackColor];
-        [self.contentView addSubview:self.topicTitleLabel];
+        self.textLabel.numberOfLines = 0;
+        self.textLabel.font = TITLE_FONT_SIZE;
+        self.textLabel.textColor = [UIColor blackColor];
+        [self.contentView addSubview:self.textLabel];
         
         // replies count
         self.repliesCountLabel = [[UILabel alloc] initWithFrame:CGRectZero];
@@ -111,7 +109,7 @@
         self.textLabel.backgroundColor = [UIColor clearColor];
         self.detailTextLabel.backgroundColor = [UIColor clearColor];
         self.repliesCountLabel.backgroundColor = RGBCOLOR(27, 128, 219);//[UIColor clearColor];
-        self.topicTitleLabel.backgroundColor = [UIColor clearColor];
+        self.textLabel.backgroundColor = [UIColor clearColor];
         self.createdLabel.backgroundColor = [UIColor clearColor];
     }
     return self;
@@ -162,7 +160,7 @@
     CGFloat kTitleLength = self.contentView.width - contentViewMarin * 2;
 #if 1
     NSAttributedString *attributedText =
-    [[NSAttributedString alloc] initWithString:self.topicTitleLabel.text
+    [[NSAttributedString alloc] initWithString:self.textLabel.text
                                     attributes:@{NSFontAttributeName:TITLE_FONT_SIZE}];
     CGRect rect = [attributedText boundingRectWithSize:(CGSize){kTitleLength, CGFLOAT_MAX}
                                                options:NSStringDrawingUsesLineFragmentOrigin
@@ -172,11 +170,11 @@
     CGSize titleSize = [self.topicTitleLabel.text sizeWithFont:TITLE_FONT_SIZE
                                             constrainedToSize:CGSizeMake(kTitleLength, FLT_MAX)];
 #endif
-    self.topicTitleLabel.frame = CGRectMake(contentViewMarin, contentViewMarin,
+    self.textLabel.frame = CGRectMake(contentViewMarin, contentViewMarin,
                                         kTitleLength, titleSize.height);
     
-    self.createdLabel.frame = CGRectMake(self.topicTitleLabel.left, self.topicTitleLabel.bottom + CELL_PADDING_4,
-                                             self.topicTitleLabel.width, 0.f);
+    self.createdLabel.frame = CGRectMake(self.textLabel.left, self.textLabel.bottom + CELL_PADDING_4,
+                                             self.textLabel.width, 0.f);
     [self.createdLabel sizeToFit];
 }
 
@@ -188,7 +186,7 @@
         OSCCommonEntity* o = (OSCCommonEntity*)object;
         self.topicEntity = o;
         self.repliesCountLabel.text = [NSString stringWithFormat:@"%lu", o.repliesCount];
-        self.topicTitleLabel.text = o.title;
+        self.textLabel.text = o.title;
 
         self.createdLabel.text = [NSString stringWithFormat:@"%@发表于%@",
                                           o.user.authorName, [o.createdAtDate formatRelativeTime]];
