@@ -93,8 +93,28 @@
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)segmentedDidChange
 {
+    // first cancel request operation
+    [self.model cancelRequstOperation];
+    
+    // scroll top
     ((OSCForumTimelineModel*)self.model).homeType = self.segmentedControl.selectedSegmentIndex;
+    [self scrollToTopAnimated:NO];
+    
+    // remove all, sometime crash, fix later on
+    //    if (self.model.sections.count > 0) {
+    //        [self.model removeSectionAtIndex:0];
+    //    }
+    
+    // load cache
     [self refreshData:YES];
+}
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+- (void)scrollToTopAnimated:(BOOL)animated
+{
+    [self.tableView scrollRectToVisible:CGRectMake(0.f, 0.f,
+                                                   self.tableView.width, self.tableView.height)
+                               animated:animated];
 }
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
@@ -115,11 +135,11 @@
             OSCNewsEntity* entity = (OSCNewsEntity*)object;
             if (entity.newsId > 0) {
                 OSCCommonDetailC* c = [[OSCCommonDetailC alloc] initWithTopicId:entity.newsId
-                                                                  topicType:OSCContentType_ForumTopic];
+                                                                  topicType:OSCContentType_Forum];
                 [self.navigationController pushViewController:c animated:YES];
             }
             else {
-                [OSCGlobalConfig HUDShowMessage:@"帖子不存在或已被删除！" addedToView:self.view];
+                [OSCGlobalConfig HUDShowMessage:@"不存在或已被删除！" addedToView:self.view];
             }
         }
         return YES;
