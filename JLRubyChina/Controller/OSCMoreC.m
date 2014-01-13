@@ -38,7 +38,7 @@
             return YES;
         };
         NITableViewActionBlock tapLogoutLoginAction = ^BOOL(id object, id target) {
-            if ([OSCGlobalConfig myToken]) {
+            if ([OSCGlobalConfig loginedUserEntity]) {
                 [self showLogoutActionSheet];
             }
             else {
@@ -63,7 +63,7 @@
             [self showAboutView];
             return YES;
         };
-        NSString* logoutLoginCellTitle = [OSCGlobalConfig myToken].length ? LOGOUT_TITLE : LOGIN_TITLE;
+        NSString* logoutLoginCellTitle = [OSCGlobalConfig loginedUserEntity] ? LOGOUT_TITLE : LOGIN_TITLE;
         NSArray* tableContents =
         [NSArray arrayWithObjects:
          [_actions attachToObject:[NITitleCellObject objectWithTitle:@"清除缓存"]
@@ -171,10 +171,9 @@
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)logout
 {
-    if ([OSCGlobalConfig myToken]) {
+    if ([OSCGlobalConfig loginedUserEntity]) {
         [OSCAccountEntity deleteLoginedUserDiskData];
-        [OSCGlobalConfig setMyLoginId:nil];
-        [OSCGlobalConfig setMyToken:nil];
+        [OSCGlobalConfig setLoginedUserEntity:nil];
         [[NSNotificationCenter defaultCenter] postNotificationName:DID_LOGOUT_NOTIFICATION object:nil];
         [OSCGlobalConfig HUDShowMessage:@"注销成功" addedToView:self.view];
         self.logoutLoginCell.textLabel.text = LOGIN_TITLE;
