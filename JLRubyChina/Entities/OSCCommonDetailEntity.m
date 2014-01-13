@@ -6,13 +6,13 @@
 //  Copyright (c) 2013 jimneylee. All rights reserved.
 //
 
-#import "OSCNewsDetailEntity.h"
+#import "OSCCommonDetailEntity.h"
 #import "RCRegularParser.h"
 #import "NSString+Emojize.h"
 #import "NSAttributedStringMarkdownParser.h"
 #import "MarkdownSyntaxGenerator.h"
 
-@implementation OSCNewsDetailEntity
+@implementation OSCCommonDetailEntity
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (id)initWithDictionary:(NSDictionary*)dic
@@ -37,7 +37,7 @@
         return nil;
     }
     
-    OSCNewsDetailEntity* entity = [[OSCNewsDetailEntity alloc] initWithDictionary:dic];
+    OSCCommonDetailEntity* entity = [[OSCCommonDetailEntity alloc] initWithDictionary:dic];
     return entity;
 }
 

@@ -13,7 +13,7 @@
 #import "NIWebController.h"
 #import "UIView+findViewController.h"
 #import "UIImage+nimbusImageNamed.h"
-#import "OSCNewsEntity.h"
+#import "OSCCommonEntity.h"
 //#import "RCForumTopicsC.h"
 //#import "RCUserHomepageC.h"
 
@@ -23,7 +23,7 @@
 #define HEAD_IAMGE_HEIGHT 34
 
 @interface OSCNewsCell()<NIAttributedLabelDelegate>
-@property (nonatomic, strong) OSCNewsEntity* topicEntity;
+@property (nonatomic, strong) OSCCommonEntity* topicEntity;
 @property (nonatomic, strong) UILabel* topicTitleLabel;
 @property (nonatomic, strong) UILabel* repliesCountLabel;
 @property (nonatomic, strong) NIAttributedLabel* createdLabel;
@@ -34,14 +34,14 @@
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 + (CGFloat)heightForObject:(id)object atIndexPath:(NSIndexPath *)indexPath tableView:(UITableView *)tableView
 {
-    if ([object isKindOfClass:[OSCNewsEntity class]]) {
+    if ([object isKindOfClass:[OSCCommonEntity class]]) {
         CGFloat cellMargin = CELL_PADDING_4;
         CGFloat contentViewMarin = CELL_PADDING_6;
         CGFloat sideMargin = cellMargin + contentViewMarin;
 
         CGFloat height = sideMargin;
         
-        OSCNewsEntity* o = (OSCNewsEntity*)object;
+        OSCCommonEntity* o = (OSCCommonEntity*)object;
         
         CGFloat kTitleLength = tableView.width -  sideMargin * 2;
 #if 1
@@ -184,8 +184,8 @@
 - (BOOL)shouldUpdateCellWithObject:(id)object
 {
     [super shouldUpdateCellWithObject:object];
-    if ([object isKindOfClass:[OSCNewsEntity class]]) {
-        OSCNewsEntity* o = (OSCNewsEntity*)object;
+    if ([object isKindOfClass:[OSCCommonEntity class]]) {
+        OSCCommonEntity* o = (OSCCommonEntity*)object;
         self.topicEntity = o;
         self.repliesCountLabel.text = [NSString stringWithFormat:@"%lu", o.repliesCount];
         self.topicTitleLabel.text = o.title;

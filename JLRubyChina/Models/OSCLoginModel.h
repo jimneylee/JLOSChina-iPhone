@@ -9,7 +9,7 @@
 #import <Foundation/Foundation.h>
 #import "OSCAccountEntity.h"
 
-@interface RCLoginModel : NSObject
+@interface OSCLoginModel : NSObject<NSXMLParserDelegate>
 
 - (void)loginWithUsername:(NSString*)username password:(NSString*)password
                     block:(void(^)(OSCAccountEntity* user, NSError *error))block;

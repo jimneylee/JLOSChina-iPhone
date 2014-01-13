@@ -6,9 +6,9 @@
 //  Copyright (c) 2013年 jimneylee. All rights reserved.
 //
 
-#import "OSCNewsEntity.h"
+#import "OSCCommonEntity.h"
 #import "OSCUserEntity.h"
 
-@interface OSCTopicEntity : OSCNewsEntity
+@interface OSCTopicEntity : OSCCommonEntity
 
 @end

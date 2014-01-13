@@ -8,7 +8,7 @@
 
 #import "OSCCommonDetailModel.h"
 #import "OSCAPIClient.h"
-#import "OSCNewsDetailEntity.h"
+#import "OSCCommonDetailEntity.h"
 #import "OSCRelativeEntity.h"
 #import "OSCRelativeCell.h"
 
@@ -116,7 +116,7 @@
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)parserDidEndDocument:(NSXMLParser *)parser
 {
-    self.topicDetailEntity = [OSCNewsDetailEntity entityWithDictionary:self.detailDictionary];
+    self.topicDetailEntity = [OSCCommonDetailEntity entityWithDictionary:self.detailDictionary];
     [super parserDidEndDocument:parser];
 }
 

@@ -9,7 +9,7 @@
 #import "JLNimbusEntity.h"
 #import "OSCUserEntity.h"
 
-@interface OSCNewsEntity : JLNimbusEntity
+@interface OSCCommonEntity : JLNimbusEntity
 
 @property (nonatomic, strong) OSCUserEntity* user;
 @property (nonatomic, assign) unsigned long newsId;

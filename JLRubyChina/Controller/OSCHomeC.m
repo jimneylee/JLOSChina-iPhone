@@ -10,7 +10,7 @@
 #import "SDSegmentedControl.h"
 
 #import "OSCHomeTimelineModel.h"
-#import "OSCNewsEntity.h"
+#import "OSCCommonEntity.h"
 #import "OSCCommonDetailC.h"
 
 @interface OSCHomeC ()
@@ -131,8 +131,8 @@
 - (NITableViewActionBlock)tapAction
 {
     return ^BOOL(id object, id target) {
-        if ([object isKindOfClass:[OSCNewsEntity class]]) {
-            OSCNewsEntity* entity = (OSCNewsEntity*)object;
+        if ([object isKindOfClass:[OSCCommonEntity class]]) {
+            OSCCommonEntity* entity = (OSCCommonEntity*)object;
             if (entity.newsId > 0) {
                 OSCCommonDetailC* c = [[OSCCommonDetailC alloc] initWithTopicId:entity.newsId
                                                                   topicType:self.segmentedControl.selectedSegmentIndex];

@@ -7,12 +7,12 @@
 //
 
 #import "OSCBaseTableModel.h"
-#import "OSCNewsDetailEntity.h"
+#import "OSCCommonDetailEntity.h"
 
 @interface OSCCommonDetailModel : OSCBaseTableModel
 
 @property (nonatomic, assign) OSCContentType homeType;
 @property (nonatomic, assign) unsigned long topicId;
-@property (nonatomic, strong) OSCNewsDetailEntity* topicDetailEntity;
+@property (nonatomic, strong) OSCCommonDetailEntity* topicDetailEntity;
 
 @end

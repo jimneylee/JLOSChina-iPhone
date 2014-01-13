@@ -6,7 +6,7 @@
 //  Copyright (c) 2013年 jimneylee. All rights reserved.
 //
 
-#import "OSCTopicBodyView.h"
+#import "OSCCommonBodyView.h"
 #import <QuartzCore/QuartzCore.h>
 #import "UIViewAdditions.h"
 #import "NIAttributedLabel.h"
@@ -30,10 +30,10 @@
 #define BUTTON_SIZE CGSizeMake(104.f, 30.f)
 #define CONTENT_IMAGE_HEIGHT 160
 
-@interface OSCTopicBodyView()<UIWebViewDelegate>
+@interface OSCCommonBodyView()<UIWebViewDelegate>
 
 @property (nonatomic, assign) CGFloat webViewContentHeight;
-@property (nonatomic, strong) OSCNewsDetailEntity* topicDetailEntity;
+@property (nonatomic, strong) OSCCommonDetailEntity* topicDetailEntity;
 //@property (nonatomic, strong) RCTopicActionModel* actionModel;
 
 @property (nonatomic, strong) UIView* contentView;
@@ -49,7 +49,7 @@
 @property (nonatomic, strong) UIImageView* moreImageView;
 @end
 
-@implementation OSCTopicBodyView
+@implementation OSCCommonBodyView
 
 - (id)initWithFrame:(CGRect)frame
 {
@@ -219,7 +219,7 @@
 }
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
-- (void)updateViewWithTopicDetailEntity:(OSCNewsDetailEntity*)topicDetailEntity
+- (void)updateViewWithTopicDetailEntity:(OSCCommonDetailEntity*)topicDetailEntity
 {
     self.topicDetailEntity = topicDetailEntity;
     if (topicDetailEntity.user.avatarUrl.length) {
@@ -264,7 +264,7 @@
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)showAllKeywordsInContentLabel:(NIAttributedLabel*)contentLabel
-                           withStatus:(OSCNewsDetailEntity*)o
+                           withStatus:(OSCCommonDetailEntity*)o
                          fromLocation:(NSInteger)location
 {
     RCKeywordEntity* k = nil;

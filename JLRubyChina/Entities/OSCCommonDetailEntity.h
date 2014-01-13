@@ -6,9 +6,9 @@
 //  Copyright (c) 2013 jimneylee. All rights reserved.
 //
 
-#import "OSCNewsEntity.h"
+#import "OSCCommonEntity.h"
 
-@interface OSCNewsDetailEntity : OSCNewsEntity
+@interface OSCCommonDetailEntity : OSCCommonEntity
 
 @property (nonatomic, assign) unsigned long hitsCount;
 @property (nonatomic, copy) NSString* body;

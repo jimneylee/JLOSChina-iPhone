@@ -10,7 +10,7 @@
 #import "SDSegmentedControl.h"
 
 #import "OSCForumTimelineModel.h"
-#import "OSCNewsEntity.h"
+#import "OSCCommonEntity.h"
 #import "OSCCommonDetailC.h"
 
 @interface OSCForumC ()
@@ -131,8 +131,8 @@
 - (NITableViewActionBlock)tapAction
 {
     return ^BOOL(id object, id target) {
-        if ([object isKindOfClass:[OSCNewsEntity class]]) {
-            OSCNewsEntity* entity = (OSCNewsEntity*)object;
+        if ([object isKindOfClass:[OSCCommonEntity class]]) {
+            OSCCommonEntity* entity = (OSCCommonEntity*)object;
             if (entity.newsId > 0) {
                 OSCCommonDetailC* c = [[OSCCommonDetailC alloc] initWithTopicId:entity.newsId
                                                                   topicType:OSCContentType_Forum];

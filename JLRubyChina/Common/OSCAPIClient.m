@@ -19,30 +19,6 @@ NSString *const kAPIBaseURLString = @"http://www.oschina.net/action/api/";
 
 @implementation OSCAPIClient
 
-+ (NSString *)getIOSGuid
-{
-    NSUserDefaults * settings = [NSUserDefaults standardUserDefaults];
-    NSString * value = [settings objectForKey:@"guid"];
-    if (value && [value isEqualToString:@""] == NO) {
-        return value;
-    }
-    else
-    {
-        CFUUIDRef uuid = CFUUIDCreate(kCFAllocatorDefault);
-        NSString * uuidString = (__bridge_transfer NSString *)CFUUIDCreateString(kCFAllocatorDefault, uuid);
-        CFRelease(uuid);
-        [settings setObject:uuidString forKey:@"guid"];
-        [settings synchronize];
-        return uuidString;
-    }
-}
-
-#define AppVersion @"1.0.0"
-+ (NSString *)getOSVersion
-{
-    return [NSString stringWithFormat:@"OSChina.NET/%@/%@/%@/%@",AppVersion,[UIDevice currentDevice].systemName,[UIDevice currentDevice].systemVersion, [UIDevice currentDevice].model];
-}
-
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 + (OSCAPIClient*)sharedClient
 {
@@ -66,8 +42,8 @@ NSString *const kAPIBaseURLString = @"http://www.oschina.net/action/api/";
         
         // idea from old version app
         NSString* userAgent = [NSString stringWithFormat:@"%@/%@",
-                               [OSCAPIClient getOSVersion],
-                               [OSCAPIClient getIOSGuid]];
+                               [OSCGlobalConfig getOSVersion],
+                               [OSCGlobalConfig getIOSGuid]];
         [self setDefaultHeader:@"User-Agent" value:userAgent];
         [self setDefaultHeader:@"Accept" value:@"application/xml"];
         
@@ -83,7 +59,7 @@ NSString *const kAPIBaseURLString = @"http://www.oschina.net/action/api/";
 // 登录
 + (NSString*)relativePathForSignIn
 {
-    return [NSString stringWithFormat:@"account/sign_in.json"];
+    return [NSString stringWithFormat:@"login_validate"];
 }
 
 #pragma mark - Topics

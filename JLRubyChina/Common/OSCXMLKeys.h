@@ -19,4 +19,8 @@
 #define XML_CONTENT @"content"
 //TODO: add others
 
+#define XML_RESULT @"result"
+#define XML_USER @"user"
+#define XML_NOTICE @"notice"
+
 #endif

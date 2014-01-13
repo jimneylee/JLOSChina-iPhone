@@ -92,6 +92,12 @@
                                         parser.delegate = self;
                                         [parser parse];
                                     }
+                                    else {
+                                        if (block) {
+                                            NSError* error = [[NSError alloc] init];
+                                            block(nil, error);
+                                        }
+                                    }
                                 } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
                                     self.isLoading = NO;
                                     if (block) {

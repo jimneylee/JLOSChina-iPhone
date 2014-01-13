@@ -42,6 +42,10 @@ typedef enum {
 + (NSString*)myLoginId;
 + (void)setMyLoginId:(NSString*)loginId;
 
+// App Info
++ (NSString *)getIOSGuid;
++ (NSString *)getOSVersion;
+
 // Global UI
 + (MBProgressHUD*)HUDShowMessage:(NSString*)msg addedToView:(UIView*)view;
 + (UIBarButtonItem*)createBarButtonItemWithTitle:(NSString*)buttonTitle Target:(id)target action:(SEL)action;

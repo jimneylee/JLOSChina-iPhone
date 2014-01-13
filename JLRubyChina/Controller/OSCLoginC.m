@@ -7,7 +7,7 @@
 //
 
 #import "OSCLoginC.h"
-#import "RCLoginModel.h"
+#import "OSCLoginModel.h"
 #import "OSCUserFullEntity.h"
 
 #define USERNAME_INDEX 0
@@ -25,7 +25,7 @@
 @property (nonatomic, readwrite, retain) NITableViewModel* model;
 @property (nonatomic, readwrite, retain) NITableViewActions* actions;
 @property (nonatomic, readwrite, retain) NICellFactory* cellFactory;
-@property (nonatomic, readwrite, retain) RCLoginModel* userModel;
+@property (nonatomic, readwrite, retain) OSCLoginModel* userModel;
 
 @end
 
@@ -63,7 +63,7 @@
         
         _model = [[NITableViewModel alloc] initWithSectionedArray:tableContents
                                                          delegate:(id)[NICellFactory class]];
-        _userModel = [[RCLoginModel alloc] init];
+        _userModel = [[OSCLoginModel alloc] init];
     }
     return self;
 }

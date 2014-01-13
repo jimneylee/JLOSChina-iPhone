@@ -9,7 +9,7 @@
 #import "OSCCommonRepliesListC.h"
 #import "OSCRepliesTimelineModel.h"
 #import "OSCReplyEntity.h"
-#import "OSCTopicBodyView.h"
+#import "OSCCommonBodyView.h"
 #import "OSCReplyModel.h"
 #import "OSCQuickReplyC.h"
 
@@ -17,8 +17,8 @@
 #define SCROLL_DIRECTION_UP_TAG 1001
 
 @interface OSCCommonRepliesListC ()<RCQuickReplyDelegate>
-@property (nonatomic, strong) OSCNewsDetailEntity* topicDetailEntity;
-@property (nonatomic, strong) OSCTopicBodyView* topicBodyView;
+@property (nonatomic, strong) OSCCommonDetailEntity* topicDetailEntity;
+@property (nonatomic, strong) OSCCommonBodyView* topicBodyView;
 @property (nonatomic, strong) OSCQuickReplyC* quickReplyC;
 @property (nonatomic, strong) UIButton* scrollBtn;
 @end
@@ -119,7 +119,7 @@
 - (void)updateTopicHeaderView
 {
     if (!_topicBodyView) {
-        _topicBodyView = [[OSCTopicBodyView alloc] initWithFrame:CGRectMake(0.f, 0.f, self.view.width, 0.f)];
+        _topicBodyView = [[OSCCommonBodyView alloc] initWithFrame:CGRectMake(0.f, 0.f, self.view.width, 0.f)];
     }
     [self.topicBodyView updateViewWithTopicDetailEntity:self.topicDetailEntity];
     

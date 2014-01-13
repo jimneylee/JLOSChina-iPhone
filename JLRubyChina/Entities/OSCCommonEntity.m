@@ -6,11 +6,11 @@
 //  Copyright (c) 2013年 jimneylee. All rights reserved.
 //
 
-#import "OSCNewsEntity.h"
+#import "OSCCommonEntity.h"
 #import "NSDate+OSChina.h"
 #import "NSString+stringFromValue.h"
 
-@implementation OSCNewsEntity
+@implementation OSCCommonEntity
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (id)initWithDictionary:(NSDictionary*)dic
@@ -42,7 +42,7 @@
         return nil;
     }
     
-    OSCNewsEntity* entity = [[OSCNewsEntity alloc] initWithDictionary:dic];
+    OSCCommonEntity* entity = [[OSCCommonEntity alloc] initWithDictionary:dic];
     return entity;
 }
 

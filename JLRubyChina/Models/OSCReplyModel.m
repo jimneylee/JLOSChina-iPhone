@@ -37,6 +37,15 @@
     }
 }
 
+//[[AFOSCClient sharedClient] postPath:api_comment_reply
+//                          parameters:[NSDictionary dictionaryWithObjectsAndKeys:
+//                                      [NSString stringWithFormat:@"%d", self.parentCommentID],@"id",
+//                                      [NSString stringWithFormat:@"%d", [Config Instance].getUID],@"uid",
+//                                      [NSString stringWithFormat:@"%d", self.catalog],@"catalog",
+//                                      [NSString stringWithFormat:@"%d", self.replyID],@"replyid",
+//                                      [NSString stringWithFormat:@"%d", self.authorID],@"authorid",
+//                                      message, @"content",nil]
+
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)replyTopicId:(unsigned long)topicId
             body:(NSString*)body

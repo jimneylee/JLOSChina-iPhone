@@ -9,7 +9,7 @@
 #import "OSCHomeTimelineModel.h"
 #import "OSCAPIClient.h"
 #import "OSCNewsCell.h"
-#import "OSCNewsEntity.h"
+#import "OSCCommonEntity.h"
 #import "OSCBlogEntity.h"
 
 #define XML_NOTICE @"notice"
@@ -73,7 +73,7 @@
     // 由于接口未统一，不得不怎么做，dirty!
     switch (self.homeType) {
         case OSCContentType_LatestNews:
-            return [OSCNewsEntity class];
+            return [OSCCommonEntity class];
             break;
             
         case OSCContentType_LatestBlog:

@@ -7,7 +7,7 @@
 //
 
 #import "OSCBaseTableModel.h"
-#import "OSCNewsDetailEntity.h"
+#import "OSCCommonDetailEntity.h"
 
 @interface OSCRepliesTimelineModel : OSCBaseTableModel
 

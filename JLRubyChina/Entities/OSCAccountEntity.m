@@ -9,140 +9,129 @@
 #import "OSCAccountEntity.h"
 #import "SSKeychain.h"
 
-NSString* kRubyChinaService = @"RubyChinaService";
-NSString* kLoginId = @"LoginId";
+NSString* kDefaultForumService = @"DefaultForumService";
+NSString* kUserCookie = @"UserCookie";
+NSString* kLoginedUserName = @"LoginedUserName";
 
-//{
-//    avatar =     {
-//        big =         {
-//            url = "photo/big.jpg";
-//        };
-//        large =         {
-//            url = "photo/large.jpg";
-//        };
-//        normal =         {
-//            url = "photo/normal.jpg";
-//        };
-//        small =         {
-//            url = "photo/small.jpg";
-//        };
-//        url = "photo/.jpg";
-//    };
-//    email = "jimneylee@gmail.com";
-//    login = jimneylee;
-//    "private_token" = "8a67b1e1042c8093f709:4988";
-//}
 @implementation OSCAccountEntity
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
-- (id)initWithDictionary:(NSDictionary*)dic
+- (id)initWithUsername:(NSString*)username password:(NSString*)password
 {
-    if (!dic || ![dic isKindOfClass:[NSDictionary class]]) {
-        return nil;
-    }
-    
-    self = [super initWithDictionary:dic];
+    self = [super init];
     if (self) {
-        self.loginId = dic[@""];//TODO:
-        self.privateToken = dic[@""];
+        self.username = username;
+        self.password = password;
     }
     return self;
 }
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
-+ (id)entityWithDictionary:(NSDictionary*)dic
-{
-    if (!dic || ![dic isKindOfClass:[NSDictionary class]]) {
-        return nil;
-    }
-    
-    OSCAccountEntity* entity = [[OSCAccountEntity alloc] initWithDictionary:dic];
-    return entity;
-}
-
-///////////////////////////////////////////////////////////////////////////////////////////////////
-///////////////////////////////////////////////////////////////////////////////////////////////////
-#pragma mark - Load & Delete logined user
-
-///////////////////////////////////////////////////////////////////////////////////////////////////
 + (OSCAccountEntity*)loadStoredUserAccount
 {
-    NSString* loginId = [OSCAccountEntity readLoginId];
-    NSString* privateToken = [OSCAccountEntity readPrivateToken];
-    if (loginId && privateToken) {
+    NSString* username = [OSCAccountEntity readUsername];
+    NSString* password = [OSCAccountEntity readPassword];
+    if (username && password) {
         OSCAccountEntity* user = [[OSCAccountEntity alloc] init];
-        user.loginId = loginId;
-        user.privateToken = privateToken;
+        user.username = username;
+        user.password = password;
         return user;
     }
     return nil;
 }
 
+#pragma mark - Store & read username
 ///////////////////////////////////////////////////////////////////////////////////////////////////
-+ (void)deleteLoginedUserDiskData
++ (void)storeUsername:(NSString*)username
 {
-    [OSCAccountEntity deletePrivateToken];
-    [OSCAccountEntity deleteLoginId];
-}
-
-///////////////////////////////////////////////////////////////////////////////////////////////////
-///////////////////////////////////////////////////////////////////////////////////////////////////
-#pragma mark - Store & Read login id
-///////////////////////////////////////////////////////////////////////////////////////////////////
-///////////////////////////////////////////////////////////////////////////////////////////////////
-+ (void)storeLoginId:(NSString*)loginId
-{
-    [[NSUserDefaults standardUserDefaults] setObject:loginId forKey:kLoginId];
+    [[NSUserDefaults standardUserDefaults] setObject:username forKey:kLoginedUserName];
     [[NSUserDefaults standardUserDefaults] synchronize];
 }
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
-+ (NSString*)readLoginId
++ (NSString*)readUsername
 {
-    NSString* LoginedLoginId = [[NSUserDefaults standardUserDefaults] objectForKey:kLoginId];
-    return LoginedLoginId;
+    NSString* loginedUsername = [[NSUserDefaults standardUserDefaults] objectForKey:kLoginedUserName];
+    return loginedUsername;
 }
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
-+ (void)deleteLoginId
++ (void)deleteLoginedUsername
 {
-    [[NSUserDefaults standardUserDefaults] setObject:nil forKey:kLoginId];
+    [[NSUserDefaults standardUserDefaults] setObject:nil forKey:kLoginedUserName];
     [[NSUserDefaults standardUserDefaults] synchronize];
 }
 
+#pragma mark - Store & read password
 ///////////////////////////////////////////////////////////////////////////////////////////////////
-///////////////////////////////////////////////////////////////////////////////////////////////////
-#pragma mark - Store & Read private token
-
-///////////////////////////////////////////////////////////////////////////////////////////////////
-+ (void)storePrivateToken:(NSString*)privateToken forLoginId:(NSString*)loginId
++ (void)storePassword:(NSString*)password forUsername:(NSString*)username
 {
     NSError *error = nil;
-    BOOL success = [SSKeychain setPassword:privateToken
-                                forService:kRubyChinaService
-                                   account:loginId error:&error];
+    BOOL success = [SSKeychain setPassword:password
+                                forService:kDefaultForumService
+                                   account:username error:&error];
     if (!success || error) {
         NSLog(@"can NOT store account");
     }
     else {
-        [OSCAccountEntity storeLoginId:loginId];
+        [OSCAccountEntity storeUsername:username];
     }
 }
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
-+ (NSString*)readPrivateToken
++ (NSString*)readPassword
 {
-    NSString* LoginedLoginId = [OSCAccountEntity readLoginId];
-    NSString* password = [SSKeychain passwordForService:kRubyChinaService
-                                                account:LoginedLoginId];
+    NSString* loginedUserName = [OSCAccountEntity readUsername];
+    NSString* password = [SSKeychain passwordForService:kDefaultForumService
+                                                account:loginedUserName];
     return password;
 }
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
-+ (void)deletePrivateToken
++ (void)deletePassword
 {
-    NSString* LoginedLoginId = [OSCAccountEntity readLoginId];
-    [SSKeychain deletePasswordForService:kRubyChinaService account:LoginedLoginId];
+    NSString* loginedUserName = [OSCAccountEntity readUsername];
+    [SSKeychain deletePasswordForService:kDefaultForumService account:loginedUserName];
+}
+
+#pragma mark - Store & read cookie
+///////////////////////////////////////////////////////////////////////////////////////////////////
+//Cookie = "84YS_ee7b_saltkey=5WjBYAU6; 84YS_ee7b_lastvisit=1374814062; 84YS_ee7b_sid=aCa5xa; 84YS_ee7b_lastact=1374817662%09gs_android_user.php%09logging; 84YS_ee7b_auth=06aeN1Eo%2Bth%2Bx4G9NPRW0GDB2CxwXj9Pr4XN%2BoaXfjgR7iJeu5EverSfrjATEzhrOApotjiehFn1jNobqU90; 84YS_ee7b_loginuser=deleted; 84YS_ee7b_activationauth=deleted; 84YS_ee7b_pmnum=deleted";
++ (void)storeUserCookie:(NSString*)cookie
+{
+    NSError *error = nil;
+    BOOL success = [SSKeychain setPassword:cookie
+                                forService:kDefaultForumService
+                                   account:kUserCookie error:&error];
+    if (!success || error) {
+        NSLog(@"can NOT store account");
+    }
+}
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
++ (NSString*)readUserCookie
+{
+    NSString* cookie = [SSKeychain passwordForService:kDefaultForumService account:kUserCookie];
+    return cookie;
+}
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
++ (void)deleteUserCookie
+{
+    [SSKeychain deletePasswordForService:kDefaultForumService account:kUserCookie];
+}
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////////////////////////
+#pragma mark - Delete Logined User's Data
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
++ (void)deleteLoginedUserDiskData
+{
+    [OSCAccountEntity deleteUserCookie];
+    [OSCAccountEntity deletePassword];
+    //!Notice:maybe delte name last
+    [OSCAccountEntity deleteLoginedUsername];
 }
 
 @end
