@@ -17,6 +17,7 @@
 @property(nonatomic, strong) HPGrowingTextView *textView;
 @property (nonatomic, strong) TSEmojiView* emojiView;
 @property (nonatomic, assign) id<RCQuickReplyDelegate> replyDelegate;
+@property (nonatomic, assign) unsigned long topicId;
 
 - (id)initWithTopicId:(unsigned long)topicId;
 - (void)appendString:(NSString*)string;

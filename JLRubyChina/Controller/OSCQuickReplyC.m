@@ -17,7 +17,6 @@
 #define BTN_TITLE_KEYBOARD @"键盘"
 
 @interface OSCQuickReplyC ()<TSEmojiViewDelegate>
-@property (nonatomic, assign) unsigned long topicId;
 @property (nonatomic, strong) UIView* containerView;
 @property (nonatomic, strong) UIButton* emojiBtn;
 @property (nonatomic, strong) UIButton* sendBtn;
