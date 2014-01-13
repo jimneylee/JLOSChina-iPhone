@@ -216,6 +216,10 @@
 		CE543D791882A89600D18D77 /* OSCForumTimelineModel.m in Sources */ = {isa = PBXBuildFile; fileRef = CE543D771882A89600D18D77 /* OSCForumTimelineModel.m */; };
 		CE543D7C1882B06300D18D77 /* OSCTopicEntity.m in Sources */ = {isa = PBXBuildFile; fileRef = CE543D7B1882B06300D18D77 /* OSCTopicEntity.m */; };
 		CE543D7D1882B06300D18D77 /* OSCTopicEntity.m in Sources */ = {isa = PBXBuildFile; fileRef = CE543D7B1882B06300D18D77 /* OSCTopicEntity.m */; };
+		CE543D9E18840DD400D18D77 /* OSCErrorEntity.m in Sources */ = {isa = PBXBuildFile; fileRef = CE543D9D18840DD400D18D77 /* OSCErrorEntity.m */; };
+		CE543D9F18840DD400D18D77 /* OSCErrorEntity.m in Sources */ = {isa = PBXBuildFile; fileRef = CE543D9D18840DD400D18D77 /* OSCErrorEntity.m */; };
+		CE543DA218840E9F00D18D77 /* OSCNoticeEntity.m in Sources */ = {isa = PBXBuildFile; fileRef = CE543DA118840E9F00D18D77 /* OSCNoticeEntity.m */; };
+		CE543DA318840E9F00D18D77 /* OSCNoticeEntity.m in Sources */ = {isa = PBXBuildFile; fileRef = CE543DA118840E9F00D18D77 /* OSCNoticeEntity.m */; };
 		CE5936FF187D7F4100DC3A55 /* JASidePanelController.m in Sources */ = {isa = PBXBuildFile; fileRef = CE5936FC187D7F4100DC3A55 /* JASidePanelController.m */; };
 		CE593700187D7F4100DC3A55 /* JASidePanelController.m in Sources */ = {isa = PBXBuildFile; fileRef = CE5936FC187D7F4100DC3A55 /* JASidePanelController.m */; };
 		CE593702187D7F4100DC3A55 /* UIViewController+JASidePanel.m in Sources */ = {isa = PBXBuildFile; fileRef = CE5936FE187D7F4100DC3A55 /* UIViewController+JASidePanel.m */; };
@@ -575,6 +579,10 @@
 		CE543D771882A89600D18D77 /* OSCForumTimelineModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OSCForumTimelineModel.m; sourceTree = "<group>"; };
 		CE543D7A1882B06300D18D77 /* OSCTopicEntity.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OSCTopicEntity.h; sourceTree = "<group>"; };
 		CE543D7B1882B06300D18D77 /* OSCTopicEntity.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OSCTopicEntity.m; sourceTree = "<group>"; };
+		CE543D9C18840DD400D18D77 /* OSCErrorEntity.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OSCErrorEntity.h; sourceTree = "<group>"; };
+		CE543D9D18840DD400D18D77 /* OSCErrorEntity.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OSCErrorEntity.m; sourceTree = "<group>"; };
+		CE543DA018840E9F00D18D77 /* OSCNoticeEntity.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OSCNoticeEntity.h; sourceTree = "<group>"; };
+		CE543DA118840E9F00D18D77 /* OSCNoticeEntity.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OSCNoticeEntity.m; sourceTree = "<group>"; };
 		CE5936FB187D7F4100DC3A55 /* JASidePanelController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JASidePanelController.h; sourceTree = "<group>"; };
 		CE5936FC187D7F4100DC3A55 /* JASidePanelController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JASidePanelController.m; sourceTree = "<group>"; };
 		CE5936FD187D7F4100DC3A55 /* UIViewController+JASidePanel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIViewController+JASidePanel.h"; sourceTree = "<group>"; };
@@ -944,10 +952,6 @@
 		2897EF6F1856C54B000BB6B9 /* Entities */ = {
 			isa = PBXGroup;
 			children = (
-				28B094A9185EDD73003F8789 /* OSCAccountEntity.h */,
-				28B094AA185EDD73003F8789 /* OSCAccountEntity.m */,
-				2897EF961856ECBD000BB6B9 /* OSCUserEntity.h */,
-				2897EF971856ECBD000BB6B9 /* OSCUserEntity.m */,
 				CE9DFAC5185C5BB1007BAE75 /* OSCUserFullEntity.h */,
 				CE9DFAC6185C5BB1007BAE75 /* OSCUserFullEntity.m */,
 				2897EF871856E327000BB6B9 /* OSCCommonEntity.h */,
@@ -964,6 +968,14 @@
 				CE543D1118823EAA00D18D77 /* OSCRelativeEntity.m */,
 				2832C22E1883ABFB003E96F3 /* OSCTweetEntity.h */,
 				2832C22F1883ABFB003E96F3 /* OSCTweetEntity.m */,
+				28B094A9185EDD73003F8789 /* OSCAccountEntity.h */,
+				28B094AA185EDD73003F8789 /* OSCAccountEntity.m */,
+				2897EF961856ECBD000BB6B9 /* OSCUserEntity.h */,
+				2897EF971856ECBD000BB6B9 /* OSCUserEntity.m */,
+				CE543D9C18840DD400D18D77 /* OSCErrorEntity.h */,
+				CE543D9D18840DD400D18D77 /* OSCErrorEntity.m */,
+				CE543DA018840E9F00D18D77 /* OSCNoticeEntity.h */,
+				CE543DA118840E9F00D18D77 /* OSCNoticeEntity.m */,
 			);
 			path = Entities;
 			sourceTree = "<group>";
@@ -1615,6 +1627,7 @@
 				2897EF511856C422000BB6B9 /* NSStringAdditions.m in Sources */,
 				CE543D1E18824C0B00D18D77 /* OSCLoginC.m in Sources */,
 				28D4EF781858061E00C9C858 /* UIView+findViewController.m in Sources */,
+				CE543DA218840E9F00D18D77 /* OSCNoticeEntity.m in Sources */,
 				CEFEFFE8188215F900D94630 /* OSCBlogEntity.m in Sources */,
 				CEF6F3AE18821FF20065F852 /* OSCReplyCell.m in Sources */,
 				2897EF9E18571008000BB6B9 /* NSDate+OSChina.m in Sources */,
@@ -1643,6 +1656,7 @@
 				2897EF8F1856E3D2000BB6B9 /* OSCBaseTableModel.m in Sources */,
 				CEF6F39C18821FC20065F852 /* OSCCommonDetailC.m in Sources */,
 				2897EF7E1856E11A000BB6B9 /* OSCLeftMenuC.m in Sources */,
+				CE543D9E18840DD400D18D77 /* OSCErrorEntity.m in Sources */,
 				CE3675C7186337A70015756D /* TSEmojiView.m in Sources */,
 				28D4EF7E1858266700C9C858 /* RCRegularParser.m in Sources */,
 				CEF6F3BA1882360D0065F852 /* OSCCommonDetailModel.m in Sources */,
@@ -1713,6 +1727,7 @@
 				CE90A0661872E6910030DB1E /* NSStringAdditions.m in Sources */,
 				CE543D1F18824C0B00D18D77 /* OSCLoginC.m in Sources */,
 				CE90A0671872E6910030DB1E /* UIView+findViewController.m in Sources */,
+				CE543DA318840E9F00D18D77 /* OSCNoticeEntity.m in Sources */,
 				CEFEFFE9188215F900D94630 /* OSCBlogEntity.m in Sources */,
 				CEF6F3AF18821FF20065F852 /* OSCReplyCell.m in Sources */,
 				CE90A0691872E6910030DB1E /* NSDate+OSChina.m in Sources */,
@@ -1741,6 +1756,7 @@
 				CE90A0831872E6910030DB1E /* OSCBaseTableModel.m in Sources */,
 				CEF6F39D18821FC20065F852 /* OSCCommonDetailC.m in Sources */,
 				CE90A0841872E6910030DB1E /* OSCLeftMenuC.m in Sources */,
+				CE543D9F18840DD400D18D77 /* OSCErrorEntity.m in Sources */,
 				CE90A0861872E6910030DB1E /* TSEmojiView.m in Sources */,
 				CE90A0871872E6910030DB1E /* RCRegularParser.m in Sources */,
 				CEF6F3BB1882360D0065F852 /* OSCCommonDetailModel.m in Sources */,
