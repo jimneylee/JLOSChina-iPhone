@@ -14,6 +14,8 @@
 #import "UIViewController+JASidePanel.h"
 #import "OSCHomeC.h"
 #import "OSCForumC.h"
+#import "OSCTweetC.h"
+#import "OSCMoreC.h"
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 ///////////////////////////////////////////////////////////////////////////////////////////////////
@@ -149,6 +151,7 @@
     return view;
 }
 
+///////////////////////////////////////////////////////////////////////////////////////////////////
 - (UIView*)createTableFooterView
 {
     CGFloat tableHeaderHeight = 66.f;
@@ -199,15 +202,15 @@
             title = @"综合资讯";
             break;
             
-        case LeftMenuType_ForumQA:
-            title = @"热门问答";
+        case LeftMenuType_Forum:
+            title = @"社区讨论";
             break;
             
-        case LeftMenuType_Status:
-            title = @"最新动弹";
+        case LeftMenuType_Tweet:
+            title = @"动弹一下";
             break;
             
-        case LeftMenuType_MyHomePage:
+        case LeftMenuType_Mine:
             title = @"我的主页";
             break;
             
@@ -252,7 +255,7 @@
             }
                 break;
                 
-            case LeftMenuType_ForumQA:
+            case LeftMenuType_Forum:
             {
                 OSCForumC *c = [[OSCForumC alloc] init];
                 UINavigationController *nav = [[UINavigationController alloc] initWithRootViewController:c];
@@ -261,13 +264,25 @@
             }
                 break;
                 
-            case LeftMenuType_Status:
+            case LeftMenuType_Tweet:
+            {
+                OSCTweetC *c = [[OSCTweetC alloc] init];
+                UINavigationController *nav = [[UINavigationController alloc] initWithRootViewController:c];
+                nav.navigationBar.translucent = NO;
+                self.sidePanelController.centerPanel = nav;
+            }
                 break;
                 
-            case LeftMenuType_MyHomePage:
+            case LeftMenuType_Mine:
                 break;
                 
             case LeftMenuType_More:
+            {
+                OSCMoreC *c = [[OSCMoreC alloc] init];
+                UINavigationController *nav = [[UINavigationController alloc] initWithRootViewController:c];
+                nav.navigationBar.translucent = NO;
+                self.sidePanelController.centerPanel = nav;
+            }
                 break;
                 
             default:
