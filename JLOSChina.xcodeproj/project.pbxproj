@@ -43,6 +43,30 @@
 		281ACE68187CF41100067D9C /* MessageEntrySendButtonPressed.png in Resources */ = {isa = PBXBuildFile; fileRef = 281ACE1E187CF41100067D9C /* MessageEntrySendButtonPressed.png */; };
 		281ACE6A187CF41100067D9C /* MessageEntrySendButtonPressed@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 281ACE1F187CF41100067D9C /* MessageEntrySendButtonPressed@2x.png */; };
 		281ACE6B187CF41100067D9C /* MessageEntrySendButtonPressed@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 281ACE1F187CF41100067D9C /* MessageEntrySendButtonPressed@2x.png */; };
+		2832C2281883A9E5003E96F3 /* OSCTweetC.m in Sources */ = {isa = PBXBuildFile; fileRef = 2832C2271883A9E5003E96F3 /* OSCTweetC.m */; };
+		2832C2291883A9E5003E96F3 /* OSCTweetC.m in Sources */ = {isa = PBXBuildFile; fileRef = 2832C2271883A9E5003E96F3 /* OSCTweetC.m */; };
+		2832C22C1883AB51003E96F3 /* OSCTweetTimelineModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 2832C22B1883AB51003E96F3 /* OSCTweetTimelineModel.m */; };
+		2832C22D1883AB51003E96F3 /* OSCTweetTimelineModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 2832C22B1883AB51003E96F3 /* OSCTweetTimelineModel.m */; };
+		2832C2301883ABFB003E96F3 /* OSCTweetEntity.m in Sources */ = {isa = PBXBuildFile; fileRef = 2832C22F1883ABFB003E96F3 /* OSCTweetEntity.m */; };
+		2832C2311883ABFB003E96F3 /* OSCTweetEntity.m in Sources */ = {isa = PBXBuildFile; fileRef = 2832C22F1883ABFB003E96F3 /* OSCTweetEntity.m */; };
+		2832C2341883AC25003E96F3 /* OSCTweetCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 2832C2331883AC25003E96F3 /* OSCTweetCell.m */; };
+		2832C2351883AC25003E96F3 /* OSCTweetCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 2832C2331883AC25003E96F3 /* OSCTweetCell.m */; };
+		2832C2381883B6EE003E96F3 /* JLFullScreenPhotoBrowseView.m in Sources */ = {isa = PBXBuildFile; fileRef = 2832C2371883B6EE003E96F3 /* JLFullScreenPhotoBrowseView.m */; };
+		2832C2391883B6EE003E96F3 /* JLFullScreenPhotoBrowseView.m in Sources */ = {isa = PBXBuildFile; fileRef = 2832C2371883B6EE003E96F3 /* JLFullScreenPhotoBrowseView.m */; };
+		2832C23E1883BCF7003E96F3 /* preview_button.png in Resources */ = {isa = PBXBuildFile; fileRef = 2832C23A1883BCF7003E96F3 /* preview_button.png */; };
+		2832C23F1883BCF7003E96F3 /* preview_button.png in Resources */ = {isa = PBXBuildFile; fileRef = 2832C23A1883BCF7003E96F3 /* preview_button.png */; };
+		2832C2401883BCF7003E96F3 /* preview_button@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 2832C23B1883BCF7003E96F3 /* preview_button@2x.png */; };
+		2832C2411883BCF7003E96F3 /* preview_button@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 2832C23B1883BCF7003E96F3 /* preview_button@2x.png */; };
+		2832C2421883BCF7003E96F3 /* preview_save_icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 2832C23C1883BCF7003E96F3 /* preview_save_icon.png */; };
+		2832C2431883BCF7003E96F3 /* preview_save_icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 2832C23C1883BCF7003E96F3 /* preview_save_icon.png */; };
+		2832C2441883BCF7003E96F3 /* preview_save_icon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 2832C23D1883BCF7003E96F3 /* preview_save_icon@2x.png */; };
+		2832C2451883BCF7003E96F3 /* preview_save_icon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 2832C23D1883BCF7003E96F3 /* preview_save_icon@2x.png */; };
+		2832C24B1883C019003E96F3 /* OSCAboutAppC.m in Sources */ = {isa = PBXBuildFile; fileRef = 2832C2471883C019003E96F3 /* OSCAboutAppC.m */; };
+		2832C24C1883C019003E96F3 /* OSCAboutAppC.m in Sources */ = {isa = PBXBuildFile; fileRef = 2832C2471883C019003E96F3 /* OSCAboutAppC.m */; };
+		2832C24D1883C019003E96F3 /* OSCAboutAppC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2832C2481883C019003E96F3 /* OSCAboutAppC.xib */; };
+		2832C24E1883C019003E96F3 /* OSCAboutAppC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2832C2481883C019003E96F3 /* OSCAboutAppC.xib */; };
+		2832C24F1883C019003E96F3 /* OSCMoreC.m in Sources */ = {isa = PBXBuildFile; fileRef = 2832C24A1883C019003E96F3 /* OSCMoreC.m */; };
+		2832C2501883C019003E96F3 /* OSCMoreC.m in Sources */ = {isa = PBXBuildFile; fileRef = 2832C24A1883C019003E96F3 /* OSCMoreC.m */; };
 		28386DA5185AA4C900D7B5C9 /* OSCUIHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 28386DA4185AA4C900D7B5C9 /* OSCUIHelper.m */; };
 		2897EEF51856BE94000BB6B9 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2897EEF41856BE94000BB6B9 /* Foundation.framework */; };
 		2897EEF71856BE94000BB6B9 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2897EEF61856BE94000BB6B9 /* CoreGraphics.framework */; };
@@ -90,7 +114,7 @@
 		2897EF7E1856E11A000BB6B9 /* OSCLeftMenuC.m in Sources */ = {isa = PBXBuildFile; fileRef = 2897EF7B1856E11A000BB6B9 /* OSCLeftMenuC.m */; };
 		2897EF821856E2BE000BB6B9 /* OSCHomeC.m in Sources */ = {isa = PBXBuildFile; fileRef = 2897EF811856E2BE000BB6B9 /* OSCHomeC.m */; };
 		2897EF861856E2EA000BB6B9 /* OSCHomeTimelineModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 2897EF851856E2EA000BB6B9 /* OSCHomeTimelineModel.m */; };
-		2897EF891856E327000BB6B9 /* OSCNewsEntity.m in Sources */ = {isa = PBXBuildFile; fileRef = 2897EF881856E327000BB6B9 /* OSCNewsEntity.m */; };
+		2897EF891856E327000BB6B9 /* OSCCommonEntity.m in Sources */ = {isa = PBXBuildFile; fileRef = 2897EF881856E327000BB6B9 /* OSCCommonEntity.m */; };
 		2897EF8F1856E3D2000BB6B9 /* OSCBaseTableModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 2897EF8E1856E3D2000BB6B9 /* OSCBaseTableModel.m */; };
 		2897EF981856ECBD000BB6B9 /* OSCUserEntity.m in Sources */ = {isa = PBXBuildFile; fileRef = 2897EF971856ECBD000BB6B9 /* OSCUserEntity.m */; };
 		2897EF9E18571008000BB6B9 /* NSDate+OSChina.m in Sources */ = {isa = PBXBuildFile; fileRef = 2897EF9D18571008000BB6B9 /* NSDate+OSChina.m */; };
@@ -180,8 +204,8 @@
 		CE543D1B1882498C00D18D77 /* OSCCommonRepliesListC.m in Sources */ = {isa = PBXBuildFile; fileRef = CE543D191882498C00D18D77 /* OSCCommonRepliesListC.m */; };
 		CE543D1E18824C0B00D18D77 /* OSCLoginC.m in Sources */ = {isa = PBXBuildFile; fileRef = CE543D1D18824C0B00D18D77 /* OSCLoginC.m */; };
 		CE543D1F18824C0B00D18D77 /* OSCLoginC.m in Sources */ = {isa = PBXBuildFile; fileRef = CE543D1D18824C0B00D18D77 /* OSCLoginC.m */; };
-		CE543D2218824C1A00D18D77 /* RCLoginModel.m in Sources */ = {isa = PBXBuildFile; fileRef = CE543D2118824C1A00D18D77 /* RCLoginModel.m */; };
-		CE543D2318824C1A00D18D77 /* RCLoginModel.m in Sources */ = {isa = PBXBuildFile; fileRef = CE543D2118824C1A00D18D77 /* RCLoginModel.m */; };
+		CE543D2218824C1A00D18D77 /* OSCLoginModel.m in Sources */ = {isa = PBXBuildFile; fileRef = CE543D2118824C1A00D18D77 /* OSCLoginModel.m */; };
+		CE543D2318824C1A00D18D77 /* OSCLoginModel.m in Sources */ = {isa = PBXBuildFile; fileRef = CE543D2118824C1A00D18D77 /* OSCLoginModel.m */; };
 		CE543D6C188275D700D18D77 /* RTLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = CE543D6B188275D700D18D77 /* RTLabel.m */; };
 		CE543D6D188275D700D18D77 /* RTLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = CE543D6B188275D700D18D77 /* RTLabel.m */; };
 		CE543D7018829EF800D18D77 /* OSCRelativeCell.m in Sources */ = {isa = PBXBuildFile; fileRef = CE543D6F18829EF800D18D77 /* OSCRelativeCell.m */; };
@@ -198,7 +222,7 @@
 		CE593703187D7F4100DC3A55 /* UIViewController+JASidePanel.m in Sources */ = {isa = PBXBuildFile; fileRef = CE5936FE187D7F4100DC3A55 /* UIViewController+JASidePanel.m */; };
 		CE7E319A185D8BDE005F583E /* NSString+stringFromValue.m in Sources */ = {isa = PBXBuildFile; fileRef = CE7E3199185D8BDE005F583E /* NSString+stringFromValue.m */; };
 		CE90A04E1872E6910030DB1E /* UIFontAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 2897EF391856C422000BB6B9 /* UIFontAdditions.m */; };
-		CE90A0521872E6910030DB1E /* OSCNewsEntity.m in Sources */ = {isa = PBXBuildFile; fileRef = 2897EF881856E327000BB6B9 /* OSCNewsEntity.m */; };
+		CE90A0521872E6910030DB1E /* OSCCommonEntity.m in Sources */ = {isa = PBXBuildFile; fileRef = 2897EF881856E327000BB6B9 /* OSCCommonEntity.m */; };
 		CE90A0531872E6910030DB1E /* OSCAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 2897EF041856BE94000BB6B9 /* OSCAppDelegate.m */; };
 		CE90A0541872E6910030DB1E /* JLNimbusMoreButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 2897EF4C1856C422000BB6B9 /* JLNimbusMoreButton.m */; };
 		CE90A0561872E6910030DB1E /* JLAFHTTPClient.m in Sources */ = {isa = PBXBuildFile; fileRef = 2897EF471856C422000BB6B9 /* JLAFHTTPClient.m */; };
@@ -304,12 +328,12 @@
 		CEF6F39D18821FC20065F852 /* OSCCommonDetailC.m in Sources */ = {isa = PBXBuildFile; fileRef = CEF6F39918821FC20065F852 /* OSCCommonDetailC.m */; };
 		CEF6F39E18821FC20065F852 /* OSCQuickReplyC.m in Sources */ = {isa = PBXBuildFile; fileRef = CEF6F39B18821FC20065F852 /* OSCQuickReplyC.m */; };
 		CEF6F39F18821FC20065F852 /* OSCQuickReplyC.m in Sources */ = {isa = PBXBuildFile; fileRef = CEF6F39B18821FC20065F852 /* OSCQuickReplyC.m */; };
-		CEF6F3A418821FE00065F852 /* OSCNewsDetailEntity.m in Sources */ = {isa = PBXBuildFile; fileRef = CEF6F3A118821FE00065F852 /* OSCNewsDetailEntity.m */; };
-		CEF6F3A518821FE00065F852 /* OSCNewsDetailEntity.m in Sources */ = {isa = PBXBuildFile; fileRef = CEF6F3A118821FE00065F852 /* OSCNewsDetailEntity.m */; };
+		CEF6F3A418821FE00065F852 /* OSCCommonDetailEntity.m in Sources */ = {isa = PBXBuildFile; fileRef = CEF6F3A118821FE00065F852 /* OSCCommonDetailEntity.m */; };
+		CEF6F3A518821FE00065F852 /* OSCCommonDetailEntity.m in Sources */ = {isa = PBXBuildFile; fileRef = CEF6F3A118821FE00065F852 /* OSCCommonDetailEntity.m */; };
 		CEF6F3A618821FE00065F852 /* OSCReplyEntity.m in Sources */ = {isa = PBXBuildFile; fileRef = CEF6F3A318821FE00065F852 /* OSCReplyEntity.m */; };
 		CEF6F3A718821FE00065F852 /* OSCReplyEntity.m in Sources */ = {isa = PBXBuildFile; fileRef = CEF6F3A318821FE00065F852 /* OSCReplyEntity.m */; };
-		CEF6F3AC18821FF20065F852 /* OSCTopicBodyView.m in Sources */ = {isa = PBXBuildFile; fileRef = CEF6F3A918821FF20065F852 /* OSCTopicBodyView.m */; };
-		CEF6F3AD18821FF20065F852 /* OSCTopicBodyView.m in Sources */ = {isa = PBXBuildFile; fileRef = CEF6F3A918821FF20065F852 /* OSCTopicBodyView.m */; };
+		CEF6F3AC18821FF20065F852 /* OSCCommonBodyView.m in Sources */ = {isa = PBXBuildFile; fileRef = CEF6F3A918821FF20065F852 /* OSCCommonBodyView.m */; };
+		CEF6F3AD18821FF20065F852 /* OSCCommonBodyView.m in Sources */ = {isa = PBXBuildFile; fileRef = CEF6F3A918821FF20065F852 /* OSCCommonBodyView.m */; };
 		CEF6F3AE18821FF20065F852 /* OSCReplyCell.m in Sources */ = {isa = PBXBuildFile; fileRef = CEF6F3AB18821FF20065F852 /* OSCReplyCell.m */; };
 		CEF6F3AF18821FF20065F852 /* OSCReplyCell.m in Sources */ = {isa = PBXBuildFile; fileRef = CEF6F3AB18821FF20065F852 /* OSCReplyCell.m */; };
 		CEF6F3B2188220890065F852 /* OSCRepliesTimelineModel.m in Sources */ = {isa = PBXBuildFile; fileRef = CEF6F3B1188220890065F852 /* OSCRepliesTimelineModel.m */; };
@@ -351,6 +375,25 @@
 		281ACE1D187CF41100067D9C /* MessageEntrySendButton@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "MessageEntrySendButton@2x.png"; sourceTree = "<group>"; };
 		281ACE1E187CF41100067D9C /* MessageEntrySendButtonPressed.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = MessageEntrySendButtonPressed.png; sourceTree = "<group>"; };
 		281ACE1F187CF41100067D9C /* MessageEntrySendButtonPressed@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "MessageEntrySendButtonPressed@2x.png"; sourceTree = "<group>"; };
+		2832C2261883A9E5003E96F3 /* OSCTweetC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OSCTweetC.h; sourceTree = "<group>"; };
+		2832C2271883A9E5003E96F3 /* OSCTweetC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OSCTweetC.m; sourceTree = "<group>"; };
+		2832C22A1883AB51003E96F3 /* OSCTweetTimelineModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OSCTweetTimelineModel.h; sourceTree = "<group>"; };
+		2832C22B1883AB51003E96F3 /* OSCTweetTimelineModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OSCTweetTimelineModel.m; sourceTree = "<group>"; };
+		2832C22E1883ABFB003E96F3 /* OSCTweetEntity.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OSCTweetEntity.h; sourceTree = "<group>"; };
+		2832C22F1883ABFB003E96F3 /* OSCTweetEntity.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OSCTweetEntity.m; sourceTree = "<group>"; };
+		2832C2321883AC25003E96F3 /* OSCTweetCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OSCTweetCell.h; sourceTree = "<group>"; };
+		2832C2331883AC25003E96F3 /* OSCTweetCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OSCTweetCell.m; sourceTree = "<group>"; };
+		2832C2361883B6EE003E96F3 /* JLFullScreenPhotoBrowseView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JLFullScreenPhotoBrowseView.h; sourceTree = "<group>"; };
+		2832C2371883B6EE003E96F3 /* JLFullScreenPhotoBrowseView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JLFullScreenPhotoBrowseView.m; sourceTree = "<group>"; };
+		2832C23A1883BCF7003E96F3 /* preview_button.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = preview_button.png; sourceTree = "<group>"; };
+		2832C23B1883BCF7003E96F3 /* preview_button@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "preview_button@2x.png"; sourceTree = "<group>"; };
+		2832C23C1883BCF7003E96F3 /* preview_save_icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = preview_save_icon.png; sourceTree = "<group>"; };
+		2832C23D1883BCF7003E96F3 /* preview_save_icon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "preview_save_icon@2x.png"; sourceTree = "<group>"; };
+		2832C2461883C019003E96F3 /* OSCAboutAppC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OSCAboutAppC.h; sourceTree = "<group>"; };
+		2832C2471883C019003E96F3 /* OSCAboutAppC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OSCAboutAppC.m; sourceTree = "<group>"; };
+		2832C2481883C019003E96F3 /* OSCAboutAppC.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = OSCAboutAppC.xib; sourceTree = "<group>"; };
+		2832C2491883C019003E96F3 /* OSCMoreC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OSCMoreC.h; sourceTree = "<group>"; };
+		2832C24A1883C019003E96F3 /* OSCMoreC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OSCMoreC.m; sourceTree = "<group>"; };
 		28386DA3185AA4C900D7B5C9 /* OSCUIHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OSCUIHelper.h; sourceTree = "<group>"; };
 		28386DA4185AA4C900D7B5C9 /* OSCUIHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OSCUIHelper.m; sourceTree = "<group>"; };
 		283F5D0D187FA319008ECE0E /* JLV2EX.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = JLV2EX.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -417,8 +460,8 @@
 		2897EF811856E2BE000BB6B9 /* OSCHomeC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OSCHomeC.m; sourceTree = "<group>"; };
 		2897EF841856E2EA000BB6B9 /* OSCHomeTimelineModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OSCHomeTimelineModel.h; sourceTree = "<group>"; };
 		2897EF851856E2EA000BB6B9 /* OSCHomeTimelineModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OSCHomeTimelineModel.m; sourceTree = "<group>"; };
-		2897EF871856E327000BB6B9 /* OSCNewsEntity.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OSCNewsEntity.h; sourceTree = "<group>"; };
-		2897EF881856E327000BB6B9 /* OSCNewsEntity.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OSCNewsEntity.m; sourceTree = "<group>"; };
+		2897EF871856E327000BB6B9 /* OSCCommonEntity.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OSCCommonEntity.h; sourceTree = "<group>"; };
+		2897EF881856E327000BB6B9 /* OSCCommonEntity.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OSCCommonEntity.m; sourceTree = "<group>"; };
 		2897EF8D1856E3D2000BB6B9 /* OSCBaseTableModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OSCBaseTableModel.h; sourceTree = "<group>"; };
 		2897EF8E1856E3D2000BB6B9 /* OSCBaseTableModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OSCBaseTableModel.m; sourceTree = "<group>"; };
 		2897EF961856ECBD000BB6B9 /* OSCUserEntity.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OSCUserEntity.h; sourceTree = "<group>"; };
@@ -520,8 +563,8 @@
 		CE543D191882498C00D18D77 /* OSCCommonRepliesListC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OSCCommonRepliesListC.m; sourceTree = "<group>"; };
 		CE543D1C18824C0B00D18D77 /* OSCLoginC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OSCLoginC.h; sourceTree = "<group>"; };
 		CE543D1D18824C0B00D18D77 /* OSCLoginC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OSCLoginC.m; sourceTree = "<group>"; };
-		CE543D2018824C1A00D18D77 /* RCLoginModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RCLoginModel.h; sourceTree = "<group>"; };
-		CE543D2118824C1A00D18D77 /* RCLoginModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RCLoginModel.m; sourceTree = "<group>"; };
+		CE543D2018824C1A00D18D77 /* OSCLoginModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OSCLoginModel.h; sourceTree = "<group>"; };
+		CE543D2118824C1A00D18D77 /* OSCLoginModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OSCLoginModel.m; sourceTree = "<group>"; };
 		CE543D6A188275D700D18D77 /* RTLabel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RTLabel.h; sourceTree = "<group>"; };
 		CE543D6B188275D700D18D77 /* RTLabel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RTLabel.m; sourceTree = "<group>"; };
 		CE543D6E18829EF800D18D77 /* OSCRelativeCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OSCRelativeCell.h; sourceTree = "<group>"; };
@@ -548,12 +591,12 @@
 		CEF6F39918821FC20065F852 /* OSCCommonDetailC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OSCCommonDetailC.m; sourceTree = "<group>"; };
 		CEF6F39A18821FC20065F852 /* OSCQuickReplyC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OSCQuickReplyC.h; sourceTree = "<group>"; };
 		CEF6F39B18821FC20065F852 /* OSCQuickReplyC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OSCQuickReplyC.m; sourceTree = "<group>"; };
-		CEF6F3A018821FE00065F852 /* OSCNewsDetailEntity.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OSCNewsDetailEntity.h; sourceTree = "<group>"; };
-		CEF6F3A118821FE00065F852 /* OSCNewsDetailEntity.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OSCNewsDetailEntity.m; sourceTree = "<group>"; };
+		CEF6F3A018821FE00065F852 /* OSCCommonDetailEntity.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OSCCommonDetailEntity.h; sourceTree = "<group>"; };
+		CEF6F3A118821FE00065F852 /* OSCCommonDetailEntity.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OSCCommonDetailEntity.m; sourceTree = "<group>"; };
 		CEF6F3A218821FE00065F852 /* OSCReplyEntity.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OSCReplyEntity.h; sourceTree = "<group>"; };
 		CEF6F3A318821FE00065F852 /* OSCReplyEntity.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OSCReplyEntity.m; sourceTree = "<group>"; };
-		CEF6F3A818821FF20065F852 /* OSCTopicBodyView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OSCTopicBodyView.h; sourceTree = "<group>"; };
-		CEF6F3A918821FF20065F852 /* OSCTopicBodyView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OSCTopicBodyView.m; sourceTree = "<group>"; };
+		CEF6F3A818821FF20065F852 /* OSCCommonBodyView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OSCCommonBodyView.h; sourceTree = "<group>"; };
+		CEF6F3A918821FF20065F852 /* OSCCommonBodyView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OSCCommonBodyView.m; sourceTree = "<group>"; };
 		CEF6F3AA18821FF20065F852 /* OSCReplyCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OSCReplyCell.h; sourceTree = "<group>"; };
 		CEF6F3AB18821FF20065F852 /* OSCReplyCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OSCReplyCell.m; sourceTree = "<group>"; };
 		CEF6F3B0188220890065F852 /* OSCRepliesTimelineModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OSCRepliesTimelineModel.h; sourceTree = "<group>"; };
@@ -626,6 +669,10 @@
 				281ACE14187CF41100067D9C /* icon_menu@2x.png */,
 				281ACE15187CF41100067D9C /* more_photo.png */,
 				281ACE16187CF41100067D9C /* more_photo@2x.png */,
+				2832C23A1883BCF7003E96F3 /* preview_button.png */,
+				2832C23B1883BCF7003E96F3 /* preview_button@2x.png */,
+				2832C23C1883BCF7003E96F3 /* preview_save_icon.png */,
+				2832C23D1883BCF7003E96F3 /* preview_save_icon@2x.png */,
 				281ACE17187CF41100067D9C /* QuickReply */,
 			);
 			path = Common;
@@ -875,6 +922,8 @@
 				2897EF811856E2BE000BB6B9 /* OSCHomeC.m */,
 				CE543D721882A5D000D18D77 /* OSCForumC.h */,
 				CE543D731882A5D000D18D77 /* OSCForumC.m */,
+				2832C2261883A9E5003E96F3 /* OSCTweetC.h */,
+				2832C2271883A9E5003E96F3 /* OSCTweetC.m */,
 				CEF6F39818821FC20065F852 /* OSCCommonDetailC.h */,
 				CEF6F39918821FC20065F852 /* OSCCommonDetailC.m */,
 				CE543D181882498C00D18D77 /* OSCCommonRepliesListC.h */,
@@ -883,6 +932,11 @@
 				CEF6F39B18821FC20065F852 /* OSCQuickReplyC.m */,
 				CE543D1C18824C0B00D18D77 /* OSCLoginC.h */,
 				CE543D1D18824C0B00D18D77 /* OSCLoginC.m */,
+				2832C2461883C019003E96F3 /* OSCAboutAppC.h */,
+				2832C2471883C019003E96F3 /* OSCAboutAppC.m */,
+				2832C2481883C019003E96F3 /* OSCAboutAppC.xib */,
+				2832C2491883C019003E96F3 /* OSCMoreC.h */,
+				2832C24A1883C019003E96F3 /* OSCMoreC.m */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -896,18 +950,20 @@
 				2897EF971856ECBD000BB6B9 /* OSCUserEntity.m */,
 				CE9DFAC5185C5BB1007BAE75 /* OSCUserFullEntity.h */,
 				CE9DFAC6185C5BB1007BAE75 /* OSCUserFullEntity.m */,
-				2897EF871856E327000BB6B9 /* OSCNewsEntity.h */,
-				2897EF881856E327000BB6B9 /* OSCNewsEntity.m */,
+				2897EF871856E327000BB6B9 /* OSCCommonEntity.h */,
+				2897EF881856E327000BB6B9 /* OSCCommonEntity.m */,
 				CEFEFFE6188215F900D94630 /* OSCBlogEntity.h */,
 				CEFEFFE7188215F900D94630 /* OSCBlogEntity.m */,
 				CE543D7A1882B06300D18D77 /* OSCTopicEntity.h */,
 				CE543D7B1882B06300D18D77 /* OSCTopicEntity.m */,
-				CEF6F3A018821FE00065F852 /* OSCNewsDetailEntity.h */,
-				CEF6F3A118821FE00065F852 /* OSCNewsDetailEntity.m */,
+				CEF6F3A018821FE00065F852 /* OSCCommonDetailEntity.h */,
+				CEF6F3A118821FE00065F852 /* OSCCommonDetailEntity.m */,
 				CEF6F3A218821FE00065F852 /* OSCReplyEntity.h */,
 				CEF6F3A318821FE00065F852 /* OSCReplyEntity.m */,
 				CE543D1018823EAA00D18D77 /* OSCRelativeEntity.h */,
 				CE543D1118823EAA00D18D77 /* OSCRelativeEntity.m */,
+				2832C22E1883ABFB003E96F3 /* OSCTweetEntity.h */,
+				2832C22F1883ABFB003E96F3 /* OSCTweetEntity.m */,
 			);
 			path = Entities;
 			sourceTree = "<group>";
@@ -928,14 +984,18 @@
 		2897EF711856C54B000BB6B9 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				2832C2361883B6EE003E96F3 /* JLFullScreenPhotoBrowseView.h */,
+				2832C2371883B6EE003E96F3 /* JLFullScreenPhotoBrowseView.m */,
 				CE1C519B1880FD76000F216D /* OSCNewsCell.h */,
 				CE1C519C1880FD76000F216D /* OSCNewsCell.m */,
-				CEF6F3A818821FF20065F852 /* OSCTopicBodyView.h */,
-				CEF6F3A918821FF20065F852 /* OSCTopicBodyView.m */,
+				CEF6F3A818821FF20065F852 /* OSCCommonBodyView.h */,
+				CEF6F3A918821FF20065F852 /* OSCCommonBodyView.m */,
 				CEF6F3AA18821FF20065F852 /* OSCReplyCell.h */,
 				CEF6F3AB18821FF20065F852 /* OSCReplyCell.m */,
 				CE543D6E18829EF800D18D77 /* OSCRelativeCell.h */,
 				CE543D6F18829EF800D18D77 /* OSCRelativeCell.m */,
+				2832C2321883AC25003E96F3 /* OSCTweetCell.h */,
+				2832C2331883AC25003E96F3 /* OSCTweetCell.m */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -945,12 +1005,14 @@
 			children = (
 				2897EF8D1856E3D2000BB6B9 /* OSCBaseTableModel.h */,
 				2897EF8E1856E3D2000BB6B9 /* OSCBaseTableModel.m */,
-				CE543D2018824C1A00D18D77 /* RCLoginModel.h */,
-				CE543D2118824C1A00D18D77 /* RCLoginModel.m */,
+				CE543D2018824C1A00D18D77 /* OSCLoginModel.h */,
+				CE543D2118824C1A00D18D77 /* OSCLoginModel.m */,
 				2897EF841856E2EA000BB6B9 /* OSCHomeTimelineModel.h */,
 				2897EF851856E2EA000BB6B9 /* OSCHomeTimelineModel.m */,
 				CE543D761882A89600D18D77 /* OSCForumTimelineModel.h */,
 				CE543D771882A89600D18D77 /* OSCForumTimelineModel.m */,
+				2832C22A1883AB51003E96F3 /* OSCTweetTimelineModel.h */,
+				2832C22B1883AB51003E96F3 /* OSCTweetTimelineModel.m */,
 				CEF6F3B81882360C0065F852 /* OSCCommonDetailModel.h */,
 				CEF6F3B91882360D0065F852 /* OSCCommonDetailModel.m */,
 				CEF6F3B0188220890065F852 /* OSCRepliesTimelineModel.h */,
@@ -1278,6 +1340,7 @@
 			files = (
 				28CBC12718629839007C68FC /* redo-black@2x.png in Resources */,
 				CE3675B8186337A70015756D /* emo_016@2x.png in Resources */,
+				2832C2421883BCF7003E96F3 /* preview_save_icon.png in Resources */,
 				28CBC12518629839007C68FC /* key@2x.png in Resources */,
 				CE3675B9186337A70015756D /* emo_017@2x.png in Resources */,
 				281ACE55187CF41100067D9C /* MessageEntryBackground.png in Resources */,
@@ -1303,6 +1366,7 @@
 				28CBC12C18629839007C68FC /* trackpoint-blue.png in Resources */,
 				281ACE3A187CF41100067D9C /* 37x-Checkmark@2x.png in Resources */,
 				CE3675BB186337A70015756D /* emo_019@2x.png in Resources */,
+				2832C24D1883C019003E96F3 /* OSCAboutAppC.xib in Resources */,
 				28CBC13018629839007C68FC /* undo-black.png in Resources */,
 				CE3675C3186337A70015756D /* emo_027@2x.png in Resources */,
 				CE3675B3186337A70015756D /* emo_011@2x.png in Resources */,
@@ -1310,11 +1374,14 @@
 				281ACE46187CF41100067D9C /* head_s@2x.png in Resources */,
 				28CBC12A18629839007C68FC /* trackpoint-black.png in Resources */,
 				CE1C51931880ECEB000F216D /* Default.png in Resources */,
+				2832C2401883BCF7003E96F3 /* preview_button@2x.png in Resources */,
+				2832C23E1883BCF7003E96F3 /* preview_button.png in Resources */,
 				28CBC13218629839007C68FC /* undo-blue.png in Resources */,
 				28CBC12D18629839007C68FC /* trackpoint-blue@2x.png in Resources */,
 				281ACE52187CF41100067D9C /* more_photo@2x.png in Resources */,
 				CE3675AB186337A70015756D /* emo_003@2x.png in Resources */,
 				CE3675C4186337A70015756D /* emo_028@2x.png in Resources */,
+				2832C2441883BCF7003E96F3 /* preview_save_icon@2x.png in Resources */,
 				28CBC12018629839007C68FC /* key-blue.png in Resources */,
 				CE3675AD186337A70015756D /* emo_005@2x.png in Resources */,
 				28CBC12118629839007C68FC /* key-blue@2x.png in Resources */,
@@ -1373,6 +1440,7 @@
 			files = (
 				CE90A09F1872E6910030DB1E /* redo-black@2x.png in Resources */,
 				CE90A0A01872E6910030DB1E /* emo_016@2x.png in Resources */,
+				2832C2431883BCF7003E96F3 /* preview_save_icon.png in Resources */,
 				CE90A0A11872E6910030DB1E /* key@2x.png in Resources */,
 				CE90A0A21872E6910030DB1E /* emo_017@2x.png in Resources */,
 				CE90A0A31872E6910030DB1E /* redo-black.png in Resources */,
@@ -1398,6 +1466,7 @@
 				281ACE68187CF41100067D9C /* MessageEntrySendButtonPressed.png in Resources */,
 				CE90A0C41872E6910030DB1E /* emo_002@2x.png in Resources */,
 				CE90A0C51872E6910030DB1E /* trackpoint-white@2x.png in Resources */,
+				2832C24E1883C019003E96F3 /* OSCAboutAppC.xib in Resources */,
 				281ACE41187CF41100067D9C /* head_b@2x.png in Resources */,
 				CE90A0C71872E6910030DB1E /* Three20.bundle in Resources */,
 				281ACE3E187CF41100067D9C /* head_b.png in Resources */,
@@ -1405,11 +1474,14 @@
 				CE90A0C91872E6910030DB1E /* emo_001@2x.png in Resources */,
 				CE90A0CA1872E6910030DB1E /* trackpoint-blue.png in Resources */,
 				CE1C51941880ECEB000F216D /* Default.png in Resources */,
+				2832C2411883BCF7003E96F3 /* preview_button@2x.png in Resources */,
+				2832C23F1883BCF7003E96F3 /* preview_button.png in Resources */,
 				281ACE4A187CF41100067D9C /* icon_menu.png in Resources */,
 				CE90A0CB1872E6910030DB1E /* emo_019@2x.png in Resources */,
 				CE90A0CC1872E6910030DB1E /* undo-black.png in Resources */,
 				CE90A0CE1872E6910030DB1E /* emo_027@2x.png in Resources */,
 				CE90A0CF1872E6910030DB1E /* emo_011@2x.png in Resources */,
+				2832C2451883BCF7003E96F3 /* preview_save_icon@2x.png in Resources */,
 				CE90A0D11872E6910030DB1E /* trackpoint-black.png in Resources */,
 				281ACE59187CF41100067D9C /* MessageEntryBackground@2x.png in Resources */,
 				CE90A0D21872E6910030DB1E /* undo-blue.png in Resources */,
@@ -1524,8 +1596,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				2897EF591856C422000BB6B9 /* UIFontAdditions.m in Sources */,
+				2832C24B1883C019003E96F3 /* OSCAboutAppC.m in Sources */,
 				CE543D741882A5D000D18D77 /* OSCForumC.m in Sources */,
-				2897EF891856E327000BB6B9 /* OSCNewsEntity.m in Sources */,
+				2897EF891856E327000BB6B9 /* OSCCommonEntity.m in Sources */,
 				2897EF051856BE94000BB6B9 /* OSCAppDelegate.m in Sources */,
 				2897EF671856C422000BB6B9 /* JLNimbusMoreButton.m in Sources */,
 				2897EF631856C422000BB6B9 /* JLAFHTTPClient.m in Sources */,
@@ -1533,7 +1606,7 @@
 				CE5936FF187D7F4100DC3A55 /* JASidePanelController.m in Sources */,
 				2897EF5F1856C422000BB6B9 /* JLNimbusTableViewController.m in Sources */,
 				28D4EF81185826BF00C9C858 /* RCKeywordEntity.m in Sources */,
-				CEF6F3A418821FE00065F852 /* OSCNewsDetailEntity.m in Sources */,
+				CEF6F3A418821FE00065F852 /* OSCCommonDetailEntity.m in Sources */,
 				28CBC13418629839007C68FC /* MarkdownSyntaxGenerator.m in Sources */,
 				28386DA5185AA4C900D7B5C9 /* OSCUIHelper.m in Sources */,
 				28D4EF851858276A00C9C858 /* Reachability.m in Sources */,
@@ -1546,6 +1619,7 @@
 				CEF6F3AE18821FF20065F852 /* OSCReplyCell.m in Sources */,
 				2897EF9E18571008000BB6B9 /* NSDate+OSChina.m in Sources */,
 				CE9DFAC7185C5BB1007BAE75 /* OSCUserFullEntity.m in Sources */,
+				2832C2281883A9E5003E96F3 /* OSCTweetC.m in Sources */,
 				2897EF611856C422000BB6B9 /* JLNimbusEntity.m in Sources */,
 				CE7E319A185D8BDE005F583E /* NSString+stringFromValue.m in Sources */,
 				28CBC13518629839007C68FC /* MarkdownSyntaxModel.m in Sources */,
@@ -1560,10 +1634,12 @@
 				2897EF861856E2EA000BB6B9 /* OSCHomeTimelineModel.m in Sources */,
 				CE543D781882A89600D18D77 /* OSCForumTimelineModel.m in Sources */,
 				28CBC13618629839007C68FC /* MarkdownTextView.m in Sources */,
+				2832C2381883B6EE003E96F3 /* JLFullScreenPhotoBrowseView.m in Sources */,
 				28CBC11E18629839007C68FC /* KOKeyboardRow.m in Sources */,
 				2897EF011856BE94000BB6B9 /* main.m in Sources */,
 				CEF6F3B2188220890065F852 /* OSCRepliesTimelineModel.m in Sources */,
 				2897EF5D1856C422000BB6B9 /* UIWindowAdditions.m in Sources */,
+				2832C22C1883AB51003E96F3 /* OSCTweetTimelineModel.m in Sources */,
 				2897EF8F1856E3D2000BB6B9 /* OSCBaseTableModel.m in Sources */,
 				CEF6F39C18821FC20065F852 /* OSCCommonDetailC.m in Sources */,
 				2897EF7E1856E11A000BB6B9 /* OSCLeftMenuC.m in Sources */,
@@ -1573,11 +1649,12 @@
 				2897EF721856C54B000BB6B9 /* OSCAPIClient.m in Sources */,
 				2897EF981856ECBD000BB6B9 /* OSCUserEntity.m in Sources */,
 				CEF6F3B6188221CF0065F852 /* OSCReplyModel.m in Sources */,
-				CEF6F3AC18821FF20065F852 /* OSCTopicBodyView.m in Sources */,
+				CEF6F3AC18821FF20065F852 /* OSCCommonBodyView.m in Sources */,
 				CE543D1A1882498C00D18D77 /* OSCCommonRepliesListC.m in Sources */,
 				2897EF5B1856C422000BB6B9 /* UIViewAdditions.m in Sources */,
+				2832C2341883AC25003E96F3 /* OSCTweetCell.m in Sources */,
 				CE593702187D7F4100DC3A55 /* UIViewController+JASidePanel.m in Sources */,
-				CE543D2218824C1A00D18D77 /* RCLoginModel.m in Sources */,
+				CE543D2218824C1A00D18D77 /* OSCLoginModel.m in Sources */,
 				CE543D16188240E300D18D77 /* NSString+TypeScan.m in Sources */,
 				2897EF571856C422000BB6B9 /* TTGlobalUICommon.m in Sources */,
 				28CBC11F18629839007C68FC /* KOSwipeButton.m in Sources */,
@@ -1585,6 +1662,8 @@
 				CE543D6C188275D700D18D77 /* RTLabel.m in Sources */,
 				2897EF821856E2BE000BB6B9 /* OSCHomeC.m in Sources */,
 				CE543D1218823EAA00D18D77 /* OSCRelativeEntity.m in Sources */,
+				2832C24F1883C019003E96F3 /* OSCMoreC.m in Sources */,
+				2832C2301883ABFB003E96F3 /* OSCTweetEntity.m in Sources */,
 				2897EF4F1856C422000BB6B9 /* NSDateAdditions.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1615,8 +1694,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				CE90A04E1872E6910030DB1E /* UIFontAdditions.m in Sources */,
+				2832C24C1883C019003E96F3 /* OSCAboutAppC.m in Sources */,
 				CE543D751882A5D000D18D77 /* OSCForumC.m in Sources */,
-				CE90A0521872E6910030DB1E /* OSCNewsEntity.m in Sources */,
+				CE90A0521872E6910030DB1E /* OSCCommonEntity.m in Sources */,
 				CE90A0531872E6910030DB1E /* OSCAppDelegate.m in Sources */,
 				CE90A0541872E6910030DB1E /* JLNimbusMoreButton.m in Sources */,
 				CE90A0561872E6910030DB1E /* JLAFHTTPClient.m in Sources */,
@@ -1624,7 +1704,7 @@
 				CE593700187D7F4100DC3A55 /* JASidePanelController.m in Sources */,
 				CE90A05E1872E6910030DB1E /* JLNimbusTableViewController.m in Sources */,
 				CE90A0601872E6910030DB1E /* RCKeywordEntity.m in Sources */,
-				CEF6F3A518821FE00065F852 /* OSCNewsDetailEntity.m in Sources */,
+				CEF6F3A518821FE00065F852 /* OSCCommonDetailEntity.m in Sources */,
 				CE90A0611872E6910030DB1E /* MarkdownSyntaxGenerator.m in Sources */,
 				CE90A0631872E6910030DB1E /* OSCUIHelper.m in Sources */,
 				CE90A0641872E6910030DB1E /* Reachability.m in Sources */,
@@ -1637,6 +1717,7 @@
 				CEF6F3AF18821FF20065F852 /* OSCReplyCell.m in Sources */,
 				CE90A0691872E6910030DB1E /* NSDate+OSChina.m in Sources */,
 				CE90A06B1872E6910030DB1E /* OSCUserFullEntity.m in Sources */,
+				2832C2291883A9E5003E96F3 /* OSCTweetC.m in Sources */,
 				CE90A06D1872E6910030DB1E /* JLNimbusEntity.m in Sources */,
 				CE90A06E1872E6910030DB1E /* NSString+stringFromValue.m in Sources */,
 				CE90A06F1872E6910030DB1E /* MarkdownSyntaxModel.m in Sources */,
@@ -1651,10 +1732,12 @@
 				CE90A07B1872E6910030DB1E /* OSCHomeTimelineModel.m in Sources */,
 				CE543D791882A89600D18D77 /* OSCForumTimelineModel.m in Sources */,
 				CE90A07C1872E6910030DB1E /* MarkdownTextView.m in Sources */,
+				2832C2391883B6EE003E96F3 /* JLFullScreenPhotoBrowseView.m in Sources */,
 				CE90A0801872E6910030DB1E /* KOKeyboardRow.m in Sources */,
 				CE90A0811872E6910030DB1E /* main.m in Sources */,
 				CEF6F3B3188220890065F852 /* OSCRepliesTimelineModel.m in Sources */,
 				CE90A0821872E6910030DB1E /* UIWindowAdditions.m in Sources */,
+				2832C22D1883AB51003E96F3 /* OSCTweetTimelineModel.m in Sources */,
 				CE90A0831872E6910030DB1E /* OSCBaseTableModel.m in Sources */,
 				CEF6F39D18821FC20065F852 /* OSCCommonDetailC.m in Sources */,
 				CE90A0841872E6910030DB1E /* OSCLeftMenuC.m in Sources */,
@@ -1664,11 +1747,12 @@
 				CE90A08C1872E6910030DB1E /* OSCAPIClient.m in Sources */,
 				CE90A08D1872E6910030DB1E /* OSCUserEntity.m in Sources */,
 				CEF6F3B7188221CF0065F852 /* OSCReplyModel.m in Sources */,
-				CEF6F3AD18821FF20065F852 /* OSCTopicBodyView.m in Sources */,
+				CEF6F3AD18821FF20065F852 /* OSCCommonBodyView.m in Sources */,
 				CE543D1B1882498C00D18D77 /* OSCCommonRepliesListC.m in Sources */,
 				CE90A08E1872E6910030DB1E /* UIViewAdditions.m in Sources */,
+				2832C2351883AC25003E96F3 /* OSCTweetCell.m in Sources */,
 				CE593703187D7F4100DC3A55 /* UIViewController+JASidePanel.m in Sources */,
-				CE543D2318824C1A00D18D77 /* RCLoginModel.m in Sources */,
+				CE543D2318824C1A00D18D77 /* OSCLoginModel.m in Sources */,
 				CE543D17188240E300D18D77 /* NSString+TypeScan.m in Sources */,
 				CE90A08F1872E6910030DB1E /* TTGlobalUICommon.m in Sources */,
 				CE90A0901872E6910030DB1E /* KOSwipeButton.m in Sources */,
@@ -1676,6 +1760,8 @@
 				CE543D6D188275D700D18D77 /* RTLabel.m in Sources */,
 				CE90A0951872E6910030DB1E /* OSCHomeC.m in Sources */,
 				CE543D1318823EAA00D18D77 /* OSCRelativeEntity.m in Sources */,
+				2832C2501883C019003E96F3 /* OSCMoreC.m in Sources */,
+				2832C2311883ABFB003E96F3 /* OSCTweetEntity.m in Sources */,
 				CE90A0961872E6910030DB1E /* NSDateAdditions.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
