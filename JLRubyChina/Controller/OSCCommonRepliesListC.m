@@ -133,7 +133,7 @@
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)replyTopicAction
 {
-    if ([OSCGlobalConfig myToken]) {
+    if ([OSCGlobalConfig loginedUserEntity]) {
         [self showReplyAsInputAccessoryView];
         if (!self.navigationController.navigationBarHidden) {
             [self.navigationController setNavigationBarHidden:YES animated:YES];
@@ -205,7 +205,7 @@
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)replyTopicWithFloorAtSomeone:(NSString*)floorAtsomeoneString
 {
-    if ([OSCGlobalConfig myToken]) {
+    if ([OSCGlobalConfig loginedUserEntity]) {
         [self replyTopicAction];
         [self.quickReplyC appendString:floorAtsomeoneString];
     }

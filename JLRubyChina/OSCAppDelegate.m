@@ -55,10 +55,7 @@
     
     // Load logined account
     OSCAccountEntity* account = [OSCAccountEntity loadStoredUserAccount];
-    if (account) {
-        [OSCGlobalConfig setMyLoginId:account.loginId];
-        [OSCGlobalConfig setMyToken:account.privateToken];
-    }
+    //TODO: autologin
 }
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
@@ -113,7 +110,7 @@
     // Override point for customization after application launch.
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
 #if 1
-    OSCTweetC *forumTopics = [[OSCTweetC alloc] init];
+    OSCHomeC *forumTopics = [[OSCHomeC alloc] init];
     UINavigationController *nav = [[UINavigationController alloc] initWithRootViewController:forumTopics];
     nav.navigationBar.translucent = NO;
     OSCLeftMenuC *leftSideC = [[OSCLeftMenuC alloc] initWithStyle:UITableViewStylePlain];

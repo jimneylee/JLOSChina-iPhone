@@ -115,8 +115,9 @@
     hud.labelText = @"正在登录...";
     [self.userModel loginWithUsername:username
                               password:password
-                                 block:^(OSCAccountEntity* user, NSError* error) {
-        if (user) {
+                                 block:^(OSCUserFullEntity* userEntity, OSCErrorEntity* errorEntity) {
+        if (ERROR_CODE_SUCCESS == errorEntity.errorCode) {
+            [OSCGlobalConfig setLoginedUserEntity:userEntity];
             NSLog(@"login success");
             hud.mode = MBProgressHUDModeText;
             hud.labelText = @"登录成功，欢迎来到ruby china！";
