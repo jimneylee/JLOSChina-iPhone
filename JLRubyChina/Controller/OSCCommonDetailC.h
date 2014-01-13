@@ -10,6 +10,9 @@
 
 // TODO:楼层调转
 @interface OSCCommonDetailC : JLNimbusTableViewController
-- (id)initWithTopicId:(unsigned long)topicId topicType:(OSCContentType)topicType;
+
+- (id)initWithTopicId:(unsigned long)topicId
+            topicType:(OSCContentType)topicType;
 - (void)replyTopicWithFloorAtSomeone:(NSString*)floorAtsomeoneString;
+
 @end
