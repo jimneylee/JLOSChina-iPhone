@@ -35,6 +35,9 @@
                   ||[[[UIDevice currentDevice] model] isEqualToString:@"iPhone Simulator"])
 #define IS_IPHONE5 (IS_IPHONE && IS_WIDESCREEN)
 
+// 标签plist
+#define EMOTION_PLIST @"emotion_icons.plist"
+
 // Cell布局
 #define CELL_PADDING_10 10
 #define CELL_PADDING_8 8
@@ -52,6 +55,7 @@
 
 // 左侧菜单栏可视宽度比
 #define LEFT_GAP_PERCENTAGE 0.55f
+
 // 自定义链接协议
 #define PROTOCOL_AT_SOMEONE @"atsomeone://"
 #define PROTOCOL_SHARP_FLOOR @"sharpfloor://"
@@ -60,11 +64,12 @@
 // Notification通知
 #define DID_LOGIN_NOTIFICATION @"DID_LOGIN_NOTIFICATION"
 #define DID_LOGOUT_NOTIFICATION @"DID_LOGOUT_NOTIFICATION"
+#define DID_POST_NEW_TWEET_SUCCESS_NOTIFICATION @"DID_POST_NEW_TWEET_SUCCESS_NOTIFICATION"
 
 // 内容类型：资讯、博客、帖子、动弹（微博）类型
-#define CATALOG_NEWS 1
-#define CATALOG_FORUM 2
-#define CATALOG_TWEET 3
+//#define CATALOG_NEWS 1
+//#define CATALOG_FORUM 2
+//#define CATALOG_TWEET 3
 
 // News Content HTML, idea from old version
 #define HTML_Style @"<style>#oschina_title {color: #000000; margin-bottom: 6px; font-weight:bold;}#oschina_title img{vertical-align:middle;margin-right:6px;}#oschina_title a{color:#0D6DA8;}#oschina_outline {color: #707070; font-size: 15px;}#oschina_outline a{color:#0D6DA8;}#oschina_software{color:#808080;font-size:15px}#oschina_body img {max-width: 290px;}#oschina_body {font-size:18px;max-width:290px;line-height:24px;} #oschina_body table{max-width:290px;}#oschina_body pre { font-size:12pt;font-family:Courier New,Arial;border:1px solid #ddd;border-left:5px solid #6CE26C;background:#f6f6f6;padding:5px;}</style>"
