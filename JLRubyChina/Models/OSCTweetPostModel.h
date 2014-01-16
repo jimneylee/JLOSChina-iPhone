@@ -7,11 +7,23 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "OSCBaseModel.h"
 
-@interface RCPostModel : NSObject
-- (void)postNewTopicWithTitle:(NSString*)title
-                         body:(NSString*)body
-                       nodeId:(NSUInteger)nodeId
-                      success:(void(^)())success
-                      failure:(void(^)(NSError *error))failure;
+typedef void (^SuccessBlock)();
+typedef void (^FailureBlock)(OSCErrorEntity* errorEntity);
+
+@interface OSCTweetPostModel : OSCBaseModel
+
+@property (nonatomic, strong) SuccessBlock successBlock;
+@property (nonatomic, strong) FailureBlock failureBlock;
+
+// only post content
+- (void)postNewTweetWithBody:(NSString*)body
+                     success:(void(^)())success
+                     failure:(void(^)(OSCErrorEntity *error))failure;
+// maybe post with image
+- (void)postNewTweetWithBody:(NSString*)body
+                       image:(UIImage*)image
+                     success:(void(^)())success
+                     failure:(void(^)(OSCErrorEntity* errorEntity))failure;
 @end

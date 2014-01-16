@@ -6,9 +6,9 @@
 //  Copyright (c) 2013年 jimneylee. All rights reserved.
 //
 
-#import "SMPostButtonBar.h"
+#import "OSCPostButtonBar.h"
 
-@implementation SMPostButtonBar
+@implementation OSCPostButtonBar
 
 - (id)initWithFrame:(CGRect)frame
 {

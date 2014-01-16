@@ -1,24 +1,25 @@
 //
-//  SNPostC.h
-//  JLRubyChina
+//  SMMBlogPostC.h
+//  SinaMBlog
 //
-//  Created by jimneylee on 13-9-9.
+//  Created by jimney on 13-3-4.
 //  Copyright (c) 2013年 jimneylee. All rights reserved.
 //
 
-#import <UIKit/UIKit.h>
+#import "OSCTweetPostModel.h"
+#import "OSCEmotionMainView.h"
+#import "OSCPostButtonBar.h"
+#import "OSCPostPhotoBrowseC.h"
+#import "OSCFriendsC.h"
 
-@protocol RCPostDelegate;
+@interface OSCTweetPostC : UIViewController<UIActionSheetDelegate, UINavigationControllerDelegate,
+UIImagePickerControllerDelegate, UITextViewDelegate,
+OSCEmotionDelegate, OSCFriendsDelegate, OSCPostPhotoBrowseDelegate>
 
-// TODO：当前采用tableview实现，除了键盘弹出好处理，其他太过复杂，后面考虑简单化
-@interface RCPostC : UITableViewController
+@property (nonatomic, retain) UIImage* image;
+@property (nonatomic, copy) NSString* streetPlace;
 
-@property (nonatomic, assign) id<RCPostDelegate> postDelegate;
-
-@end
-
-@protocol RCPostDelegate <NSObject>
-
-- (void)didPostNewTopic;
+// 发表@某人微博
+- (id)initWithUserName:(NSString*)username;
 
 @end

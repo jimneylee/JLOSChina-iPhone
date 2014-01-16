@@ -7,6 +7,6 @@
 //
 
 #import "TTButtonBar.h"
-@interface SMPostButtonBar : TTButtonBar
+@interface OSCPostButtonBar : TTButtonBar
 
 @end
