@@ -7,7 +7,10 @@
 //
 
 #import "OSCGlobalConfig.h"
+#import "OSCEmotionEntity.h"
 
+// emotion
+static NSArray* emotionsArray = nil;
 static OSCUserFullEntity* loginedUserEntity = nil;
 
 @implementation OSCGlobalConfig
@@ -63,6 +66,35 @@ static OSCUserFullEntity* loginedUserEntity = nil;
 }
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
++ (OSCCatalogType)catalogTypeForContentType:(OSCContentType)contentType
+{
+    OSCCatalogType catalogType = OSCCatalogType_News;
+    switch (contentType) {
+        case OSCContentType_LatestNews:
+            catalogType = OSCCatalogType_News;
+            break;
+            
+        case OSCContentType_LatestBlog:
+        case OSCContentType_RecommendBlog:
+            catalogType = OSCCatalogType_Blog;
+            break;
+            
+        case OSCContentType_Forum:
+            catalogType = OSCCatalogType_Forum;
+            
+            break;
+            
+        case OSCContentType_Tweet:
+            catalogType = OSCCatalogType_Tweet;
+            break;
+            
+        default:
+            break;
+    }
+    return catalogType;
+}
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 #pragma mark - Global UI
 
@@ -82,7 +114,7 @@ static OSCUserFullEntity* loginedUserEntity = nil;
 }
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
-+ (UIBarButtonItem*)createBarButtonItemWithTitle:(NSString*)buttonTitle Target:(id)target action:(SEL)action
++ (UIBarButtonItem*)createBarButtonItemWithTitle:(NSString*)buttonTitle target:(id)target action:(SEL)action
 {
     UIBarButtonItem* item = nil;
     item = [[UIBarButtonItem alloc] initWithTitle:buttonTitle
@@ -101,7 +133,7 @@ static OSCUserFullEntity* loginedUserEntity = nil;
                                                target:target action:action];
     }
     else {
-        return [OSCGlobalConfig createBarButtonItemWithTitle:@"菜单" Target:target action:action];
+        return [OSCGlobalConfig createBarButtonItemWithTitle:@"菜单" target:target action:action];
     }
 }
 
@@ -120,4 +152,44 @@ static OSCUserFullEntity* loginedUserEntity = nil;
     OSCLoginC* loginC = [[OSCLoginC alloc] initWithStyle:UITableViewStyleGrouped];
     [navigationController pushViewController:loginC animated:YES];
 }
+#pragma mark -
+#pragma mark Emotion
++ (NSArray* )emotionsArray
+{
+    if (!emotionsArray) {
+        NSString *path = [[NSBundle mainBundle] pathForResource:EMOTION_PLIST ofType:nil];
+        NSArray* array = [NSArray arrayWithContentsOfFile:path];
+        NSMutableArray* entities = [NSMutableArray arrayWithCapacity:array.count];
+        OSCEmotionEntity* entity = nil;
+        NSDictionary* dic = nil;
+        for (int i = 0; i < array.count; i++) {
+            dic = array[i];
+            entity = [OSCEmotionEntity entityWithDictionary:dic atIndex:i];
+            [entities addObject:entity];
+        }
+        emotionsArray = entities;
+    }
+    return emotionsArray;
+}
+
++ (NSString*)imageNameForEmotionCode:(NSString*)code
+{
+    for (OSCEmotionEntity* e in [OSCGlobalConfig emotionsArray]) {
+        if ([e.code isEqualToString:code]) {
+            return e.imageName;
+        }
+    }
+    return nil;
+}
+
++ (NSString*)imageNameForEmotionName:(NSString*)name
+{
+    for (OSCEmotionEntity* e in [OSCGlobalConfig emotionsArray]) {
+        if ([e.name isEqualToString:name]) {
+            return e.imageName;
+        }
+    }
+    return nil;
+}
+
 @end
