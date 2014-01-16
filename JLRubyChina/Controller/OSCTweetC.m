@@ -15,10 +15,11 @@
 #import "OSCQuickReplyC.h"
 #import "OSCCommonRepliesListC.h"
 #import "OSCTweetCell.h"
+#import "OSCTweetPostC.h"
 
 @interface OSCTweetC ()<RCQuickReplyDelegate>
 
-@property (nonatomic, assign) OSCTweetType homeType;
+@property (nonatomic, assign) OSCTweetType tweetType;
 @property (nonatomic, strong) SDSegmentedControl *segmentedControl;
 @property (nonatomic, strong) OSCQuickReplyC* quickReplyC;
 
@@ -40,7 +41,14 @@
         [NSArray arrayWithObjects:
          [OSCGlobalConfig createRefreshBarButtonItemWithTarget:self
                                                         action:@selector(autoPullDownRefreshActionAnimation)],
+         [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemCompose
+                                                       target:self action:@selector(postNewTweetAction)],
          nil];
+
+        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(didLoginNotification)
+                                                     name:DID_LOGIN_NOTIFICATION object:nil];
+        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(didPostNewTweetNotification)
+                                                     name:DID_POST_NEW_TWEET_SUCCESS_NOTIFICATION object:nil];
     }
     return self;
 }
@@ -55,7 +63,7 @@
     self.tableView.backgroundView = nil;
     
     [self initSegmentedControl];
-    ((OSCTweetTimelineModel*)self.model).homeType = self.segmentedControl.selectedSegmentIndex;
+    ((OSCTweetTimelineModel*)self.model).tweetType = self.segmentedControl.selectedSegmentIndex;
 }
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
@@ -79,6 +87,7 @@
 {
     if (![self.quickReplyC.textView.internalTextView isFirstResponder]) {
         self.quickReplyC.topicId = tweetId;
+        self.quickReplyC.catalogType = OSCCatalogType_Tweet;
         // each time addSubview to keyWidow, otherwise keyborad is not showed, sorry, so dirty!
         [[UIApplication sharedApplication].keyWindow addSubview:_quickReplyC.view];
         self.quickReplyC.textView.internalTextView.inputAccessoryView = self.quickReplyC.view;
@@ -106,7 +115,7 @@
                     forControlEvents:UIControlEventValueChanged];
     }
     
-    NSArray* sectionNames = @[@"最新动弹", @"热门动弹", @"红薯动弹"];
+    NSArray* sectionNames = @[@"最新动弹", @"热门动弹", @"我的动弹"];
     for (int i = 0; i < sectionNames.count; i++) {
         [self.segmentedControl insertSegmentWithTitle:sectionNames[i]
                                               atIndex:i
@@ -117,20 +126,25 @@
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)segmentedDidChange
 {
-    // first cancel request operation
-    [self.model cancelRequstOperation];
-    
-    // scroll top
-    ((OSCTweetTimelineModel*)self.model).homeType = self.segmentedControl.selectedSegmentIndex;
-    [self scrollToTopAnimated:NO];
-    
-    // TODO:remove all, sometime crash, fix later on
-    //    if (self.model.sections.count > 0) {
-    //        [self.model removeSectionAtIndex:0];
-    //    }
-    
-    // load cache
-    [self refreshData:YES];
+    if (OSCTweetType_Mine == self.segmentedControl.selectedSegmentIndex
+        && ![OSCGlobalConfig loginedUserEntity]) {
+        [OSCGlobalConfig showLoginControllerFromNavigationController:self.navigationController];
+    }
+    else {
+        // first cancel request operation
+        [self.model cancelRequstOperation];
+        
+        // scroll top
+        ((OSCTweetTimelineModel*)self.model).tweetType = self.segmentedControl.selectedSegmentIndex;
+        [self scrollToTopAnimated:NO];
+        
+        // TODO:remove all, sometime crash, fix later on
+        //    if (self.model.sections.count > 0) {
+        //        [self.model removeSectionAtIndex:0];
+        //    }
+        
+        [self autoPullDownRefreshActionAnimation];
+    }
 }
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
@@ -153,6 +167,13 @@
         [[UIApplication sharedApplication].keyWindow addSubview:_quickReplyC.view];
     }
     return _quickReplyC;
+}
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+- (void)postNewTweetAction
+{
+    OSCTweetPostC* postC = [[OSCTweetPostC alloc] init];
+    [self.navigationController pushViewController:postC animated:YES];
 }
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
@@ -214,6 +235,43 @@
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 ///////////////////////////////////////////////////////////////////////////////////////////////////
+#pragma mark - Login/Logout Notification
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+- (void)didLoginNotification
+{
+    if (OSCTweetType_Mine == self.segmentedControl.selectedSegmentIndex
+        && ![OSCGlobalConfig loginedUserEntity]) {
+        // TODO:remove all, sometime crash, fix later on
+        //    if (self.model.sections.count > 0) {
+        //        [self.model removeSectionAtIndex:0];
+        //    }
+        [OSCGlobalConfig showLoginControllerFromNavigationController:self.navigationController];
+    }
+}
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+- (void)didLogoutNotification
+{
+    
+}
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////////////////////////
+#pragma mark - New Tweet Notification
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+- (void)didPostNewTweetNotification
+{
+    if (OSCTweetType_Latest == self.tweetType
+        || OSCTweetType_Mine ==  self.tweetType) {
+        [self scrollToTopAnimated:NO];
+        [self autoPullDownRefreshActionAnimation];
+    }
+}
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////////////////////////
 #pragma mark - UITableViewDelegate
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
@@ -242,7 +300,9 @@
 - (void)didReplySuccessWithMyReply:(OSCReplyEntity*)replyEntity
 {
     [self.navigationController setNavigationBarHidden:NO animated:YES];
-    
+    if (replyEntity) {
+        // nothing to do
+    }
 }
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
