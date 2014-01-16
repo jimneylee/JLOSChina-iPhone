@@ -1066,6 +1066,15 @@
 		CE7E3199185D8BDE005F583E /* NSString+stringFromValue.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+stringFromValue.m"; sourceTree = "<group>"; };
 		CE90A1061872E6910030DB1E /* JLOSChina Dis.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "JLOSChina Dis.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		CE90A1081872E9A90030DB1E /* JLOSChina-Dis-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "JLOSChina-Dis-Info.plist"; sourceTree = "<group>"; };
+		CE97563918881FC6009AAD82 /* 0116_1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 0116_1.png; sourceTree = "<group>"; };
+		CE97563A18881FC6009AAD82 /* 0116_2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 0116_2.png; sourceTree = "<group>"; };
+		CE97563B18881FC6009AAD82 /* 0116_3.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 0116_3.png; sourceTree = "<group>"; };
+		CE97563C18881FC6009AAD82 /* 0116_4.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 0116_4.png; sourceTree = "<group>"; };
+		CE97563D18881FC6009AAD82 /* 0116_5.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 0116_5.png; sourceTree = "<group>"; };
+		CE97563E18881FC6009AAD82 /* 0116_6.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 0116_6.png; sourceTree = "<group>"; };
+		CE97563F18881FC6009AAD82 /* 0116_7.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 0116_7.png; sourceTree = "<group>"; };
+		CE97564018881FC6009AAD82 /* 0116_8.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 0116_8.png; sourceTree = "<group>"; };
+		CE97564118881FC6009AAD82 /* 0116_9.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 0116_9.png; sourceTree = "<group>"; };
 		CE9DFAB7185C4D17007BAE75 /* UIImage+nimbusImageNamed.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+nimbusImageNamed.h"; sourceTree = "<group>"; };
 		CE9DFAB8185C4D17007BAE75 /* UIImage+nimbusImageNamed.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+nimbusImageNamed.m"; sourceTree = "<group>"; };
 		CE9DFAC5185C5BB1007BAE75 /* OSCUserFullEntity.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OSCUserFullEntity.h; sourceTree = "<group>"; };
@@ -1852,6 +1861,15 @@
 		CE132593185F5A8400208653 /* Screenshots */ = {
 			isa = PBXGroup;
 			children = (
+				CE97563918881FC6009AAD82 /* 0116_1.png */,
+				CE97563A18881FC6009AAD82 /* 0116_2.png */,
+				CE97563B18881FC6009AAD82 /* 0116_3.png */,
+				CE97563C18881FC6009AAD82 /* 0116_4.png */,
+				CE97563D18881FC6009AAD82 /* 0116_5.png */,
+				CE97563E18881FC6009AAD82 /* 0116_6.png */,
+				CE97563F18881FC6009AAD82 /* 0116_7.png */,
+				CE97564018881FC6009AAD82 /* 0116_8.png */,
+				CE97564118881FC6009AAD82 /* 0116_9.png */,
 			);
 			path = Screenshots;
 			sourceTree = "<group>";
