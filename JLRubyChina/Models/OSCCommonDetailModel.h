@@ -11,7 +11,7 @@
 
 @interface OSCCommonDetailModel : OSCBaseTableModel
 
-@property (nonatomic, assign) OSCContentType homeType;
+@property (nonatomic, assign) OSCContentType contentType;
 @property (nonatomic, assign) unsigned long topicId;
 @property (nonatomic, strong) OSCCommonDetailEntity* topicDetailEntity;
 

@@ -32,7 +32,7 @@
     self = [self initWithStyle:UITableViewStylePlain];
     if (self) {
         ((OSCCommonDetailModel*)self.model).topicId = topicId;
-        ((OSCCommonDetailModel*)self.model).homeType = topicType;
+        ((OSCCommonDetailModel*)self.model).contentType = topicType;
     }
     return self;
 }
@@ -55,8 +55,8 @@
         self.title = @"详细";
         self.navigationItem.rightBarButtonItems =
         [NSArray arrayWithObjects:
-         [OSCGlobalConfig createBarButtonItemWithTitle:@"查看回复" Target:self
-                                                       action:@selector(showRepliesListView)],
+         [OSCGlobalConfig createBarButtonItemWithTitle:@"查看回复" target:self
+                                                action:@selector(showRepliesListView)],
          [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemReply
                                                        target:self action:@selector(replyTopicAction)],
          nil];
@@ -136,7 +136,7 @@
 - (void)showRepliesListView
 {
     OSCCommonRepliesListC* c = [[OSCCommonRepliesListC alloc] initWithTopicId:((OSCCommonDetailModel*)self.model).topicId
-                                                                    topicType:((OSCCommonDetailModel*)self.model).homeType];
+                                                                    topicType:((OSCCommonDetailModel*)self.model).contentType];
     [self.navigationController pushViewController:c animated:YES];
 }
 
@@ -173,7 +173,9 @@
 - (OSCQuickReplyC*)quickReplyC
 {
     if (!_quickReplyC) {
-        _quickReplyC = [[OSCQuickReplyC alloc] initWithTopicId:((OSCCommonDetailModel*)self.model).topicId];
+        OSCCatalogType catalogType = [OSCGlobalConfig catalogTypeForContentType:((OSCCommonDetailModel*)self.model).contentType];
+        _quickReplyC = [[OSCQuickReplyC alloc] initWithTopicId:((OSCCommonDetailModel*)self.model).topicId
+                                                     catalogType:catalogType];
         _quickReplyC.replyDelegate = self;
         // setting the first responder view of the table but we don't know its type (cell/header/footer)
         // [self.view addSubview:_quickReplyC.view];
@@ -317,14 +319,8 @@
 {
     [self.navigationController setNavigationBarHidden:NO animated:YES];
     
-    // 回复成功后，直接插入到tablview底部
-    NSArray* indexPaths = [self.model addObject:replyEntity];
-    if (indexPaths.count) {
-        NSIndexPath* indexPath = indexPaths[0];
-        replyEntity.floorNumber = indexPath.row+1;
-        [self.tableView insertRowsAtIndexPaths:indexPaths withRowAnimation:UITableViewRowAnimationAutomatic];
-        // 感觉没必要滑到底部
-        //[self scrollToBottomAnimated:YES];
+    if (replyEntity) {
+        // nothing to do
     }
 }
 
