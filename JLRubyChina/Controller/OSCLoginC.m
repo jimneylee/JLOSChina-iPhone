@@ -7,7 +7,9 @@
 //
 
 #import "OSCLoginC.h"
+#import "MTStatusBarOverlay.h"
 #import "OSCLoginModel.h"
+#import "OSCAccountEntity.h"
 #import "OSCUserFullEntity.h"
 
 #define USERNAME_INDEX 0
@@ -26,7 +28,7 @@
 @property (nonatomic, readwrite, retain) NITableViewActions* actions;
 @property (nonatomic, readwrite, retain) NICellFactory* cellFactory;
 @property (nonatomic, readwrite, retain) OSCLoginModel* userModel;
-
+@property (nonatomic, readwrite, assign) BOOL isAutoLogin;
 @end
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
@@ -110,7 +112,7 @@
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)loginWithUsername:(NSString*)username password:(NSString *)password
-{    
+{
     __block MBProgressHUD* hud = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
     hud.labelText = @"正在登录...";
     [self.userModel loginWithUsername:username
@@ -120,11 +122,15 @@
             [OSCGlobalConfig setLoginedUserEntity:userEntity];
             NSLog(@"login success");
             hud.mode = MBProgressHUDModeText;
-            hud.labelText = @"登录成功，欢迎来到ruby china！";
+            hud.labelText = @"登录成功！";
             [hud hide:YES afterDelay:1.5f];
             [self.navigationController popViewControllerAnimated:YES];
             [[NSNotificationCenter defaultCenter] postNotificationName:DID_LOGIN_NOTIFICATION
                                                                 object:nil userInfo:nil];
+            if (self.isAutoLogin) {
+                [[MTStatusBarOverlay sharedOverlay] postImmediateFinishMessage:@"登录成功"
+                                                                      duration:2.0f animated:YES];
+            }
         }
         else {
             NSLog(@"login failed");
@@ -133,6 +139,21 @@
             [hud hide:YES afterDelay:1.5f];
         }
     }];
+}
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////////////////////////
+#pragma mark - Public
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+- (void)autoLogin
+{
+    self.isAutoLogin = YES;
+    OSCAccountEntity* account = [OSCAccountEntity loadStoredUserAccount];
+    if (account.username.length && account.password.length) {
+        [[MTStatusBarOverlay sharedOverlay] postMessage:@"自动登录中..."];
+        [self loginWithUsername:account.username password:account.password];
+    }
 }
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
