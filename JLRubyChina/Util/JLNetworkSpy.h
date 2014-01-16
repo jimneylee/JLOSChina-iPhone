@@ -13,6 +13,9 @@
 
 + (JLNetworkSpy*)sharedNetworkSpy;
 
+@property (nonatomic, assign) BOOL isReachableViaWiFi;
+@property (nonatomic, assign) BOOL isReachableViaWWAN;
+@property (nonatomic, assign) BOOL isReachable;
 @property (nonatomic, assign) id<RCNetworkSpyDelegate> spyDelegate;
 
 - (void)spyNetwork;

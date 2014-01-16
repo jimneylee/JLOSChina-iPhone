@@ -11,9 +11,6 @@
 
 @interface JLNetworkSpy()
 @property (nonatomic, strong) Reachability* reachability;
-@property (nonatomic) BOOL isReachableViaWiFi;
-@property (nonatomic) BOOL isReachableViaWWAN;
-@property (nonatomic) BOOL isReachable;
 @end
 
 @implementation JLNetworkSpy
