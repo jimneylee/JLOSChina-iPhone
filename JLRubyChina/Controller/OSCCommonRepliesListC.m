@@ -31,7 +31,7 @@
     self = [self initWithStyle:UITableViewStylePlain];
     if (self) {
         ((OSCRepliesTimelineModel*)self.model).topicId = topicId;
-        ((OSCRepliesTimelineModel*)self.model).homeType = topicType;
+        ((OSCRepliesTimelineModel*)self.model).contentType = topicType;
     }
     return self;
 }
@@ -163,7 +163,9 @@
 - (OSCQuickReplyC*)quickReplyC
 {
     if (!_quickReplyC) {
-        _quickReplyC = [[OSCQuickReplyC alloc] initWithTopicId:((OSCRepliesTimelineModel*)self.model).topicId];
+        OSCCatalogType catalogType = [OSCGlobalConfig catalogTypeForContentType:((OSCRepliesTimelineModel*)self.model).contentType];
+        _quickReplyC = [[OSCQuickReplyC alloc] initWithTopicId:((OSCRepliesTimelineModel*)self.model).topicId
+                                                     catalogType:catalogType];
         _quickReplyC.replyDelegate = self;
         // setting the first responder view of the table but we don't know its type (cell/header/footer)
         // [self.view addSubview:_quickReplyC.view];
@@ -286,14 +288,12 @@
 {
     [self.navigationController setNavigationBarHidden:NO animated:YES];
     
-    // 回复成功后，直接插入到tablview底部
-    NSArray* indexPaths = [self.model addObject:replyEntity];
-    if (indexPaths.count) {
-        NSIndexPath* indexPath = indexPaths[0];
-        replyEntity.floorNumber = indexPath.row+1;
-        [self.tableView insertRowsAtIndexPaths:indexPaths withRowAnimation:UITableViewRowAnimationAutomatic];
-        // 感觉没必要滑到底部
-        //[self scrollToBottomAnimated:YES];
+    // when reply success, insert to top of tableview
+    if (replyEntity) {
+        NSArray* indexPaths = [self.model insertObject:replyEntity atRow:0 inSection:0];
+        if (indexPaths.count) {
+            [self.tableView insertRowsAtIndexPaths:indexPaths withRowAnimation:UITableViewRowAnimationAutomatic];
+        }
     }
 }
 
