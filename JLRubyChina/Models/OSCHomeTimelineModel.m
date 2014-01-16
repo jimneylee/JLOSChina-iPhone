@@ -40,7 +40,7 @@
     NSString* path = nil;
     
     // 由于接口未统一，不得不怎么做，dirty!
-    switch (self.homeType) {
+    switch (self.contentType) {
         case OSCContentType_LatestNews:
             path = [OSCAPIClient relativePathForLatestNewsListWithPageCounter:self.pageCounter
                                                         perpageCount:self.perpageCount];
@@ -71,7 +71,7 @@
 - (Class)objectClass
 {
     // 由于接口未统一，不得不怎么做，dirty!
-    switch (self.homeType) {
+    switch (self.contentType) {
         case OSCContentType_LatestNews:
             return [OSCCommonEntity class];
             break;
@@ -101,7 +101,7 @@
 - (void)parser:(NSXMLParser *)parser didEndElement:(NSString *)elementName namespaceURI:(NSString *)namespaceURI qualifiedName:(NSString *)qName
 {
     if ([elementName isEqualToString:@"catalog"]) {
-        self.catalogId = [self.tmpInnerElementText integerValue];
+        self.catalogType = [self.tmpInnerElementText integerValue];
     }
     // super will set nil to self.tmpInnerElementText
     [super parser:parser didEndElement:elementName namespaceURI:namespaceURI qualifiedName:qName];

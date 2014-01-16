@@ -15,7 +15,7 @@
 
 @interface OSCHomeC ()
 
-@property (nonatomic, assign) OSCContentType homeType;
+@property (nonatomic, assign) OSCContentType contentType;
 @property (nonatomic, strong) SDSegmentedControl *segmentedControl;
 
 @end
@@ -51,7 +51,7 @@
     self.tableView.backgroundView = nil;
     
     [self initSegmentedControl];
-    ((OSCHomeTimelineModel*)self.model).homeType = self.segmentedControl.selectedSegmentIndex;
+    ((OSCHomeTimelineModel*)self.model).contentType = self.segmentedControl.selectedSegmentIndex;
 }
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
@@ -97,7 +97,7 @@
     [self.model cancelRequstOperation];
     
     // scroll top
-    ((OSCHomeTimelineModel*)self.model).homeType = self.segmentedControl.selectedSegmentIndex;
+    ((OSCHomeTimelineModel*)self.model).contentType = self.segmentedControl.selectedSegmentIndex;
     [self scrollToTopAnimated:NO];
     
     // remove all, sometime crash, fix later on
@@ -105,8 +105,7 @@
 //        [self.model removeSectionAtIndex:0];
 //    }
     
-    // load cache
-    [self refreshData:YES];
+    [self autoPullDownRefreshActionAnimation];
 }
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
