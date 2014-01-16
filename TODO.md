@@ -1,8 +1,3 @@
-DONE:
-1、已完成资讯列表显示
-
-TODO:
-博客推荐列表显示
 
 
 AFXMLRequestOperation add
