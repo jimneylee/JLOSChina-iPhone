@@ -22,5 +22,5 @@
 #define XML_RESULT @"result"
 #define XML_USER @"user"
 #define XML_NOTICE @"notice"
-
+#define XML_COMMENT @"comment"
 #endif
