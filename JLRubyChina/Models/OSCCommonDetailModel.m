@@ -42,7 +42,7 @@
 {
     NSString* path = nil;
     
-    switch (self.homeType) {
+    switch (self.contentType) {
         case OSCContentType_LatestNews:
             path = [OSCAPIClient relativePathForNewsDetailWithId:self.topicId];
             self.detailItemElementName = @"news";
