@@ -1,6 +1,6 @@
 ##JLOSChina-iPhone
-之前看到OSC发布一个千元悬赏修复bug的帖子，然后就顺道下载了当前[iPhone客户端的源码](http://git.oschina.net/oschina/iphone-app)，打开工程后发现，修复这个bug的代价会很大，整个工程的结构比较混乱，而且从长远的角度，个人认为这份代码没有必要再维护了。
-所以一不做二不休，赶工写一个新的客户端，希望年前能及时发布，作为给各位OSCers的马年礼物。目前应该会有很多潜在的bug，欢迎各位试用，反馈bug！
+之前看到OSC发布一个[千元悬赏修复bug的帖子](http://www.oschina.net/question/12_140167)，然后就顺道下载了当前[iPhone客户端的源码](http://git.oschina.net/oschina/iphone-app)，打开工程后发现，修复这个bug的代价会很大，整个工程的结构比较混乱，而且从长远的角度，个人认为这份代码没有必要再维护。所以一不做二不休，赶工写一个新的客户端，希望年前能及时发布，作为给各位OSCers的马年礼物。目前应该会有很多潜在的bug，功能还有些待完善，欢迎各位试用，反馈bug！
+**更加热烈欢迎fork&pull request，由于api接口还是挺多的，所以感兴趣的同学可以一起加入，但是请保存要提交代码的质量。**
 
 ## 开发环境
 XCode5 iOS7.x & iOS6.x
