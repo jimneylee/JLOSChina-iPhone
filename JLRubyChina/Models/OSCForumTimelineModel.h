@@ -10,7 +10,7 @@
 
 @interface OSCForumTimelineModel : OSCBaseTableModel
 
-@property (nonatomic, assign) OSCForumTopicType homeType;
-@property (nonatomic, assign) unsigned int catalogId;
+@property (nonatomic, assign) OSCForumTopicType topicType;
+@property (nonatomic, assign) unsigned int catalogType;
 
 @end

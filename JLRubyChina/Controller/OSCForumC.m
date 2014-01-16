@@ -15,7 +15,7 @@
 
 @interface OSCForumC ()
 
-@property (nonatomic, assign) OSCForumTopicType homeType;
+@property (nonatomic, assign) OSCForumTopicType topicType;
 @property (nonatomic, strong) SDSegmentedControl *segmentedControl;
 
 @end
@@ -51,7 +51,7 @@
     self.tableView.backgroundView = nil;
     
     [self initSegmentedControl];
-    ((OSCForumTimelineModel*)self.model).homeType = self.segmentedControl.selectedSegmentIndex;
+    ((OSCForumTimelineModel*)self.model).topicType = self.segmentedControl.selectedSegmentIndex;
 }
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
@@ -97,7 +97,7 @@
     [self.model cancelRequstOperation];
     
     // scroll top
-    ((OSCForumTimelineModel*)self.model).homeType = self.segmentedControl.selectedSegmentIndex;
+    ((OSCForumTimelineModel*)self.model).topicType = self.segmentedControl.selectedSegmentIndex;
     [self scrollToTopAnimated:NO];
     
     // remove all, sometime crash, fix later on
@@ -105,8 +105,7 @@
     //        [self.model removeSectionAtIndex:0];
     //    }
     
-    // load cache
-    [self refreshData:YES];
+    [self autoPullDownRefreshActionAnimation];
 }
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////

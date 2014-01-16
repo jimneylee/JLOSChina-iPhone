@@ -38,7 +38,7 @@
 - (NSString*)relativePath
 {
     NSString* path = nil;
-    path = [OSCAPIClient relativePathForForumListWithForumType:self.homeType
+    path = [OSCAPIClient relativePathForForumListWithForumType:self.topicType
                                                    pageCounter:self.pageCounter
                                                   perpageCount:self.perpageCount];
     return path;
@@ -65,7 +65,7 @@
 - (void)parser:(NSXMLParser *)parser didEndElement:(NSString *)elementName namespaceURI:(NSString *)namespaceURI qualifiedName:(NSString *)qName
 {
     if ([elementName isEqualToString:@"catalog"]) {
-        self.catalogId = [self.tmpInnerElementText integerValue];
+        self.catalogType = [self.tmpInnerElementText integerValue];
     }
     // super will set nil to self.tmpInnerElementText
     [super parser:parser didEndElement:elementName namespaceURI:namespaceURI qualifiedName:qName];
