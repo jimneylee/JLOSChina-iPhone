@@ -11,7 +11,7 @@
 
 @interface OSCRepliesTimelineModel : OSCBaseTableModel
 
-@property (nonatomic, assign) OSCContentType homeType;
+@property (nonatomic, assign) OSCContentType contentType;
 @property (nonatomic, assign) unsigned long topicId;
 
 @end

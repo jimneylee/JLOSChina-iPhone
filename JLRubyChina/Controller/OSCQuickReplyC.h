@@ -18,8 +18,9 @@
 @property (nonatomic, strong) TSEmojiView* emojiView;
 @property (nonatomic, assign) id<RCQuickReplyDelegate> replyDelegate;
 @property (nonatomic, assign) unsigned long topicId;
+@property (nonatomic, assign) OSCCatalogType catalogType;
 
-- (id)initWithTopicId:(unsigned long)topicId;
+- (id)initWithTopicId:(unsigned long)topicId catalogType:(OSCCatalogType)catalogType;
 - (void)appendString:(NSString*)string;
 
 @end

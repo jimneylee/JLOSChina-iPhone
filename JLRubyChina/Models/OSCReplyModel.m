@@ -10,94 +10,104 @@
 #import "OSCAPIClient.h"
 #import "AFHTTPRequestOperation.h"
 
+@interface OSCReplyModel()
+@property (nonatomic, assign) OSCCatalogType catalogType;
+@end
+
 @implementation OSCReplyModel
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
-- (void)old_replyTopicId:(unsigned long)topicId
-            body:(NSString*)body
-             success:(void(^)())success
-             failure:(void(^)(NSError *error))failure
+- (id)init
 {
-    // 不知道这么为什么不行，下面替代方法临时实现，比较丑陋
-    if (body.length) {
-        NSMutableDictionary* parameters = [NSMutableDictionary dictionary];
-        [parameters setObject:body forKey:@"body"];
-        
-        NSString* path = nil;//[OSCAPIClient relativePathForReplyTopicId:topicId];
-        [[OSCAPIClient sharedClient] postPath:path parameters:parameters
-                                     success:^(AFHTTPRequestOperation *operation, id responseObject) {
-                                         NSLog(@"%@", responseObject);
-                                         success();
-                                     }
-                                     failure:^(AFHTTPRequestOperation *operation, NSError *error) {
-                                         NSLog(@"%@", error);
-                                         failure(error);
-                                     }];
+    self = [super init];
+    if (self) {
+        self.itemElementNamesArray = @[XML_COMMENT];
     }
+    return self;
 }
 
-//[[AFOSCClient sharedClient] postPath:api_comment_reply
-//                          parameters:[NSDictionary dictionaryWithObjectsAndKeys:
-//                                      [NSString stringWithFormat:@"%d", self.parentCommentID],@"id",
-//                                      [NSString stringWithFormat:@"%d", [Config Instance].getUID],@"uid",
-//                                      [NSString stringWithFormat:@"%d", self.catalog],@"catalog",
-//                                      [NSString stringWithFormat:@"%d", self.replyID],@"replyid",
-//                                      [NSString stringWithFormat:@"%d", self.authorID],@"authorid",
-//                                      message, @"content",nil]
-
+//TODO: repost
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)replyTopicId:(unsigned long)topicId
-            body:(NSString*)body
+         catalogType:(OSCCatalogType)catalogType
+                body:(NSString*)body
              success:(void(^)(OSCReplyEntity* replyEntity))success
-             failure:(void(^)(NSError* error))failure
+             failure:(void(^)(OSCErrorEntity* errorEntity))failure
 {
-    // 参考：http://stackoverflow.com/questions/9562459/afnetworking-posting-malformed-json-single-quotes-and-object-refs
-    if (body.length) {
-        NSMutableDictionary* parameters = [NSMutableDictionary dictionary];
-        [parameters setObject:body forKey:@"body"];
+    self.successBlock = success;
+    self.failureBlock = failure;
+    self.catalogType = catalogType;
+    if (topicId > 0 &&body.length) {
+        NSMutableDictionary* params = [NSMutableDictionary dictionary];
+        [params setObject:[NSNumber numberWithInt:catalogType]
+                   forKey:@"catalog"];
+        [params setObject:[NSNumber numberWithLong:[OSCGlobalConfig loginedUserEntity].authorId]
+                   forKey:@"uid"];
+        [params setObject:body forKey:@"content"];
         
-        NSString* path = [OSCAPIClient relativePathForReply];
-        NSError *error = nil;
-        NSData* jsonData = [NSJSONSerialization dataWithJSONObject:parameters options:NSJSONWritingPrettyPrinted error:&error];
+        // api is so dirty, make me crazy! hold on...
+        if (OSCCatalogType_Blog == self.catalogType) {
+            [params setObject:[NSNumber numberWithLong:topicId]
+                       forKey:@"blog"];
+        }
+        else {
+            [params setObject:[NSNumber numberWithLong:topicId]
+                       forKey:@"id"];
+            //TODO: repost
+            [params setObject:@"0"
+                       forKey:@"isPostToMyZone"];
+        }
         
-        AFHTTPClient *httpClient = [[AFHTTPClient alloc] initWithBaseURL:[NSURL URLWithString:kAPIBaseURLString]];
-        [httpClient setParameterEncoding:AFFormURLParameterEncoding];
-        NSMutableURLRequest *request = [httpClient requestWithMethod:@"POST"
-                                                                path:path
-                                                          parameters:nil];
-        NSMutableData *body = [NSMutableData data];
-        [body appendData:jsonData];
-        [request setHTTPBody:body];
-        [request setHTTPMethod:@"POST"];
-        [request setValue:@"application/json" forHTTPHeaderField:@"Accept"];
-        [request setValue:@"application/json" forHTTPHeaderField:@"content-type"];
-        
-        AFHTTPRequestOperation *operation = [[AFHTTPRequestOperation alloc] initWithRequest:request];
-        [httpClient registerHTTPOperationClass:[AFHTTPRequestOperation class]];
-        [operation setCompletionBlockWithSuccess:^(AFHTTPRequestOperation *operation, id responseObject) {
-            NSString* responseString = [[NSString alloc] initWithData:responseObject encoding:NSUTF8StringEncoding];
-//          {"id":172002,"body":"不错","body_html":"<p>不错</p>","created_at":"2013-12-17T10:36:08.090+08:00","updated_at":"2013-12-17T10:36:08.090+08:00",
-//          "user":{"id":4988,"login":"jimneylee","avatar_url":"http://ruby-china.org/avatar/67cb78ce56281adaf0724c66f99c3ca3.png?s=120"}}
-            // TODO:回复成功后，直接插入到tablview底部
-            NSLog(@"Response: %@", responseString);
-            NSError *error = nil;
-            id responseJSON  = [NSJSONSerialization JSONObjectWithData:responseObject options:NSJSONReadingAllowFragments error:&error];
-            if ([responseJSON isKindOfClass:[NSDictionary class]]) {
-                OSCReplyEntity* replyEntity = [OSCReplyEntity entityWithDictionary:responseJSON];
-                if (replyEntity) {
-                    success(replyEntity);
-                    return;
-                }
-                else {
-                    NSLog(@"error:%@", error);
-                }
+        [self postParams:params errorBlock:^(OSCErrorEntity *errorEntity) {
+            if (ERROR_CODE_SUCCESS == errorEntity.errorCode) {
+                success(self.replyEntity);
             }
-            failure(nil);
-        } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
-            NSLog(@"Error: %@", error);
-            failure(nil);
+            else {
+                failure(nil);
+            }
         }];
-        [operation start];
     }
 }
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////////////////////////
+#pragma mark - Override
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+- (NSString*)relativePath
+{
+    if (OSCCatalogType_Blog == self.catalogType) {
+        return [OSCAPIClient relativePathForPostBlogComment];
+    }
+    else {
+        return [OSCAPIClient relativePathForPostComment];
+    }
+}
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+- (void)parseDataDictionary
+{
+    NSMutableDictionary* dic = self.dataDictionary[XML_COMMENT];
+    self.replyEntity = [OSCReplyEntity entityWithDictionary:dic];
+}
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+- (void)didFinishLoad
+{
+    [OSCAccountEntity storePassword:self.accountEntity.password
+                        forUsername:self.accountEntity.username];
+    if (ERROR_CODE_SUCCESS == self.errorEntity.errorCode) {
+        self.successBlock(self.replyEntity);
+    }
+    else {
+        self.failureBlock(self.errorEntity);
+    }
+}
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+- (void)didFailLoad
+{
+    self.failureBlock(self.errorEntity);
+}
+
 @end

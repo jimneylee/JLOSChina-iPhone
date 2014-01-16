@@ -7,11 +7,21 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "OSCBaseModel.h"
 #import "OSCReplyEntity.h"
 
-@interface OSCReplyModel : NSObject
+typedef void (^SuccessBlock)(OSCReplyEntity* entity);
+typedef void (^FailureBlock)(OSCErrorEntity* errorEntity);
+
+@interface OSCReplyModel : OSCBaseModel
+
+@property (nonatomic, strong) SuccessBlock successBlock;
+@property (nonatomic, strong) FailureBlock failureBlock;
+@property (nonatomic, strong) OSCReplyEntity* replyEntity;
+
 - (void)replyTopicId:(unsigned long)topicId
-            body:(NSString*)body
+         catalogType:(OSCCatalogType)catalogType
+                body:(NSString*)body
              success:(void(^)(OSCReplyEntity* replyEntity))success
-             failure:(void(^)(NSError *error))failure;
+             failure:(void(^)(OSCErrorEntity* error))failure;
 @end

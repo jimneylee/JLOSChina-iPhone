@@ -29,11 +29,12 @@
 #pragma mark - UIViewController
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
-- (id)initWithTopicId:(unsigned long)topicId
+- (id)initWithTopicId:(unsigned long)topicId catalogType:(OSCCatalogType)catalogType
 {
     self = [self initWithNibName:nil bundle:nil];
     if (self) {
         self.topicId = topicId;
+        self.catalogType = catalogType;
     }
     return self;
 }
@@ -171,11 +172,11 @@
 // TODO: will move this method it util
 - (NSString*)stringByReplaceEmojiUnicodeWithTextCodeForSourceText:(NSString*)sourceText
 {
-    NSLog(@"before source Text:%@", sourceText);
+//    NSLog(@"before source Text:%@", sourceText);
 //    for (NSString* key in [OSCGlobalConfig emojiReverseAliases]) {
 //        sourceText = [sourceText stringByReplacingOccurrencesOfString:key withString:[OSCGlobalConfig emojiReverseAliases][key]];
 //    }
-    NSLog(@"after source Text:%@", sourceText);
+//    NSLog(@"after source Text:%@", sourceText);
     return sourceText;
 }
 
@@ -189,6 +190,7 @@
         NSString* pureBodyText = [self stringByReplaceEmojiUnicodeWithTextCodeForSourceText:bodyText];
         [[MTStatusBarOverlay sharedOverlay] postMessage:@"回复中..."];
         [replyModel replyTopicId:self.topicId
+                       catalogType:self.catalogType
                             body:pureBodyText //self.textView.text
                          success:^(OSCReplyEntity* replyEntity){
                              self.textView.text = @"";
@@ -198,8 +200,7 @@
                                  [self.replyDelegate didReplySuccessWithMyReply:replyEntity];
                                  [[MTStatusBarOverlay sharedOverlay] postImmediateFinishMessage:@"回复成功" duration:2.0f animated:YES];
                              }
-                             // 是否需要刷新后，自动滑动到底部，有待考虑，有时需要一次回复多个人，后面看大家使用反馈
-                         } failure:^(NSError *error) {
+                         } failure:^(OSCErrorEntity* errorEntity) {
                              [OSCGlobalConfig HUDShowMessage:@"回复失败!" addedToView:self.view];
                              if ([self.replyDelegate respondsToSelector:@selector(didReplyFailure)]) {
                                  [self.replyDelegate didReplyFailure];
