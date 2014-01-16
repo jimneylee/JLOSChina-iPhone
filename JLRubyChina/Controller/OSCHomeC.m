@@ -104,15 +104,14 @@
 //    if (self.model.sections.count > 0) {
 //        [self.model removeSectionAtIndex:0];
 //    }
-    
-    [self autoPullDownRefreshActionAnimation];
+    // after scrollToTopAnimated then pull down to refresh, performce perfect
+    [self performSelector:@selector(autoPullDownRefreshActionAnimation) withObject:self afterDelay:0.1f];
 }
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)scrollToTopAnimated:(BOOL)animated
 {
-    [self.tableView scrollRectToVisible:CGRectMake(0.f, 0.f,
-                                                   self.tableView.width, self.tableView.height)
+    [self.tableView scrollRectToVisible:CGRectMake(0.f, 0.f, self.tableView.width, self.tableView.height)
                                animated:animated];
 }
 

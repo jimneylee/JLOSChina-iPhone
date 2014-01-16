@@ -105,7 +105,8 @@
     //        [self.model removeSectionAtIndex:0];
     //    }
     
-    [self autoPullDownRefreshActionAnimation];
+    // after scrollToTopAnimated then pull down to refresh, performce perfect
+    [self performSelector:@selector(autoPullDownRefreshActionAnimation) withObject:self afterDelay:0.1f];
 }
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
