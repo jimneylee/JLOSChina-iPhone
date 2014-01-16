@@ -7,22 +7,21 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "OSCBaseModel.h"
 #import "OSCAccountEntity.h"
 #import "OSCUserFullEntity.h"
 #import "OSCErrorEntity.h"
 #import "OSCNoticeEntity.h"
 
-typedef void (^ReturnBlock)(OSCUserFullEntity* userEntity, OSCErrorEntity* errorEntity);
+typedef void (^LoginBlock)(OSCUserFullEntity* entity, OSCErrorEntity* errorEntity);
 
-@interface OSCLoginModel : NSObject<NSXMLParserDelegate>
+@interface OSCLoginModel : OSCBaseModel<NSXMLParserDelegate>
 
 @property (nonatomic, strong) OSCAccountEntity* accountEntity;
 @property (nonatomic, strong) OSCUserFullEntity* userEntity;
-@property (nonatomic, strong) OSCErrorEntity* errorEntity;
-@property (nonatomic, strong) OSCNoticeEntity* noticeEntiy;
-@property (nonatomic, strong) ReturnBlock returnBlock;
+@property (nonatomic, strong) LoginBlock loginBlock;
 
 - (void)loginWithUsername:(NSString*)username password:(NSString*)password
-                    block:(void(^)(OSCUserFullEntity* userEntity, OSCErrorEntity* errorEntity))block;
+                    block:(void(^)(OSCUserFullEntity* entity, OSCErrorEntity* errorEntity))block;
 
 @end
