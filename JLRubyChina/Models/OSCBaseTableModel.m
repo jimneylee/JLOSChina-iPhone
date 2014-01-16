@@ -34,12 +34,6 @@
 #pragma mark - Override
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
-- (NSString*)listKey
-{
-	return nil;
-}
-
-///////////////////////////////////////////////////////////////////////////////////////////////////
 - (NSString*)relativePath
 {
     return nil;
@@ -115,7 +109,10 @@
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)parseDataToIndexPaths
 {
-    NSArray* entities = [self entitiesParsedFromResponseObject:self.listDataArray];
+    NSArray* entities = nil;
+    if (self.listDataArray.count) {
+        entities = [self entitiesParsedFromResponseObject:self.listDataArray];
+    }
     NSArray* indexPaths = nil;
     if (entities.count) {
         indexPaths = [self addObjectsFromArray:entities];
@@ -127,6 +124,18 @@
     if (self.showIndexPathsBlock) {
         self.showIndexPathsBlock(indexPaths, nil);
     }
+}
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+- (void)didFinishLoad
+{
+    
+}
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+- (void)didFailLoad
+{
+    
 }
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
@@ -198,7 +207,14 @@
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)parserDidEndDocument:(NSXMLParser *)parser
 {
-    [self parseDataToIndexPaths];
+    // TODO: switch code value:
+    if (self.listDataArray) {//ERROR_CODE_SUCCESS == self.errorEntity.errorCode
+        [self parseDataToIndexPaths];
+        [self didFinishLoad];
+    }
+    else {
+        [self didFailLoad];
+    }
 }
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
@@ -209,6 +225,7 @@
     if (self.showIndexPathsBlock) {
         self.showIndexPathsBlock(nil, error);//TODO: error -> error entity
     }
+    [self didFailLoad];
 }
 
 @end
