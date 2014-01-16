@@ -104,21 +104,19 @@ NSString *const kAPIBaseURLString = @"http://www.oschina.net/action/api/";
     return [NSString stringWithFormat:@"post_detail?id=%ld", blogId];
 }
 
-+ (NSString*)relativePathForRepliesListWithCatalogId:(unsigned int)catalogId
++ (NSString*)relativePathForRepliesListWithCatalogType:(unsigned int)catalogType
                                            contentId:(unsigned long)contentId
                                          pageCounter:(unsigned int)pageCounter
                                         perpageCount:(unsigned int)perpageCount
 {
-    // TODO:for news comment, set category: 1, and dor other I donot know now
     return [NSString stringWithFormat:@"comment_list?catalog=%u&id=%ld&pageIndex=%u&pageSize=%u",
-                                        catalogId, contentId, pageCounter, perpageCount];
+                                        catalogType, contentId, pageCounter, perpageCount];
 }
 
 + (NSString*)relativePathForRepliesListWithBlogId:(unsigned long)blogId
                                       pageCounter:(unsigned int)pageCounter
                                      perpageCount:(unsigned int)perpageCount
 {
-    // TODO:for news comment, set category: 1, and dor other I donot know now
     return [NSString stringWithFormat:@"blogcomment_list?id=%ld&pageIndex=%u&pageSize=%u",
                                         blogId, pageCounter, perpageCount];
 }
@@ -139,9 +137,46 @@ NSString *const kAPIBaseURLString = @"http://www.oschina.net/action/api/";
                                         uid, pageCounter, perpageCount];
 }
 
-+ (NSString*)relativePathForReply
+//================================================================================
+// topic write
+//================================================================================
+
+
++ (NSString*)relativePathForPostNewTweet
+{
+    return [NSString stringWithFormat:@"tweet_pub"];
+}
+
++ (NSString*)relativePathForReplyComment
 {
     return [NSString stringWithFormat:@"comment_reply"];
+}
+
++ (NSString*)relativePathForPostComment
+{
+    return [NSString stringWithFormat:@"comment_pub"];
+}
+
++ (NSString*)relativePathForPostBlogComment
+{
+    return [NSString stringWithFormat:@"blogcomment_pub"];
+}
+
+//================================================================================
+// my info
+//================================================================================
+
++ (NSString*)relativePathForFriendsList
+{
+    return [NSString stringWithFormat:@"friends_list"];
+}
+
++ (NSString*)relativePathForFriendsListWithUserId:(unsigned long)uid
+                                      pageCounter:(unsigned int)pageCounter
+                                     perpageCount:(unsigned int)perpageCount
+{
+    return [NSString stringWithFormat:@"friends_list?uid=%ld&pageIndex=%u&pageSize=%u",
+            uid, pageCounter, perpageCount];
 }
 
 @end

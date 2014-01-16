@@ -83,7 +83,7 @@
 + (NSString*)relativePathForTopicDetailWithId:(unsigned long)blogId;
 
 // 回复列表接口
-+ (NSString*)relativePathForRepliesListWithCatalogId:(unsigned int)catalogId
++ (NSString*)relativePathForRepliesListWithCatalogType:(unsigned int)catalogType
                                            contentId:(unsigned long)contentId
                                          pageCounter:(unsigned int)pageCounter
                                         perpageCount:(unsigned int)perpageCount;
@@ -105,8 +105,18 @@
 //================================================================================
 // topic write
 //================================================================================
++ (NSString*)relativePathForPostNewTweet;
++ (NSString*)relativePathForReplyComment;
++ (NSString*)relativePathForPostComment;
++ (NSString*)relativePathForPostBlogComment;
 
-+ (NSString*)relativePathForReply;
+//================================================================================
+// my info
+//================================================================================
+
++ (NSString*)relativePathForFriendsListWithUserId:(unsigned long)uid
+                                      pageCounter:(unsigned int)pageCounter
+                                     perpageCount:(unsigned int)perpageCount;
 
 @end
 
