@@ -6,12 +6,12 @@
 //  Copyright (c) 2013年 jimneylee. All rights reserved.
 //
 
-#import "SMFriendCell.h"
-#import "SMFriendEntity.h"
+#import "OSCFriendCell.h"
+#import "OSCFriendEntity.h"
 
 #define TITLE_FONT_SIZE [UIFont boldSystemFontOfSize:17.f]
 
-@implementation SMFriendCell
+@implementation OSCFriendCell
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 + (CGFloat)heightForObject:(id)object atIndexPath:(NSIndexPath *)indexPath tableView:(UITableView *)tableView
@@ -48,8 +48,8 @@
 - (BOOL)shouldUpdateCellWithObject:(id)object
 {
     [super shouldUpdateCellWithObject:object];
-    if ([object isKindOfClass:[SMFriendEntity class]]) {
-        SMFriendEntity* entity = (SMFriendEntity*)object;
+    if ([object isKindOfClass:[OSCFriendEntity class]]) {
+        OSCFriendEntity* entity = (OSCFriendEntity*)object;
         self.textLabel.text = [entity getNameWithAt];
     }
     return YES;

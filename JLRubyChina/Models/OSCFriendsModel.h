@@ -6,8 +6,8 @@
 //  Copyright (c) 2013年 jimneylee. All rights reserved.
 //
 
-#import "JLNimbusTableModel.h"
+#import "OSCBaseTableModel.h"
 
-@interface SMFriendsModel : JLNimbusTableModel
+@interface OSCFriendsModel : OSCBaseTableModel
 
 @end

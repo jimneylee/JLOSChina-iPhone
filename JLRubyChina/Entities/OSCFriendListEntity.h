@@ -8,8 +8,8 @@
 
 #import "SMSectionListBaseEntity.h"
 
-@interface SMFriendListEntity :SMSectionListBaseEntity
+@interface OSCFriendListEntity :SMSectionListBaseEntity
 
-+ (id)entityWithDictionary:(NSDictionary*)dic;
++ (id)entityWithDataArray:(NSArray*)dataArray;
 
 @end

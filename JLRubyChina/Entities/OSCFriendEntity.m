@@ -6,18 +6,18 @@
 //  Copyright (c) 2013年 jimneylee. All rights reserved.
 //
 
-#import "SMFriendEntity.h"
-#import "NSString+StringValue.h"
+#import "OSCFriendEntity.h"
+#import "NSString+stringFromValue.h"
 #import "pinyin.h"
 
-@implementation SMFriendEntity
+@implementation OSCFriendEntity
 @synthesize userId = _userId;
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 + (id)entityWithDictionary:(NSDictionary*)dic
 {
-	SMFriendEntity* entity = [SMFriendEntity new];
-    entity.userId = [NSString getStringValue:[dic objectForKey:@"id"]];
+	OSCFriendEntity* entity = [OSCFriendEntity new];
+    entity.userId = [NSString stringFromValue:[dic objectForKey:@"userid"]];
 	entity.name = [dic objectForKey:@"name"];
 
     if (entity.name.length > 0) {

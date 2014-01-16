@@ -8,7 +8,7 @@
 
 #import "SMSectionItemBaseEntity.h"
 
-@interface SMFriendEntity : SMSectionItemBaseEntity
+@interface OSCFriendEntity : SMSectionItemBaseEntity
 
 @property (nonatomic, copy) NSString* userId;
 

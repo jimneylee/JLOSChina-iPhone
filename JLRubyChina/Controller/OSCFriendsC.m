@@ -6,15 +6,15 @@
 //  Copyright (c) 2013年 jimneylee. All rights reserved.
 //
 
-#import "SMFriendsC.h"
-#import "SMFriendsModel.h"
-#import "SMFriendEntity.h"
+#import "OSCFriendsC.h"
+#import "OSCFriendsModel.h"
+#import "OSCFriendEntity.h"
 
-@interface SMFriendsC ()
+@interface OSCFriendsC ()
 
 @end
 
-@implementation SMFriendsC
+@implementation OSCFriendsC
 
 //////////////////////////////////////////////////////////////////////////////////////////////////////
 ///////////////////////////////////////////////////////////////////////////////////////////////////
@@ -25,7 +25,7 @@
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
-        self.title = @"联系人";
+        self.title = @"选择好友";
     }
     return self;
 }
@@ -37,7 +37,7 @@
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (id)tableModelClass
 {
-    return [SMFriendsModel class];
+    return [OSCFriendsModel class];
 }
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
@@ -45,8 +45,8 @@
 {
     return ^BOOL(id object, id target) {
         if (!self.editing) {
-            if ([object isKindOfClass:[SMFriendEntity class]]) {
-                SMFriendEntity* entity = (SMFriendEntity*)object;
+            if ([object isKindOfClass:[OSCFriendEntity class]]) {
+                OSCFriendEntity* entity = (OSCFriendEntity*)object;
                 if ([self.friendsDelegate respondsToSelector:@selector(didSelectAFriend:)]) {
                     [self.friendsDelegate didSelectAFriend:entity];
                     [self.navigationController popViewControllerAnimated:YES];

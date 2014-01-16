@@ -6,22 +6,20 @@
 //  Copyright (c) 2013年 jimneylee. All rights reserved.
 //
 
-#import "SMFriendListEntity.h"
-#import "SMFriendEntity.h"
+#import "OSCFriendListEntity.h"
+#import "OSCFriendEntity.h"
 
-@implementation SMFriendListEntity
+@implementation OSCFriendListEntity
 
-// http://open.weibo.com/wiki/2/friendships/groups
 ///////////////////////////////////////////////////////////////////////////////////////////////////
-+ (id)entityWithDictionary:(NSDictionary*)dic
++ (id)entityWithDataArray:(NSArray*)dataArray
 {
-    SMFriendListEntity* entity = [SMFriendListEntity new];
-    NSArray* sourceArray = [dic objectForKey:@"lists"];
-    if (sourceArray.count > 0) {
+    OSCFriendListEntity* entity = [OSCFriendListEntity new];
+    if (dataArray.count > 0) {
         
-        entity.unsortedArray = [NSMutableArray arrayWithCapacity:sourceArray.count];
-        for (NSDictionary* d in sourceArray) {
-            SMFriendEntity* e = [SMFriendEntity entityWithDictionary:d];
+        entity.unsortedArray = [NSMutableArray arrayWithCapacity:dataArray.count];
+        for (NSDictionary* d in dataArray) {
+            OSCFriendEntity* e = [OSCFriendEntity entityWithDictionary:d];
             if (e) {
                 [entity.unsortedArray addObject:e];
             }

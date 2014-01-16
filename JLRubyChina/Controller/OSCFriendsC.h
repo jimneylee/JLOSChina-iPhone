@@ -8,16 +8,13 @@
 
 #import "JLNimbusTableViewController.h"
 
-@class SMFriendEntity;
-@protocol SMFriendsDelegate;
-@interface SMFriendsC : JLNimbusTableViewController
+@class OSCFriendEntity;
+@protocol OSCFriendsDelegate;
 
-@property(nonatomic, assign) id<SMFriendsDelegate> friendsDelegate;
-
+@interface OSCFriendsC : JLNimbusTableViewController
+@property(nonatomic, assign) id<OSCFriendsDelegate> friendsDelegate;
 @end
 
-@protocol SMFriendsDelegate <NSObject>
-
-- (void)didSelectAFriend:(SMFriendEntity*)user;
-
+@protocol OSCFriendsDelegate <NSObject>
+- (void)didSelectAFriend:(OSCFriendEntity*)user;
 @end

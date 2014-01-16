@@ -8,6 +8,6 @@
 
 #import "NICellCatalog.h"
 
-@interface SMFriendCell : NITextCell
+@interface OSCFriendCell : NITextCell
 
 @end
