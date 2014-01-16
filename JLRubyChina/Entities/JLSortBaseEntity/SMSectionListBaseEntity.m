@@ -9,6 +9,8 @@
 #import "SMSectionListBaseEntity.h"
 #import "SMSectionItemBaseEntity.h"
 
+#define SORT_DEBUG 0
+
 @implementation SMSectionListBaseEntity
 @synthesize unsortedArray = _unsortedArray, sections = _sections, items = _items;
 
@@ -18,7 +20,7 @@
     NSMutableArray* sections = [NSMutableArray array];
     NSMutableArray* items = [NSMutableArray array];
     NSMutableArray* aItems = nil;
-#ifdef DEBUG
+#if SORT_DEBUG
     NSLog(@"================before====================");
     for (SMSectionItemBaseEntity* e in self.unsortedArray) {
         NSLog(@"%@", e.name);
@@ -27,7 +29,7 @@
     
     NSArray* sortedArray = [self.unsortedArray sortedArrayUsingSelector:@selector(compare:)];
     
-#ifdef DEBUG
+#if SORT_DEBUG
     NSLog(@"=================after sort=====================");
     
     for (SMSectionItemBaseEntity* e in sortedArray) {
@@ -75,7 +77,7 @@
     self.sections = newSections;
     self.items = newItems;
     
-#ifdef DEBUG
+#if SORT_DEBUG
     NSLog(@"=================after section===============");
     for (NSArray* array in self.items) {
         NSLog(@"________________________________________");
