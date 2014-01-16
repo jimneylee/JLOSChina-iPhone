@@ -11,13 +11,14 @@
 #import "MTStatusBarOverlay.h"
 #import "LTUpdate.h"
 #import "JLNetworkSpy.h"
-#import "OSCAccountEntity.h"
-
 #import "JASidePanelController.h"
+
+#import "OSCAccountEntity.h"
+#import "OSCLoginC.h"
 #import "OSCHomeC.h"
 #import "OSCTweetC.h"
 #import "OSCLeftMenuC.h"
-
+#import "OSCTweetPostC.h"
 @interface OSCAppDelegate()<RCNetworkSpyDelegate>
 @end
 
@@ -54,8 +55,8 @@
     [JLNetworkSpy sharedNetworkSpy].spyDelegate = self;
     
     // Load logined account
-    OSCAccountEntity* account = [OSCAccountEntity loadStoredUserAccount];
-    //TODO: autologin
+    OSCLoginC* loginC = [[OSCLoginC alloc] init];
+    [loginC autoLogin];
 }
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
