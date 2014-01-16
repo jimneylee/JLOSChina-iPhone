@@ -1,9 +1,9 @@
 ##JLOSChina-iPhone
-为开源中国重做一个新的客户端，目标易维护，结构简单，KISS！希望年前能及时发布，作为给各位OSCers的马年礼物。
+为开源中国重做一个新的客户端，目标易维护，结构简单，KISS！希望年前能及时发布，作为给各位OSCers的马年礼物 :)
 
 目前应该会有很多潜在的bug，功能还有些待完善，欢迎各位试用，反馈bug！
 
-**更加热烈欢迎fork&pull request，由于api接口还是挺多的，所以感兴趣的同学可以一起加入构建和完善。**
+**热烈欢迎fork&pull request，由于api接口还是较多，所以感兴趣的同学可以一起加入构建和完善。**
 
 ## 开发环境
 XCode5 iOS7.x & iOS6.x
@@ -41,4 +41,13 @@ XCode5 iOS7.x & iOS6.x
 MIT: [http://rem.mit-license.org](http://rem.mit-license.org)
 
 # Screenshots
+![](http://git.oschina.net/jimneylee/JLOSChina-iPhone/raw/master/Resource/Screenshots/0116_1.png)
+![](http://git.oschina.net/jimneylee/JLOSChina-iPhone/raw/master/Resource/Screenshots/0116_2.png)
+![](http://git.oschina.net/jimneylee/JLOSChina-iPhone/raw/master/Resource/Screenshots/0116_3.png)
+![](http://git.oschina.net/jimneylee/JLOSChina-iPhone/raw/master/Resource/Screenshots/0116_4.png)
+![](http://git.oschina.net/jimneylee/JLOSChina-iPhone/raw/master/Resource/Screenshots/0116_5.png)
+![](http://git.oschina.net/jimneylee/JLOSChina-iPhone/raw/master/Resource/Screenshots/0116_6.png)
+![](http://git.oschina.net/jimneylee/JLOSChina-iPhone/raw/master/Resource/Screenshots/0116_7.png)
+![](http://git.oschina.net/jimneylee/JLOSChina-iPhone/raw/master/Resource/Screenshots/0116_8.png)
+![](http://git.oschina.net/jimneylee/JLOSChina-iPhone/raw/master/Resource/Screenshots/0116_9.png)
 
