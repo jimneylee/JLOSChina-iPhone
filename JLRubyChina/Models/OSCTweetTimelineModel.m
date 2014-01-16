@@ -38,7 +38,7 @@
 - (NSString*)relativePath
 {
     NSString* path = nil;
-    switch (self.homeType) {
+    switch (self.tweetType) {
         case OSCTweetType_Latest:
             path = [OSCAPIClient relativePathForTweetListWithUserId:@"0"
                                                         pageCounter:self.pageCounter
@@ -52,10 +52,17 @@
             break;
             
         case OSCTweetType_Mine:
-            path = [OSCAPIClient relativePathForTweetListWithUserId:@"12"//暂用红薯id测试
-                                                        pageCounter:self.pageCounter
-                                                       perpageCount:self.perpageCount];
+        {
+            if ([OSCGlobalConfig loginedUserEntity].authorId > 0) {
+                NSString* uid = [NSString stringWithFormat:@"%ld",
+                                 [OSCGlobalConfig loginedUserEntity].authorId];
+                path = [OSCAPIClient relativePathForTweetListWithUserId:uid//暂用红薯id=12测试
+                                                            pageCounter:self.pageCounter
+                                                           perpageCount:self.perpageCount];
+            }
+
             break;
+        }
             
         default:
             break;
@@ -85,7 +92,7 @@
 - (void)parser:(NSXMLParser *)parser didEndElement:(NSString *)elementName namespaceURI:(NSString *)namespaceURI qualifiedName:(NSString *)qName
 {
     if ([elementName isEqualToString:@"catalog"]) {
-        self.catalogId = [self.tmpInnerElementText integerValue];
+        self.catalogType = [self.tmpInnerElementText integerValue];
     }
     // super will set nil to self.tmpInnerElementText
     [super parser:parser didEndElement:elementName namespaceURI:namespaceURI qualifiedName:qName];
