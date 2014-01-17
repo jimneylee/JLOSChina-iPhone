@@ -22,13 +22,14 @@
     self = [super init];
     if (self) {
         self.itemElementNamesArray = @[XML_COMMENT];
+        self.isReplyComment = NO;
     }
     return self;
 }
 
-//TODO: repost
 ///////////////////////////////////////////////////////////////////////////////////////////////////
-- (void)replyTopicId:(unsigned long)topicId
+//TODO: repost
+- (void)replyContentId:(unsigned long)topicId
          catalogType:(OSCCatalogType)catalogType
                 body:(NSString*)body
              success:(void(^)(OSCReplyEntity* replyEntity))success
@@ -70,17 +71,59 @@
 }
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
+//TODO: repost
+- (void)replyCommentId:(unsigned long)commentId
+             contentId:(unsigned long)topicId
+           catalogType:(OSCCatalogType)catalogType
+                  body:(NSString*)body
+               success:(void(^)(OSCReplyEntity* replyEntity))success
+               failure:(void(^)(OSCErrorEntity* error))failure;
+{
+    self.successBlock = success;
+    self.failureBlock = failure;
+    self.catalogType = catalogType;
+    self.isReplyComment = YES;
+    if (topicId > 0 &&body.length) {
+        NSMutableDictionary* params = [NSMutableDictionary dictionary];
+        [params setObject:[NSNumber numberWithInt:catalogType]
+                   forKey:@"catalog"];
+        [params setObject:[NSNumber numberWithLong:[OSCGlobalConfig loginedUserEntity].authorId]
+                   forKey:@"uid"];
+        [params setObject:[NSNumber numberWithLong:topicId]
+                   forKey:@"id"];
+        [params setObject:[NSNumber numberWithLong:commentId]
+                   forKey:@"replyid"];
+        [params setObject:body forKey:@"content"];
+        //TODO: repost
+        [params setObject:@"0" forKey:@"isPostToMyZone"];
+        [self postParams:params errorBlock:^(OSCErrorEntity *errorEntity) {
+            if (ERROR_CODE_SUCCESS == errorEntity.errorCode) {
+                success(self.replyEntity);
+            }
+            else {
+                failure(nil);
+            }
+        }];
+    }
+}
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 #pragma mark - Override
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (NSString*)relativePath
 {
-    if (OSCCatalogType_Blog == self.catalogType) {
-        return [OSCAPIClient relativePathForPostBlogComment];
+    if (self.isReplyComment) {
+        return [OSCAPIClient relativePathForReplyComment];
     }
     else {
-        return [OSCAPIClient relativePathForPostComment];
+        if (OSCCatalogType_Blog == self.catalogType) {
+            return [OSCAPIClient relativePathForPostBlogComment];
+        }
+        else {
+            return [OSCAPIClient relativePathForPostComment];
+        }
     }
 }
 

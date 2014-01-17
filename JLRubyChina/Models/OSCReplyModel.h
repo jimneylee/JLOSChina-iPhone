@@ -18,10 +18,19 @@ typedef void (^FailureBlock)(OSCErrorEntity* errorEntity);
 @property (nonatomic, strong) SuccessBlock successBlock;
 @property (nonatomic, strong) FailureBlock failureBlock;
 @property (nonatomic, strong) OSCReplyEntity* replyEntity;
+@property (nonatomic, assign) BOOL isReplyComment;
 
-- (void)replyTopicId:(unsigned long)topicId
+// reply alse for other's comment, just add @someone
+- (void)replyContentId:(unsigned long)topicId
          catalogType:(OSCCatalogType)catalogType
                 body:(NSString*)body
              success:(void(^)(OSCReplyEntity* replyEntity))success
              failure:(void(^)(OSCErrorEntity* error))failure;
+// this is useless
+- (void)replyCommentId:(unsigned long)commentId
+             contentId:(unsigned long)topicId
+           catalogType:(OSCCatalogType)catalogType
+                  body:(NSString*)body
+               success:(void(^)(OSCReplyEntity* replyEntity))success
+               failure:(void(^)(OSCErrorEntity* error))failure;
 @end
