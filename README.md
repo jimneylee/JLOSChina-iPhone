@@ -8,6 +8,9 @@
 ## 开发环境
 XCode5 iOS7.x & iOS6.x
 
+## 越狱手机扫描二维码直接安装测试
+![](http://api.qrserver.com/v1/create-qr-code/?size=120x120&data=http%3A%2F%2Ffirapp.duapp.com%2FIa0)
+
 ## 编译安装
 1、下载附件[beta测试版本](http://git.oschina.net/jimneylee/JLOSChina-iPhone/attach_files)，直接编译即可安装。
 
