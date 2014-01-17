@@ -10,7 +10,6 @@
 #import "RCRegularParser.h"
 #import "NSString+Emojize.h"
 #import "NSAttributedStringMarkdownParser.h"
-#import "MarkdownSyntaxGenerator.h"
 
 @implementation OSCCommonDetailEntity
 
@@ -54,32 +53,6 @@
             self.atPersonRanges = [RCRegularParser keywordRangesOfAtPersonInString:self.body];
         }
     }
-}
-
-///////////////////////////////////////////////////////////////////////////////////////////////////
-// idea from MarkdownSyntaxEditor/MarkdownTextView, not perfect but better than before
-#define CONTENT_FONT_SIZE [UIFont fontWithName:@"STHeitiSC-Light" size:18.f]
-- (NSAttributedString*)parseAttributedStringFromMarkdownString:(NSString*)markdownString
-{
-    if (markdownString.length) {
-        MarkdownSyntaxGenerator* parser = [[MarkdownSyntaxGenerator alloc] init];
-        NSArray *models = [parser syntaxModelsForText:markdownString];
-        // set default font
-        NSDictionary* defaultAttributes = @{NSFontAttributeName : CONTENT_FONT_SIZE};
-        NSMutableAttributedString *attributedString = [[NSMutableAttributedString alloc] initWithString:self.body
-                                                                                             attributes:defaultAttributes];
-        // set line height
-        NSMutableParagraphStyle *paragraphStyle = [[NSMutableParagraphStyle defaultParagraphStyle] mutableCopy];
-        paragraphStyle.minimumLineHeight = 21.f;
-        [attributedString addAttribute:NSParagraphStyleAttributeName
-                                 value:paragraphStyle
-                                 range:NSMakeRange(0, attributedString.length)];
-        for (MarkdownSyntaxModel *model in models) {
-            [attributedString addAttributes:AttributesFromMarkdownSyntaxType(model.type) range:model.range];
-        }
-        return attributedString;
-    }
-    return nil;
 }
 
 @end
