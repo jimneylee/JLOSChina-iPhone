@@ -30,7 +30,7 @@
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (NSString*)relativePath
 {
-    return [OSCAPIClient relativePathForFriendsListWithUserId:12//TODO:红薯 -->[OSCGlobalConfig loginedUserEntity].authorId
+    return [OSCAPIClient relativePathForFriendsListWithUserId:[OSCGlobalConfig loginedUserEntity].authorId
                                                   pageCounter:0//default just get one page and sort them
                                                  perpageCount:self.perpageCount];
 }
