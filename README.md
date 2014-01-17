@@ -26,8 +26,6 @@ $ git submodule update
 注：`git submodule update`无法更新依赖库时，请按如下重新添加：
 ``` bash
 $ git submodule add https://github.com/jimneylee/JLNimbusTimeline.git vendor/JLNimbusTimeline
-$ git submodule add https://github.com/jimneylee/MarkdownSyntaxEditor.git vendor/MarkdownSyntaxEditor
-$ git submodule add https://github.com/jimneylee/TSEmojiView.git vendor/TSEmojiView
 ```
 * 2、[CocoaPods](http://cocoapods.org)更新
 
