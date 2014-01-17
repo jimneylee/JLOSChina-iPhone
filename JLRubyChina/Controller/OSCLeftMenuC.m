@@ -90,7 +90,7 @@
     self.tableView.tableHeaderView = [self createTableHeaderView];
     self.tableView.tableFooterView = [self createTableFooterView];
     
-    [self setSelectedMenuType:LeftMenuType_NewsBlog];
+    [self setSelectedMenuType:LeftMenuType_Tweet];
 }
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////

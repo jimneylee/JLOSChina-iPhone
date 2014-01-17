@@ -160,10 +160,6 @@
     if (!_quickReplyC) {
         _quickReplyC = [[OSCQuickReplyC alloc] init];
         _quickReplyC.replyDelegate = self;
-        // setting the first responder view of the table but we don't know its type (cell/header/footer)
-        // [self.view addSubview:_quickReplyC.view];
-        // so mush show it in keywindow, same to keyborad :)
-        [[UIApplication sharedApplication].keyWindow addSubview:_quickReplyC.view];
     }
     return _quickReplyC;
 }
