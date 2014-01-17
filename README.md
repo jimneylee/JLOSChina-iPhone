@@ -9,7 +9,7 @@
 XCode5 iOS7.x & iOS6.x
 
 ## 编译安装
-1、下载附件当前最新发布[beta测试版本](http://git.oschina.net/jimneylee/JLOSChina-iPhone/attach_files)，直接编译即可安装。
+1、下载附件[beta测试版本](http://git.oschina.net/jimneylee/JLOSChina-iPhone/attach_files)，直接编译即可安装。
 
 2、fork后clone到本地，手工添加依赖库安装方法
 * 1、submodule更新
