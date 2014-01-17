@@ -80,9 +80,8 @@ static NSString* imageRegular = @"!\\[.*?\\]\()\\(.*?\\)";
     return rangesArray;
 }
 
-+ (NSArray *)keywordRangesOfEmotionInString:(NSString *)string {
++ (NSArray *)keywordRangesOfEmotionInString:(NSString *)string trimedString:(NSString **)trimedString {
     NSError *error;
-    
     NSRegularExpression *regex = [NSRegularExpression regularExpressionWithPattern:emojiRegular
                                                                            options:NSRegularExpressionCaseInsensitive
                                                                              error:&error];
@@ -106,9 +105,10 @@ static NSString* imageRegular = @"!\\[.*?\\]\()\\(.*?\\)";
                              keywordEntity.keyword = keyword;
                              keywordEntity.range = resultRange;
                              [rangesArray addObject:keywordEntity];
-
                              [mutableString replaceCharactersInRange:resultRange withString:@""];
                              offset -= resultRange.length;
+                             
+                             *trimedString = mutableString;
                          }];
     return rangesArray;
 }
