@@ -8,10 +8,43 @@
 ## 开发环境
 XCode5 iOS7.x & iOS6.x
 
-## 编译安装和问题参考
-[JLRubyChina-iPhone](https://github.com/jimneylee/JLRubyChina-iPhone)
+## 编译安装
+1、下载[最近的Release版本](https://github.com/jimneylee/JLOSChina-iPhone/releases)，直接编译即可安装。
 
-当前发布版本(可直接编译安装)：[https://github.com/jimneylee/JLOSChina-iPhone/releases/edit/v0.1beta](https://github.com/jimneylee/JLOSChina-iPhone/releases/edit/v0.1beta)
+2、fork后clone到本地，手工添加依赖库安装方法
+* 1、submodule更新
+
+``` bash
+$ git submodule init 
+$ git submodule update
+```
+注：`git submodule update`无法更新依赖库时，请按如下重新添加：
+``` bash
+$ git submodule add https://github.com/jimneylee/JLNimbusTimeline.git vendor/JLNimbusTimeline
+$ git submodule add https://github.com/jimneylee/MarkdownSyntaxEditor.git vendor/MarkdownSyntaxEditor
+$ git submodule add https://github.com/jimneylee/TSEmojiView.git vendor/TSEmojiView
+```
+* 2、[CocoaPods](http://cocoapods.org)更新
+
+``` bash   
+$ pod install
+```   
+注：如需要添加其他依赖库，请修改Podfile
+
+* 3、替换pod添加的依赖库
+   用工程`vendor`目录下的`Nimbus_fixbug`和`JSONKit_fixerror`中的文件，替换pod添加的对应文件。
+   `Nimbus_fixbug`是为了解决帖子列表高亮名字或链接无法点击。
+   `JSONKit_fixerror`为了解决编译引起的错误和警告。
+
+>其实这个JSONKit是无用的，但是由于JSONKit是Nimbus的submodule递归依赖引入，所以在Nimbus没有发布新的版本，暂时只能这样处理。之前考虑过'git submodule add'依赖nimbus，去掉这个JSONKit库，但是会是工程膨胀，得不偿失。
+>有问题，请添加到issue中！
+
+4、通过'JLRubyChina.xcworkspace'打开项目，也可以[自定义xopen命令](http://jimneylee.github.io/2014/01/09/add-xopen-command-to-open-xcode-workspace/)便捷打开
+
+![image](https://github.com/jimneylee/JLRubyChina-iPhone/raw/master/Resource/Screenshots/ErrorResolve/open_xcworkspace.jpg)
+
+# ERROR解决方法参考
+[JLRubyChina-iPhone](https://github.com/jimneylee/JLRubyChina-iPhone)
 
 ####BUG
 1、新闻详细会无法下滑的问题
