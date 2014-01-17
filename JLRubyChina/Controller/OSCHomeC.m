@@ -96,15 +96,15 @@
     // first cancel request operation
     [self.model cancelRequstOperation];
     
-    // scroll top
     ((OSCHomeTimelineModel*)self.model).contentType = self.segmentedControl.selectedSegmentIndex;
-    [self scrollToTopAnimated:NO];
     
     // remove all, sometime crash, fix later on
 //    if (self.model.sections.count > 0) {
 //        [self.model removeSectionAtIndex:0];
 //    }
+    
     // after scrollToTopAnimated then pull down to refresh, performce perfect
+    [self scrollToTopAnimated:NO];
     [self performSelector:@selector(autoPullDownRefreshActionAnimation) withObject:self afterDelay:0.1f];
 }
 

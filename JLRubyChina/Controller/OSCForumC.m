@@ -96,9 +96,7 @@
     // first cancel request operation
     [self.model cancelRequstOperation];
     
-    // scroll top
     ((OSCForumTimelineModel*)self.model).topicType = self.segmentedControl.selectedSegmentIndex;
-    [self scrollToTopAnimated:NO];
     
     // remove all, sometime crash, fix later on
     //    if (self.model.sections.count > 0) {
@@ -106,6 +104,7 @@
     //    }
     
     // after scrollToTopAnimated then pull down to refresh, performce perfect
+    [self scrollToTopAnimated:NO];
     [self performSelector:@selector(autoPullDownRefreshActionAnimation) withObject:self afterDelay:0.1f];
 }
 
