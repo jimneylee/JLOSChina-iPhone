@@ -10,7 +10,7 @@
 #import "OSCEmotionEntity.h"
 
 #define LEFT_MARGIN 25
-#define TOP_MARGIN 15
+#define TOP_MARGIN 20
 #define ROW_COUNT 4
 #define COLUMN_COUNT 7
 #define SPACE 10
@@ -33,6 +33,7 @@
 @property (nonatomic, strong) NSArray* emotionArray;
 @property (nonatomic, strong) NIPagingScrollView* scrollView;
 @property (nonatomic, strong) UIPageControl* pageControl;
+@property (nonatomic, strong) UIImageView* inputBackgroundImageView;
 @end
 
 @implementation OSCEmotionMainView
@@ -44,6 +45,12 @@
     if (self) {
         self.emotionArray = [OSCGlobalConfig emotionsArray];
         self.backgroundColor = [UIColor clearColor];
+        
+        // 键盘表情选择框底图messages_inputview_background.png
+        _inputBackgroundImageView = [[UIImageView alloc] initWithFrame:self.bounds ];
+        _inputBackgroundImageView.image = [UIImage nimbusImageNamed:@"emoticon_keyboard_background.png"];
+        [self addSubview:_inputBackgroundImageView];
+        
         _scrollView = [[NIPagingScrollView alloc] initWithFrame:self.bounds];
         _scrollView.backgroundColor = [UIColor clearColor];
         _scrollView.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
@@ -51,7 +58,7 @@
         _scrollView.dataSource = self;
         [self addSubview:_scrollView];
         
-        _pageControl = [[UIPageControl alloc] initWithFrame:CGRectMake(0, self.bounds.size.height - PAGE_CONTROL_HEIGHT,
+        _pageControl = [[UIPageControl alloc] initWithFrame:CGRectMake(0.f, 0.f,//self.bounds.size.height - PAGE_CONTROL_HEIGHT,
                                                                        self.bounds.size.width, PAGE_CONTROL_HEIGHT)];
         [_pageControl addTarget:self action:@selector(pageChanged:) forControlEvents:UIControlEventValueChanged];
         _pageControl.autoresizingMask = UIViewAutoresizingFlexibleTopMargin;
