@@ -8,14 +8,14 @@
 
 #import <UIKit/UIKit.h>
 #import "HPGrowingTextView.h"
-#import "TSEmojiView.h"
+#import "OSCEmotionMainView.h"
 #import "OSCReplyEntity.h"
 
 @protocol RCQuickReplyDelegate;
 @interface OSCQuickReplyC : UIViewController<HPGrowingTextViewDelegate>
 
 @property(nonatomic, strong) HPGrowingTextView *textView;
-@property (nonatomic, strong) TSEmojiView* emojiView;
+@property (nonatomic, strong) OSCEmotionMainView* emojiView;
 @property (nonatomic, assign) id<RCQuickReplyDelegate> replyDelegate;
 @property (nonatomic, assign) unsigned long topicId;
 @property (nonatomic, assign) OSCCatalogType catalogType;

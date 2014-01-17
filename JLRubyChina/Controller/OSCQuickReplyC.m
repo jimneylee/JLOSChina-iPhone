@@ -16,7 +16,7 @@
 #define BTN_TITLE_EMOJI @"表情"
 #define BTN_TITLE_KEYBOARD @"键盘"
 
-@interface OSCQuickReplyC ()<TSEmojiViewDelegate>
+@interface OSCQuickReplyC ()<OSCEmotionDelegate>
 @property (nonatomic, strong) UIView* containerView;
 @property (nonatomic, strong) UIButton* emojiBtn;
 @property (nonatomic, strong) UIButton* sendBtn;
@@ -134,9 +134,10 @@
 - (void)showEmojiViewAction
 {
     if (!_emojiView) {
-        _emojiView = [[TSEmojiView alloc] initWithFrame:CGRectMake(0, self.view.frame.size.height - TTKeyboardHeightForOrientation(self.interfaceOrientation),
-                                                                   self.view.width, TTKeyboardHeightForOrientation(self.interfaceOrientation))];
-        _emojiView.delegate = self;
+        _emojiView = [[OSCEmotionMainView alloc]
+                      initWithFrame:CGRectMake(0, self.view.frame.size.height - TTKeyboardHeightForOrientation(self.interfaceOrientation),
+                                               self.view.width, TTKeyboardHeightForOrientation(self.interfaceOrientation))];
+        _emojiView.emotionDelegate = self;
     }
     if (!self.textView.internalTextView.inputView) {
         // show emoji view
@@ -189,7 +190,7 @@
         NSString* bodyText = [self.textView.text copy];
         NSString* pureBodyText = [self stringByReplaceEmojiUnicodeWithTextCodeForSourceText:bodyText];
         [[MTStatusBarOverlay sharedOverlay] postMessage:@"回复中..."];
-        [replyModel replyTopicId:self.topicId
+        [replyModel replyContentId:self.topicId
                        catalogType:self.catalogType
                             body:pureBodyText //self.textView.text
                          success:^(OSCReplyEntity* replyEntity){
@@ -233,13 +234,12 @@
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 ///////////////////////////////////////////////////////////////////////////////////////////////////
-#pragma mark - TSEmojiViewDelegate
+#pragma mark - ZDEmotionDelegate
 
-///////////////////////////////////////////////////////////////////////////////////////////////////
-- (void)didTouchEmojiView:(TSEmojiView*)emojiView touchedEmoji:(NSString*)str
+//////////////////////////////////////////////////////////////////////////////////////////////////////
+- (void)emotionSelectedWithCode:(NSString*)code
 {
-    //NSString* code = [RCGlobalConfig emojiReverseAliases][str];
-    self.textView.text = [NSString stringWithFormat:@"%@%@", self.textView.text, str];//code
+    self.textView.text = [NSString stringWithFormat:@"%@%@", self.textView.text, code];
 }
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
