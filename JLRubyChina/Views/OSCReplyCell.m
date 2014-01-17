@@ -14,7 +14,7 @@
 #import "UIImage+nimbusImageNamed.h"
 //#import "RCUserHomepageC.h"
 //#import "RCContentPhotoBrowerC.h"
-#import "OSCCommonDetailC.h"
+#import "OSCCommonRepliesListC.h"
 #import "OSCReplyEntity.h"
 #import "RCKeywordEntity.h"
 
@@ -23,7 +23,7 @@
 #define CONTENT_FONT_SIZE [UIFont fontWithName:@"STHeitiSC-Light" size:18.f]
 #define BUTTON_FONT_SIZE [UIFont boldSystemFontOfSize:13.f]
 
-#define CONTENT_LINE_HEIGHT 21.f
+#define CONTENT_LINE_HEIGHT 24.f
 #define HEAD_IAMGE_HEIGHT 34
 #define BUTTON_SIZE CGSizeMake(40.f, 22.f)
 #define CONTENT_IMAGE_HEIGHT 160
@@ -33,14 +33,55 @@
 @property (nonatomic, strong) UILabel* floorLabel;
 @property (nonatomic, strong) NINetworkImageView* headView;
 @property (nonatomic, strong) UIButton* replyBtn;
-@property (nonatomic, strong) NINetworkImageView* contentImageView;
 @property (nonatomic, strong) UIImageView* moreImageView;
 @property (nonatomic, strong) OSCReplyEntity* replyEntity;
 @end
 @implementation OSCReplyCell
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
-+ (CGFloat)attributeHeightForString:(NSString*)string withWidth:(CGFloat)width
+///////////////////////////////////////////////////////////////////////////////////////////////////
+#pragma mark - Static
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
++ (void)addAllLinksInContentLabel:(NIAttributedLabel*)contentLabel
+                       withStatus:(OSCReplyEntity*)o
+                     fromLocation:(NSInteger)location
+{
+    RCKeywordEntity* keyworkEntity = nil;
+    NSString* url = nil;
+    if (o.atPersonRanges.count) {
+        for (int i = 0; i < o.atPersonRanges.count; i++) {
+            keyworkEntity = (RCKeywordEntity*)o.atPersonRanges[i];
+            url =[NSString stringWithFormat:@"%@%@", PROTOCOL_AT_SOMEONE, [keyworkEntity.keyword urlEncoded]];
+            [contentLabel addLink:[NSURL URLWithString:url]
+                            range:NSMakeRange(keyworkEntity.range.location + location, keyworkEntity.range.length)];
+        }
+    }
+}
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
++ (void)insertAllEmotionsInContentLabel:(NIAttributedLabel*)contentLabel
+                             withStatus:(OSCReplyEntity*)o
+{
+    RCKeywordEntity* keyworkEntity = nil;
+    if (o.emotionRanges.count) {
+        NSString* emotionImageName = nil;
+        // replace emotion from nail to head, so range's location is right. it's very important, good idea!
+        for (int i = 0; i < o.emotionRanges.count; i++) {
+            keyworkEntity = (RCKeywordEntity*)o.emotionRanges[i];
+            if (i < o.emotionImageNames.count) {
+                emotionImageName = o.emotionImageNames[i];
+                if (emotionImageName.length) {
+                    [contentLabel insertImage:[UIImage nimbusImageNamed:emotionImageName]
+                                      atIndex:keyworkEntity.range.location];
+                }
+            }
+        }
+    }
+}
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
++ (CGFloat)attributeHeightForEntity:(OSCReplyEntity*)o withWidth:(CGFloat)width
 {
     // only alloc one time,reuse it, optimize best
     static NIAttributedLabel* contentLabel = nil;
@@ -59,10 +100,14 @@
         contentLabel.width = width;
     }
     
-    contentLabel.text = string;
-    [contentLabel sizeToFit];
-    
-    return contentLabel.height;
+    contentLabel.text = o.body;
+    [OSCReplyCell insertAllEmotionsInContentLabel:contentLabel withStatus:o];
+    //[contentLabel sizeToFit];
+    CGSize contentSize = [contentLabel sizeThatFits:CGSizeMake(width, CGFLOAT_MAX)];
+    if (contentSize.height < CONTENT_LINE_HEIGHT) {
+        contentSize.height = CONTENT_LINE_HEIGHT;
+    }
+    return contentSize.height;
 }
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
@@ -87,13 +132,8 @@
         CGSize contentSize = [o.body sizeWithFont:CONTENT_FONT_SIZE constrainedToSize:CGSizeMake(kContentLength, FLT_MAX)];
         height = height + contentSize.height;
 #else// sizeToFit
-        height = height + [self attributeHeightForString:o.body withWidth:kContentLength];
+        height = height + [self attributeHeightForEntity:o withWidth:kContentLength];
 #endif
-        // content image
-        if (o.imageUrlsArray.count) {
-            height = height + CELL_PADDING_10;
-            height = height + CONTENT_IMAGE_HEIGHT;
-        }
         height = height + sideMargin;
         
         return height;
@@ -101,6 +141,10 @@
     
     return 0.0f;
 }
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////////////////////////
+#pragma mark - LifeCycle
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (id)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier
@@ -159,21 +203,6 @@
         self.contentLabel.attributesForLinks =@{(NSString *)kCTForegroundColorAttributeName:(id)RGBCOLOR(6, 89, 155).CGColor};
         self.contentLabel.highlightedLinkBackgroundColor = RGBCOLOR(26, 162, 233);
         [self.contentView addSubview:self.contentLabel];
-        
-        // content image
-        self.contentImageView = [[NINetworkImageView alloc] initWithFrame:CGRectMake(0, 0,
-                                                                                     CONTENT_IMAGE_HEIGHT,
-                                                                                     CONTENT_IMAGE_HEIGHT)];
-        [self.contentView addSubview:self.contentImageView];
-        self.contentImageView.userInteractionEnabled = YES;
-        UITapGestureRecognizer* tapGesture = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(showMoreImages)];
-        [self.contentImageView addGestureRecognizer:tapGesture];
-        
-        // more image
-        self.moreImageView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, 56.f, 34.f)];
-        self.moreImageView.image = [UIImage nimbusImageNamed:@"more_photo.png"];
-        self.moreImageView.bottom = self.contentImageView.height;
-        [self.contentImageView addSubview:self.moreImageView];
         
         // content view border
         self.contentView.layer.borderColor = CELL_CONTENT_VIEW_BORDER_COLOR.CGColor;
@@ -247,10 +276,6 @@
     self.contentLabel.frame = CGRectMake(self.headView.left, self.headView.bottom + CELL_PADDING_4,
                                          kContentLength, 0.f);
     [self.contentLabel sizeToFit];
-    
-    // content image
-    self.contentImageView.left = self.contentLabel.left;
-    self.contentImageView.top = self.contentLabel.bottom + CELL_PADDING_10;
 }
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
@@ -270,61 +295,29 @@
         self.detailTextLabel.text = [o.createdAtDate formatRelativeTime];
         self.floorLabel.text = o.floorNumberString;
         self.contentLabel.text = o.body;
-        [self showAllKeywordsInContentLabel:self.contentLabel
-                                 withStatus:o fromLocation:0];
-        
-        if (o.imageUrlsArray.count) {
-            NSString* firstImageUrl = o.imageUrlsArray[0];
-            if (firstImageUrl.length) {
-                [self.contentImageView setPathToNetworkImage:firstImageUrl contentMode:UIViewContentModeScaleAspectFill];
-            }
-            else {
-                [self.contentImageView setPathToNetworkImage:nil];
-            }
-        }
-        
-        // if more than one
-        if (o.imageUrlsArray.count > 1) {
-            self.moreImageView.hidden = NO;
-        }
-        else {
-            self.moreImageView.hidden = YES;
-        }
+        [OSCReplyCell addAllLinksInContentLabel:self.contentLabel withStatus:o fromLocation:0];
+        [OSCReplyCell insertAllEmotionsInContentLabel:self.contentLabel withStatus:o];
     }
     return YES;
 }
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
-- (void)showAllKeywordsInContentLabel:(NIAttributedLabel*)contentLabel
-                           withStatus:(OSCReplyEntity*)o
-                         fromLocation:(NSInteger)location
-{
-    RCKeywordEntity* k = nil;
-    NSString* url = nil;
-    if (o.atPersonRanges.count) {
-        for (int i = 0; i < o.atPersonRanges.count; i++) {
-            k = (RCKeywordEntity*)o.atPersonRanges[i];
-            url =[NSString stringWithFormat:@"%@%@", PROTOCOL_AT_SOMEONE, [k.keyword urlEncoded]];
-            [contentLabel addLink:[NSURL URLWithString:url]
-                            range:NSMakeRange(k.range.location + location, k.range.length)];
-            
-        }
-    }
-}
+///////////////////////////////////////////////////////////////////////////////////////////////////
+#pragma mark - Private
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)replyAction
 {
     UIViewController* superviewC = self.viewController;
     // 弹出回复框
-    if ([superviewC isKindOfClass:[OSCCommonDetailC class]]) {
-        OSCCommonDetailC* topicDetailC = (OSCCommonDetailC*)superviewC;
-        [topicDetailC replyTopicWithFloorAtSomeone:[NSString stringWithFormat:@"#%u楼 @%@ ",
-                                                    self.replyEntity.floorNumber, self.replyEntity.user.authorName]];
+    if ([superviewC isKindOfClass:[OSCCommonRepliesListC class]]) {
+        OSCCommonRepliesListC* repliesListC = (OSCCommonRepliesListC*)superviewC;
+        [repliesListC replyTopicWithFloorAtSomeone:[NSString stringWithFormat:@"回复 @%@ : ",
+                                                    self.replyEntity.user.authorName]];
         // 移动当前cell至顶部
-        NSIndexPath *indexPath = [topicDetailC.tableView indexPathForCell: self];
+        NSIndexPath *indexPath = [repliesListC.tableView indexPathForCell: self];
         if (indexPath) {
-            [topicDetailC.tableView scrollToRowAtIndexPath:indexPath
+            [repliesListC.tableView scrollToRowAtIndexPath:indexPath
                                           atScrollPosition:UITableViewScrollPositionTop
                                                   animated:YES];
         }

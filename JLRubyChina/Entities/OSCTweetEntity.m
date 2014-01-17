@@ -10,6 +10,8 @@
 #import "NSDate+OSChina.h"
 #import "NSString+stringFromValue.h"
 #import "RCRegularParser.h"
+#import "RCKeywordEntity.h"
+#import "OSCEmotionEntity.h"
 
 @implementation OSCTweetEntity
 
@@ -50,18 +52,36 @@
 }
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
-// 识别出 表情 at某人 share话题 标签
+// 识别出 表情 at某人 share软件(TODO:) 标签
 - (void)parseAllKeywords
 {
     if (self.body.length) {
-        // TODO: emotion
-        // 考虑优先剔除表情，这样@和#不会勿标识
         if (!self.atPersonRanges) {
             self.atPersonRanges = [RCRegularParser keywordRangesOfAtPersonInString:self.body];
         }
-//        if (!self.sharpTrendRanges) {
-//            self.sharpTrendRanges = [RCRegularParser keywordRangesOfSharpTrendInString:self.text];
-//        }
+        
+        if (!self.emotionRanges) {
+            NSString* trimedString = self.body;
+            self.emotionRanges = [RCRegularParser keywordRangesOfEmotionInString:self.body trimedString:&trimedString];
+            self.body = trimedString;
+            NSMutableArray* emotionImageNames = [NSMutableArray arrayWithCapacity:self.emotionRanges.count];
+            for (RCKeywordEntity* keyworkEntity in self.emotionRanges) {
+                NSString* keyword = keyworkEntity.keyword;
+                for (OSCEmotionEntity* emotionEntity in [OSCGlobalConfig emotionsArray]) {
+                    if ([keyword isEqualToString:emotionEntity.name]) {
+                        [emotionImageNames addObject:emotionEntity.imageName];
+                        break;
+                    }
+                }
+            }
+            self.emotionImageNames = emotionImageNames;
+        }
+        
+        // if body's keywords are all emotion and get empty string, just set a space
+        // for nil return in NIAttributedLabel: - (CGSize)sizeThatFits:(CGSize)size
+        if (!self.body.length) {
+            self.body = @" ";
+        }
     }
 }
 

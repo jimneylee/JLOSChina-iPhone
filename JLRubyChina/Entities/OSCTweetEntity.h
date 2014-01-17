@@ -20,5 +20,7 @@
 @property (nonatomic, copy) NSString* bigImageUrl;
 
 @property (nonatomic, strong) NSArray* atPersonRanges;
+@property (nonatomic, strong) NSArray* emotionRanges;
+@property (nonatomic, strong) NSArray* emotionImageNames;
 
 @end

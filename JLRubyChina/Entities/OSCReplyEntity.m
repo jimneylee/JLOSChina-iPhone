@@ -11,6 +11,8 @@
 #import "RCRegularParser.h"
 #import "NSString+Emojize.h"
 #import "NSString+stringFromValue.h"
+#import "RCKeywordEntity.h"
+#import "OSCEmotionEntity.h"
 
 @implementation OSCReplyEntity
 
@@ -50,11 +52,31 @@
 - (void)parseAllKeywords
 {
     if (self.body.length) {
-        NSString* trimedString = self.body;
-        self.imageUrlsArray = [RCRegularParser imageUrlsInString:self.body trimedString:&trimedString];
-        self.body = trimedString;
         if (!self.atPersonRanges) {
             self.atPersonRanges = [RCRegularParser keywordRangesOfAtPersonInString:self.body];
+        }
+        
+        if (!self.emotionRanges) {
+            NSString* trimedString = self.body;
+            self.emotionRanges = [RCRegularParser keywordRangesOfEmotionInString:self.body trimedString:&trimedString];
+            self.body = trimedString;
+            NSMutableArray* emotionImageNames = [NSMutableArray arrayWithCapacity:self.emotionRanges.count];
+            for (RCKeywordEntity* keyworkEntity in self.emotionRanges) {
+                NSString* keyword = keyworkEntity.keyword;
+                for (OSCEmotionEntity* emotionEntity in [OSCGlobalConfig emotionsArray]) {
+                    if ([keyword isEqualToString:emotionEntity.name]) {
+                        [emotionImageNames addObject:emotionEntity.imageName];
+                        break;
+                    }
+                }
+            }
+            self.emotionImageNames = emotionImageNames;
+        }
+        
+        // if body's keywords are all emotion and get empty string, just set a space
+        // for nil return in NIAttributedLabel: - (CGSize)sizeThatFits:(CGSize)size
+        if (!self.body.length) {
+            self.body = @" ";
         }
     }
 }

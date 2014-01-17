@@ -31,7 +31,7 @@
 
 // 本微博：字体 行高 文本色设置
 #define CONTENT_FONT_SIZE [UIFont fontWithName:@"STHeitiSC-Light" size:18.f]
-#define CONTENT_LINE_HEIGHT 22.f
+#define CONTENT_LINE_HEIGHT 24.f
 #define CONTENT_TEXT_COLOR RGBCOLOR(30, 30, 30)
 
 // 布局固定参数值
@@ -51,6 +51,78 @@
 @end
 
 @implementation OSCTweetCell
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////////////////////////
+#pragma mark - Static
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
++ (void)addAllLinksInContentLabel:(NIAttributedLabel*)contentLabel
+                       withStatus:(OSCTweetEntity*)o
+                     fromLocation:(NSInteger)location
+{
+    RCKeywordEntity* keyworkEntity = nil;
+    NSString* url = nil;
+    if (o.atPersonRanges.count) {
+        for (int i = 0; i < o.atPersonRanges.count; i++) {
+            keyworkEntity = (RCKeywordEntity*)o.atPersonRanges[i];
+            url =[NSString stringWithFormat:@"%@%@", PROTOCOL_AT_SOMEONE, [keyworkEntity.keyword urlEncoded]];
+            [contentLabel addLink:[NSURL URLWithString:url]
+                            range:NSMakeRange(keyworkEntity.range.location + location, keyworkEntity.range.length)];
+        }
+    }
+}
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
++ (void)insertAllEmotionsInContentLabel:(NIAttributedLabel*)contentLabel
+                             withStatus:(OSCTweetEntity*)o
+{
+    RCKeywordEntity* keyworkEntity = nil;
+    if (o.emotionRanges.count) {
+        NSString* emotionImageName = nil;
+        // replace emotion from nail to head, so range's location is right. it's very important, good idea!
+        for (int i = 0; i < o.emotionRanges.count; i++) {
+            keyworkEntity = (RCKeywordEntity*)o.emotionRanges[i];
+            if (i < o.emotionImageNames.count) {
+                emotionImageName = o.emotionImageNames[i];
+                if (emotionImageName.length) {
+                    [contentLabel insertImage:[UIImage nimbusImageNamed:emotionImageName]
+                                      atIndex:keyworkEntity.range.location];
+                }
+            }
+        }
+    }
+}
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
++ (CGFloat)attributeHeightForEntity:(OSCTweetEntity*)o withWidth:(CGFloat)width
+{
+    // only alloc one time,reuse it, optimize best
+    static NIAttributedLabel* contentLabel = nil;
+    
+    if (!contentLabel) {
+        contentLabel = [[NIAttributedLabel alloc] initWithFrame:CGRectZero];
+        contentLabel.numberOfLines = 0;
+        contentLabel.lineBreakMode = NSLineBreakByWordWrapping;
+        contentLabel.font = CONTENT_FONT_SIZE;
+        contentLabel.lineHeight = CONTENT_LINE_HEIGHT;
+        contentLabel.width = width;
+    }
+    else {
+        // reuse contentLabel and reset frame, it's great idea from my mind
+        contentLabel.frame = CGRectZero;
+        contentLabel.width = width;
+    }
+    
+    contentLabel.text = o.body;
+    [OSCTweetCell insertAllEmotionsInContentLabel:contentLabel withStatus:o];
+    //[contentLabel sizeToFit];
+    CGSize contentSize = [contentLabel sizeThatFits:CGSizeMake(width, CGFLOAT_MAX)];
+    if (contentSize.height < CONTENT_LINE_HEIGHT) {
+        contentSize.height = CONTENT_LINE_HEIGHT;
+    }
+    return contentSize.height;
+}
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 + (CGFloat)heightForObject:(id)object atIndexPath:(NSIndexPath *)indexPath tableView:(UITableView *)tableView
@@ -75,18 +147,8 @@
                                 constrainedToSize:CGSizeMake(kContentLength, FLT_MAX)
                                     lineBreakMode:NSLineBreakByWordWrapping];
         height = height + contentSize.height;
-        
 #else// sizeToFit
-        NIAttributedLabel* contentLabel = [[NIAttributedLabel alloc] initWithFrame:CGRectZero];
-        contentLabel.numberOfLines = 0;
-        contentLabel.lineBreakMode = NSLineBreakByWordWrapping;
-        
-        contentLabel.font = CONTENT_FONT_SIZE;
-        contentLabel.lineHeight = CONTENT_LINE_HEIGHT;
-        contentLabel.width = kContentLength;
-        contentLabel.text = o.body;
-        [contentLabel sizeToFit];
-        height = height + contentLabel.height;
+        height = height + [self attributeHeightForEntity:o withWidth:kContentLength];
 #endif
         
         // content image
@@ -266,7 +328,8 @@
 
         self.contentLabel.text = o.body;
         
-        [self showAllKeywordsInContentLabel:self.contentLabel withStatus:o fromLocation:0];
+        [OSCTweetCell addAllLinksInContentLabel:self.contentLabel withStatus:o fromLocation:0];
+        [OSCTweetCell insertAllEmotionsInContentLabel:self.contentLabel withStatus:o];
         
         if (o.smallImageUrl.length) {
             self.contentImageView.hidden = NO;
@@ -293,26 +356,6 @@
 //        [superviewC.navigationController pushViewController:c animated:YES];
 //    }
 }
-
-///////////////////////////////////////////////////////////////////////////////////////////////////
-- (void)showAllKeywordsInContentLabel:(NIAttributedLabel*)contentLabel
-                           withStatus:(OSCTweetEntity*)o
-                         fromLocation:(NSInteger)location
-{
-    RCKeywordEntity* k = nil;
-    NSString* url = nil;
-    if (o.atPersonRanges.count) {
-        for (int i = 0; i < o.atPersonRanges.count; i++) {
-            k = (RCKeywordEntity*)o.atPersonRanges[i];
-            url =[NSString stringWithFormat:@"%@%@", PROTOCOL_AT_SOMEONE, [k.keyword urlEncoded]];
-            [contentLabel addLink:[NSURL URLWithString:url]
-                            range:NSMakeRange(k.range.location + location, k.range.length)];
-            
-        }
-    }
-    // TODO: check emotion
-}
-
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 ///////////////////////////////////////////////////////////////////////////////////////////////////

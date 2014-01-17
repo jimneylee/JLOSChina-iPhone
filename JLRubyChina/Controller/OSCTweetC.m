@@ -19,7 +19,6 @@
 
 @interface OSCTweetC ()<RCQuickReplyDelegate>
 
-@property (nonatomic, assign) OSCTweetType tweetType;
 @property (nonatomic, strong) SDSegmentedControl *segmentedControl;
 @property (nonatomic, strong) OSCQuickReplyC* quickReplyC;
 
@@ -44,7 +43,6 @@
          [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemCompose
                                                        target:self action:@selector(postNewTweetAction)],
          nil];
-
         [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(didLoginNotification)
                                                      name:DID_LOGIN_NOTIFICATION object:nil];
         [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(didPostNewTweetNotification)
@@ -136,7 +134,6 @@
         
         // scroll top
         ((OSCTweetTimelineModel*)self.model).tweetType = self.segmentedControl.selectedSegmentIndex;
-        [self scrollToTopAnimated:NO];
         
         // TODO:remove all, sometime crash, fix later on
         //    if (self.model.sections.count > 0) {
@@ -144,6 +141,7 @@
         //    }
         
         // after scrollToTopAnimated then pull down to refresh, performce perfect
+        [self scrollToTopAnimated:NO];
         [self performSelector:@selector(autoPullDownRefreshActionAnimation) withObject:self afterDelay:0.1f];
     }
 }
@@ -175,6 +173,14 @@
 {
     OSCTweetPostC* postC = [[OSCTweetPostC alloc] init];
     [self.navigationController pushViewController:postC animated:YES];
+}
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+- (void)popDownReplyView
+{
+    if (self.quickReplyC.textView.isFirstResponder) {
+        [self.quickReplyC.textView resignFirstResponder];
+    }
 }
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
@@ -264,11 +270,19 @@
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)didPostNewTweetNotification
 {
-    if (OSCTweetType_Latest == self.tweetType
-        || OSCTweetType_Mine ==  self.tweetType) {
+    if (OSCTweetType_Latest == ((OSCTweetTimelineModel*)self.model).tweetType
+        || OSCTweetType_Mine ==  ((OSCTweetTimelineModel*)self.model).tweetType) {
         [self scrollToTopAnimated:NO];
-        [self autoPullDownRefreshActionAnimation];
+        [self performSelector:@selector(autoPullDownRefreshActionAnimation) withObject:self afterDelay:0.1f];
     }
+}
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////////////////////////
+#pragma mark - UIScrollViewDelegate
+- (void)scrollViewWillBeginDragging:(UIScrollView *)scrollView
+{
+    [self popDownReplyView];
 }
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
