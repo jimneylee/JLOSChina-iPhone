@@ -49,6 +49,7 @@ $ pod install
 
 # ERROR解决方法参考
 [JLRubyChina-iPhone](https://github.com/jimneylee/JLRubyChina-iPhone)
+
 当前发布版本(可直接编译安装)：[https://github.com/jimneylee/JLOSChina-iPhone/releases/edit/v0.1beta](https://github.com/jimneylee/JLOSChina-iPhone/releases/edit/v0.1beta)
 
 ####BUG
