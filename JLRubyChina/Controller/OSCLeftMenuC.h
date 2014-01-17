@@ -10,9 +10,9 @@
 
 typedef enum
 {
-    LeftMenuType_Home,
-    LeftMenuType_Forum,
     LeftMenuType_Tweet,
+    LeftMenuType_NewsBlog,
+    LeftMenuType_Forum,
     LeftMenuType_Mine,
     LeftMenuType_More
 }LeftMenuType;

@@ -90,7 +90,7 @@
     self.tableView.tableHeaderView = [self createTableHeaderView];
     self.tableView.tableFooterView = [self createTableFooterView];
     
-    [self setSelectedMenuType:LeftMenuType_Home];
+    [self setSelectedMenuType:LeftMenuType_NewsBlog];
 }
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
@@ -198,7 +198,7 @@
     NSString* title = nil;
     LeftMenuType type = indexPath.row;
     switch (type) {
-        case LeftMenuType_Home:
+        case LeftMenuType_NewsBlog:
             title = @"综合资讯";
             break;
             
@@ -246,7 +246,7 @@
         self.currentMenuType = indexPath.row;
         
         switch (self.currentMenuType ) {
-            case LeftMenuType_Home:
+            case LeftMenuType_NewsBlog:
             {
                 OSCHomeC *c = [[OSCHomeC alloc] init];
                 UINavigationController *nav = [[UINavigationController alloc] initWithRootViewController:c];
