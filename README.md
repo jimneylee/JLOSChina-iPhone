@@ -12,6 +12,8 @@ XCode5 iOS7.x & iOS6.x
 ![](http://api.qrserver.com/v1/create-qr-code/?size=120x120&data=http%3A%2F%2Ffirapp.duapp.com%2FIa0)
 
 扫描二维码，直接在线安装，仅支持越狱手机，非越狱手机请参考下面选择下载完整项目编译或fork后配置依赖库再安装
+fir发布的安装地址：http://firapp.duapp.com/Ia0
+感谢[@TraWor](http://www.weibo.com/p/1005051642587442)提供这么方便的在线安装工具
 
 ## 编译安装
 1、下载附件[beta测试版本](http://git.oschina.net/jimneylee/JLOSChina-iPhone/attach_files)，直接编译即可安装。
