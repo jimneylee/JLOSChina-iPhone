@@ -111,7 +111,7 @@
     // Override point for customization after application launch.
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
 #if 1
-    OSCHomeC *forumTopics = [[OSCHomeC alloc] init];
+    OSCTweetC *forumTopics = [[OSCTweetC alloc] init];
     UINavigationController *nav = [[UINavigationController alloc] initWithRootViewController:forumTopics];
     nav.navigationBar.translucent = NO;
     OSCLeftMenuC *leftSideC = [[OSCLeftMenuC alloc] initWithStyle:UITableViewStylePlain];
