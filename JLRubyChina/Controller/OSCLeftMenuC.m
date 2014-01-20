@@ -129,7 +129,7 @@
     UIFont* font = [UIFont fontWithName:@"HelveticaNeue-BoldItalic" size:26];
     [text setFont:font range:rangeOfRuby];
     [text setFont:font range:rangeOfChina];
-    [text setTextColor:APP_NAME_RED_COLOR range:rangeOfRuby];
+    [text setTextColor:APP_NAME_GREEN_COLOR range:rangeOfRuby];
     [text setTextColor:APP_NAME_WHITE_COLOR range:rangeOfChina];
     NIAttributedLabel* label = [[NIAttributedLabel alloc] initWithFrame:CGRectZero];
     label.lineBreakMode = NSLineBreakByWordWrapping;
@@ -137,13 +137,13 @@
     label.textAlignment = NSTextAlignmentCenter;
     label.attributedText = text;
     label.shadowOffset = CGSizeMake(0.0f, 1.0f);
-    label.shadowColor = APP_NAME_RED_COLOR;
+    label.shadowColor = APP_NAME_GREEN_COLOR;
     label.backgroundColor = [UIColor clearColor];
     if (IOS_IS_AT_LEAST_7) {
-        label.frame = CGRectInset(self.view.bounds, 10.f, 5.f + NIStatusBarHeight());
+        label.frame = CGRectInset(self.view.bounds, 30.f, 5.f + NIStatusBarHeight());
     }
     else {
-        label.frame = CGRectInset(self.view.bounds, 10.f, 5.f);
+        label.frame = CGRectInset(self.view.bounds, 30.f, 5.f);
     }
 
     [view addSubview:label];
@@ -222,7 +222,7 @@
             break;
     }
     cell.textLabel.text = title;
-    cell.textLabel.textColor = [UIColor lightGrayColor];
+    cell.textLabel.textColor = RGBCOLOR(200.f, 200.f, 200.f);
     cell.textLabel.highlightedTextColor = [UIColor whiteColor];
     cell.textLabel.font = [UIFont boldSystemFontOfSize:16.f];
     cell.textLabel.textAlignment = NSTextAlignmentCenter;

@@ -205,7 +205,7 @@
 - (void)didLoginNotification
 {
     self.logoutLoginCell.textLabel.text = LOGOUT_TITLE;
-    self.logoutLoginCell.backgroundColor = APP_NAME_RED_COLOR;
+    self.logoutLoginCell.backgroundColor = APP_NAME_GREEN_COLOR;
 }
 
 
@@ -256,7 +256,7 @@ forRowAtIndexPath:(NSIndexPath *)indexPath
             self.logoutLoginCell = textCell;
             
             if ([textCell.textLabel.text isEqualToString:LOGOUT_TITLE]) {
-                textCell.backgroundColor = APP_NAME_RED_COLOR;
+                textCell.backgroundColor = APP_NAME_GREEN_COLOR;
             }
             else if ([textCell.textLabel.text isEqualToString:LOGIN_TITLE]) {
                 textCell.backgroundColor = APP_THEME_COLOR;

@@ -64,10 +64,13 @@
 {
     [[UIBarButtonItem appearance] setTintColor:[UIColor blackColor]];
     [[UINavigationBar appearance] setTintColor:[UIColor blackColor]];
-    
+//    if (IOS_IS_AT_LEAST_7) {
+//        [[UINavigationBar appearance] setBarTintColor:APP_THEME_COLOR];
+//    }
+
     // MTStatusBarOverlay change to white, maybe better
     UIView* bgView = [[UIView alloc] initWithFrame:[UIApplication sharedApplication].statusBarFrame];
-    bgView.backgroundColor = [UIColor whiteColor];
+    bgView.backgroundColor = [UIColor whiteColor];//APP_THEME_COLOR;
     [[MTStatusBarOverlay sharedOverlay] addSubviewToBackgroundView:bgView atIndex:1];// above statusBarBackgroundImageView
 }
 
