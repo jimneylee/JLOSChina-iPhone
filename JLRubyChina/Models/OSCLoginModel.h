@@ -10,8 +10,6 @@
 #import "OSCBaseModel.h"
 #import "OSCAccountEntity.h"
 #import "OSCUserFullEntity.h"
-#import "OSCErrorEntity.h"
-#import "OSCNoticeEntity.h"
 
 typedef void (^LoginBlock)(OSCUserFullEntity* entity, OSCErrorEntity* errorEntity);
 

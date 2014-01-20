@@ -20,6 +20,10 @@
 @implementation OSCLoginModel
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////////////////////////
+#pragma mark - LifeCycle
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
 - (id)init
 {
     self = [super init];
@@ -27,6 +31,32 @@
         self.itemElementNamesArray = @[XML_USER];
     }
     return self;
+}
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////////////////////////
+#pragma mark - Public
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+- (void)loginWithUsername:(NSString*)username password:(NSString*)password
+                    block:(void(^)(OSCUserFullEntity* entity, OSCErrorEntity* errorEntity))block
+{
+    self.accountEntity = [[OSCAccountEntity alloc] initWithUsername:username password:password];
+    self.loginBlock = block;
+    
+    NSMutableDictionary* params = [NSMutableDictionary dictionary];
+    [params setObject:username forKey:@"username"];
+    [params setObject:password forKey:@"pwd"];
+    [params setObject:@"1" forKey:@"keep_login"];
+    
+    [self postParams:params errorBlock:^(OSCErrorEntity *errorEntity) {
+        if (ERROR_CODE_SUCCESS == errorEntity.errorCode) {
+            block(self.userEntity, errorEntity);
+        }
+        else {
+            block(nil, errorEntity);
+        }
+    }];
 }
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
@@ -70,32 +100,6 @@
 - (void)didFailLoad
 {
     self.loginBlock(nil, self.errorEntity);
-}
-
-///////////////////////////////////////////////////////////////////////////////////////////////////
-///////////////////////////////////////////////////////////////////////////////////////////////////
-#pragma mark - Public
-
-///////////////////////////////////////////////////////////////////////////////////////////////////
-- (void)loginWithUsername:(NSString*)username password:(NSString*)password
-                    block:(void(^)(OSCUserFullEntity* entity, OSCErrorEntity* errorEntity))block
-{
-    self.accountEntity = [[OSCAccountEntity alloc] initWithUsername:username password:password];
-    self.loginBlock = block;
-    
-    NSMutableDictionary* params = [NSMutableDictionary dictionary];
-    [params setObject:username forKey:@"username"];
-    [params setObject:password forKey:@"pwd"];
-    [params setObject:@"1" forKey:@"keep_login"];
-    
-    [self postParams:params errorBlock:^(OSCErrorEntity *errorEntity) {
-        if (ERROR_CODE_SUCCESS == errorEntity.errorCode) {
-            block(self.userEntity, errorEntity);
-        }
-        else {
-            block(nil, errorEntity);
-        }
-    }];
 }
 
 @end
