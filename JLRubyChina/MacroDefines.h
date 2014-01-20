@@ -59,6 +59,7 @@
 // 自定义链接协议
 #define PROTOCOL_AT_SOMEONE @"atsomeone://"
 #define PROTOCOL_SHARP_FLOOR @"sharpfloor://"
+#define PROTOCOL_SHARP_SOFTWARE @"sharpsoftware://"
 #define PROTOCOL_NODE @"node://"
 
 // Notification通知
