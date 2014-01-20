@@ -31,7 +31,7 @@
 {
     self = [super initWithStyle:style];
     if (self) {
-        self.title = @"社区问答";
+        self.title = @"社区讨论";
         self.navigationItem.rightBarButtonItems =
         [NSArray arrayWithObjects:
          [OSCGlobalConfig createRefreshBarButtonItemWithTarget:self
