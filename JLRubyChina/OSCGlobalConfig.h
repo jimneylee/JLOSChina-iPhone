@@ -42,6 +42,13 @@ typedef NS_ENUM(NSInteger, OSCCatalogType) {
     OSCCatalogType_Blog=-1
 };
 
+typedef NS_ENUM(NSInteger, OSCMyActiveCatalogType) {
+    OSCMyActiveCatalogType_All=1,
+    OSCMyActiveCatalogType_AtMe=2,
+    OSCMyActiveCatalogType_Comment=3,
+    OSCMyActiveCatalogType_Mine=4
+};
+
 @interface OSCGlobalConfig : NSObject
 
 //Global Data
