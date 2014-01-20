@@ -137,6 +137,16 @@ NSString *const kAPIBaseURLString = @"http://www.oschina.net/action/api/";
                                         uid, pageCounter, perpageCount];
 }
 
+// 活动状态：所有、@我、评论、我的
++ (NSString*)relativePathForActiveListWithLoginedUserId:(unsigned long)uid
+                                      activeCatalogType:(OSCMyActiveCatalogType)activeCatalogType
+                                            pageCounter:(unsigned int)pageCounter
+                                           perpageCount:(unsigned int)perpageCount
+{
+    return [NSString stringWithFormat:@"active_list?uid=%ld&catalog=%u&pageIndex=%u&pageSize=%u",
+            uid, activeCatalogType, pageCounter, perpageCount];
+}
+
 //================================================================================
 // topic write
 //================================================================================

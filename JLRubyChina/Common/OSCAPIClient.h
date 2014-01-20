@@ -105,6 +105,12 @@
                                     pageCounter:(unsigned int)pageCounter
                                    perpageCount:(unsigned int)perpageCount;
 
+// 活动状态：所有、@我、评论、我的
++ (NSString*)relativePathForActiveListWithLoginedUserId:(unsigned long)uid
+                                      activeCatalogType:(OSCMyActiveCatalogType)activeCatalogType
+                                            pageCounter:(unsigned int)pageCounter
+                                           perpageCount:(unsigned int)perpageCount;
+
 //================================================================================
 // topic write
 //================================================================================
