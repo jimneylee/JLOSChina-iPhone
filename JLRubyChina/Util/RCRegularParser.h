@@ -13,8 +13,8 @@
 // 返回所有at某人的range数组
 + (NSArray *)keywordRangesOfAtPersonInString:(NSString *)string;
 
-// 返回所有#楼的range数组
-+ (NSArray *)keywordRangesOfSharpFloorInString:(NSString *)string;
+// 返回所有#软件#的range数组
++ (NSArray *)keywordRangesOfSharpSoftwareInString:(NSString *)string;
 
 // 返回表情的range数组，和去掉表情字符的trimed字符串
 + (NSArray *)keywordRangesOfEmotionInString:(NSString *)string trimedString:(NSString **)trimedString;

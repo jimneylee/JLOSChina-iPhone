@@ -11,7 +11,7 @@
 #import "RCKeywordEntity.h"
 
 static NSString* atRegular = @"@[^.,:;!?()\\s#@。，：；！？（）]+";
-static NSString* sharpRegular = @"#(.*?)楼";//TODO:digit regular
+static NSString *sharpRegular = @"#(.*?)#";
 static NSString* emojiRegular = @"\\[([\u4e00-\u9fa5]+)\\]";
 //http://stackoverflow.com/questions/16710554/c-sharp-regex-parse-to-pull-photos-from-markdown
 static NSString* imageRegular = @"!\\[.*?\\]\()\\(.*?\\)";
@@ -49,7 +49,7 @@ static NSString* imageRegular = @"!\\[.*?\\]\()\\(.*?\\)";
     return rangesArray;
 }
 
-+ (NSArray *)keywordRangesOfSharpFloorInString:(NSString *)string {
++ (NSArray *)keywordRangesOfSharpSoftwareInString:(NSString *)string {
     NSError *error;
     
     NSRegularExpression *regex = [NSRegularExpression regularExpressionWithPattern:sharpRegular
@@ -63,13 +63,13 @@ static NSString* imageRegular = @"!\\[.*?\\]\()\\(.*?\\)";
                               range:NSMakeRange(0, string.length)
                          usingBlock:^(NSTextCheckingResult *result, NSMatchingFlags flags, BOOL *stop) {
                              NSRange resultRange = [result range];
-                             // range & trend
+                             // range & software
                              keyword = [regex replacementStringForResult:result
                                                                 inString:string
                                                                   offset:0
                                                                 template:@"$0"];
                              if (keyword.length) {
-                                 // #sometrend#
+                                 // #software#
                                  keyword = [keyword substringWithRange:NSMakeRange(1, keyword.length-2)];
                                  keywordEntity = [[RCKeywordEntity alloc] init];
                                  keywordEntity.keyword = keyword;
