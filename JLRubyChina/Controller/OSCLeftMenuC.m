@@ -15,6 +15,7 @@
 #import "OSCHomeC.h"
 #import "OSCForumC.h"
 #import "OSCTweetC.h"
+#import "OSCMineC.h"
 #import "OSCMoreC.h"
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
@@ -207,7 +208,7 @@
             break;
             
         case LeftMenuType_Tweet:
-            title = @"动弹一下";
+            title = @"社区动弹";
             break;
             
         case LeftMenuType_Mine:
@@ -274,6 +275,12 @@
                 break;
                 
             case LeftMenuType_Mine:
+            {
+                OSCMineC *c = [[OSCMineC alloc] init];
+                UINavigationController *nav = [[UINavigationController alloc] initWithRootViewController:c];
+                nav.navigationBar.translucent = NO;
+                self.sidePanelController.centerPanel = nav;
+            }
                 break;
                 
             case LeftMenuType_More:
