@@ -21,17 +21,21 @@
 @property (nonatomic, strong) OSCCommonBodyView* topicBodyView;
 @property (nonatomic, strong) OSCQuickReplyC* quickReplyC;
 @property (nonatomic, strong) UIButton* scrollBtn;
+@property (nonatomic, assign) unsigned long repliesCount;
 @end
 
 @implementation OSCCommonRepliesListC
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
-- (id)initWithTopicId:(unsigned long)topicId topicType:(OSCContentType)topicType
+- (id)initWithTopicId:(unsigned long)topicId
+            topicType:(OSCContentType)topicType
+         repliesCount:(unsigned long)repliedCount
 {
     self = [self initWithStyle:UITableViewStylePlain];
     if (self) {
         ((OSCRepliesTimelineModel*)self.model).topicId = topicId;
         ((OSCRepliesTimelineModel*)self.model).contentType = topicType;
+        self.repliesCount = repliedCount;
     }
     return self;
 }
@@ -289,6 +293,7 @@
 - (void)scrollViewWillBeginDragging:(UIScrollView *)scrollView
 {
     [self popDownReplyView];
+    [self.navigationController setNavigationBarHidden:NO animated:YES];
 }
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
@@ -300,11 +305,27 @@
 {
     [self.navigationController setNavigationBarHidden:NO animated:YES];
     
-    // when reply success, insert to top of tableview
     if (replyEntity) {
-        NSArray* indexPaths = [self.model insertObject:replyEntity atRow:0 inSection:0];
-        if (indexPaths.count) {
-            [self.tableView insertRowsAtIndexPaths:indexPaths withRowAnimation:UITableViewRowAnimationAutomatic];
+        if (self.model.sections.count) {
+            NITableViewModelSection *section = [self.model.sections objectAtIndex:0];
+            // insert as first index
+            if (section && section.rows > 0) {
+                NSArray* indexPaths = [self.model insertObject:replyEntity atRow:0 inSection:0];
+                if (indexPaths.count) {
+                    [self.tableView insertRowsAtIndexPaths:indexPaths withRowAnimation:UITableViewRowAnimationAutomatic];
+                    // fix bug: tableHeaderView disappear after insert a cell at first index
+                    if (self.tableHeaderView) {
+                        self.tableView.tableHeaderView = self.tableHeaderView;
+                    }
+                }
+            }
+        }
+        else {
+            // add as first index
+            NSArray* indexPaths = [self.model addObject:replyEntity];
+            if (indexPaths.count) {
+                [self.tableView reloadData];
+            }
         }
     }
 }
@@ -344,6 +365,28 @@
         [[UIApplication sharedApplication].keyWindow addSubview:self.scrollBtn];
         [self.scrollBtn performSelector:@selector(removeFromSuperview) withObject:Nil afterDelay:2.0f];
     }
+}
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////////////////////////
+#pragma mark - UITableViewDelegate
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+- (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section
+{
+    CGFloat tableHeaderHeight = 20.f;
+    UILabel* label = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, self.tableView.width, tableHeaderHeight)];
+    label.backgroundColor = TABLE_VIEW_BG_COLOR;
+    label.textColor = [UIColor darkGrayColor];
+    label.text = @"  最新评论";//TODO:[NSString stringWithFormat:@"  共%ld条评论", self.repliesCount];
+    return label;
+}
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+- (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
+{
+    CGFloat tableHeaderHeight = 20.f;
+    return tableHeaderHeight;
 }
 
 @end

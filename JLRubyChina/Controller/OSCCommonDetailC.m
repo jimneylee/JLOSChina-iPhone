@@ -136,7 +136,8 @@
 - (void)showRepliesListView
 {
     OSCCommonRepliesListC* c = [[OSCCommonRepliesListC alloc] initWithTopicId:((OSCCommonDetailModel*)self.model).topicId
-                                                                    topicType:((OSCCommonDetailModel*)self.model).contentType];
+                                                                    topicType:((OSCCommonDetailModel*)self.model).contentType
+                                                                 repliesCount:((OSCCommonDetailModel*)self.model).topicDetailEntity.repliesCount];
     [self.navigationController pushViewController:c animated:YES];
 }
 
