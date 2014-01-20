@@ -82,7 +82,7 @@
                     forControlEvents:UIControlEventValueChanged];
     }
     
-    NSArray* sectionNames = @[@"问答互动", @"技术分享", @"灌水综合", @"职业规划", @"站务反馈"];
+    NSArray* sectionNames = @[@"技术问答", @"技术分享", @"IT大杂烩", @"职业生涯", @"站务建议"];
     for (int i = 0; i < sectionNames.count; i++) {
         [self.segmentedControl insertSegmentWithTitle:sectionNames[i]
                                               atIndex:i
