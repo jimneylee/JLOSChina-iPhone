@@ -137,6 +137,10 @@
             hud.mode = MBProgressHUDModeText;
             hud.labelText = @"登录失败，用户名或密码有错！";
             [hud hide:YES afterDelay:1.5f];
+            if (self.isAutoLogin) {
+                [[MTStatusBarOverlay sharedOverlay] postImmediateFinishMessage:@"登录失败"
+                                                                      duration:2.0f animated:YES];
+            }
         }
     }];
 }
