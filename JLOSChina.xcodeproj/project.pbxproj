@@ -518,6 +518,14 @@
 		CE90A0F11872E6910030DB1E /* Notice in Resources */ = {isa = PBXBuildFile; fileRef = 28D4EF8918582B0A00C9C858 /* Notice */; };
 		CE90A0F21872E6910030DB1E /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = 2897EF731856C60A000BB6B9 /* README.md */; };
 		CE90A0F51872E6910030DB1E /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 2897EEFD1856BE94000BB6B9 /* InfoPlist.strings */; };
+		CE9CA9C6188D63A500C9177C /* OSCMineC.m in Sources */ = {isa = PBXBuildFile; fileRef = CE9CA9C5188D63A500C9177C /* OSCMineC.m */; };
+		CE9CA9C7188D63A500C9177C /* OSCMineC.m in Sources */ = {isa = PBXBuildFile; fileRef = CE9CA9C5188D63A500C9177C /* OSCMineC.m */; };
+		CE9CA9CA188D641600C9177C /* OSCMyActiveTimelineModel.m in Sources */ = {isa = PBXBuildFile; fileRef = CE9CA9C9188D641600C9177C /* OSCMyActiveTimelineModel.m */; };
+		CE9CA9CB188D641600C9177C /* OSCMyActiveTimelineModel.m in Sources */ = {isa = PBXBuildFile; fileRef = CE9CA9C9188D641600C9177C /* OSCMyActiveTimelineModel.m */; };
+		CE9CA9CE188D674100C9177C /* OSCActivityEntity.m in Sources */ = {isa = PBXBuildFile; fileRef = CE9CA9CD188D674100C9177C /* OSCActivityEntity.m */; };
+		CE9CA9CF188D674100C9177C /* OSCActivityEntity.m in Sources */ = {isa = PBXBuildFile; fileRef = CE9CA9CD188D674100C9177C /* OSCActivityEntity.m */; };
+		CE9CA9D2188D67FC00C9177C /* OSCActivityCell.m in Sources */ = {isa = PBXBuildFile; fileRef = CE9CA9D1188D67FC00C9177C /* OSCActivityCell.m */; };
+		CE9CA9D3188D67FC00C9177C /* OSCActivityCell.m in Sources */ = {isa = PBXBuildFile; fileRef = CE9CA9D1188D67FC00C9177C /* OSCActivityCell.m */; };
 		CE9DFAB9185C4D17007BAE75 /* UIImage+nimbusImageNamed.m in Sources */ = {isa = PBXBuildFile; fileRef = CE9DFAB8185C4D17007BAE75 /* UIImage+nimbusImageNamed.m */; };
 		CE9DFAC7185C5BB1007BAE75 /* OSCUserFullEntity.m in Sources */ = {isa = PBXBuildFile; fileRef = CE9DFAC6185C5BB1007BAE75 /* OSCUserFullEntity.m */; };
 		CEF6F39C18821FC20065F852 /* OSCCommonDetailC.m in Sources */ = {isa = PBXBuildFile; fileRef = CEF6F39918821FC20065F852 /* OSCCommonDetailC.m */; };
@@ -901,6 +909,14 @@
 		CE97563F18881FC6009AAD82 /* 0116_7.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 0116_7.png; sourceTree = "<group>"; };
 		CE97564018881FC6009AAD82 /* 0116_8.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 0116_8.png; sourceTree = "<group>"; };
 		CE97564118881FC6009AAD82 /* 0116_9.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 0116_9.png; sourceTree = "<group>"; };
+		CE9CA9C4188D63A500C9177C /* OSCMineC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OSCMineC.h; sourceTree = "<group>"; };
+		CE9CA9C5188D63A500C9177C /* OSCMineC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OSCMineC.m; sourceTree = "<group>"; };
+		CE9CA9C8188D641600C9177C /* OSCMyActiveTimelineModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OSCMyActiveTimelineModel.h; sourceTree = "<group>"; };
+		CE9CA9C9188D641600C9177C /* OSCMyActiveTimelineModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OSCMyActiveTimelineModel.m; sourceTree = "<group>"; };
+		CE9CA9CC188D674100C9177C /* OSCActivityEntity.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OSCActivityEntity.h; sourceTree = "<group>"; };
+		CE9CA9CD188D674100C9177C /* OSCActivityEntity.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OSCActivityEntity.m; sourceTree = "<group>"; };
+		CE9CA9D0188D67FC00C9177C /* OSCActivityCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OSCActivityCell.h; sourceTree = "<group>"; };
+		CE9CA9D1188D67FC00C9177C /* OSCActivityCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OSCActivityCell.m; sourceTree = "<group>"; };
 		CE9DFAB7185C4D17007BAE75 /* UIImage+nimbusImageNamed.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+nimbusImageNamed.h"; sourceTree = "<group>"; };
 		CE9DFAB8185C4D17007BAE75 /* UIImage+nimbusImageNamed.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+nimbusImageNamed.m"; sourceTree = "<group>"; };
 		CE9DFAC5185C5BB1007BAE75 /* OSCUserFullEntity.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OSCUserFullEntity.h; sourceTree = "<group>"; };
@@ -1353,6 +1369,8 @@
 				CE543D731882A5D000D18D77 /* OSCForumC.m */,
 				2832C2261883A9E5003E96F3 /* OSCTweetC.h */,
 				2832C2271883A9E5003E96F3 /* OSCTweetC.m */,
+				CE9CA9C4188D63A500C9177C /* OSCMineC.h */,
+				CE9CA9C5188D63A500C9177C /* OSCMineC.m */,
 				CEF6F39818821FC20065F852 /* OSCCommonDetailC.h */,
 				CEF6F39918821FC20065F852 /* OSCCommonDetailC.m */,
 				CE543D181882498C00D18D77 /* OSCCommonRepliesListC.h */,
@@ -1394,6 +1412,8 @@
 				CE543D1118823EAA00D18D77 /* OSCRelativeEntity.m */,
 				2832C22E1883ABFB003E96F3 /* OSCTweetEntity.h */,
 				2832C22F1883ABFB003E96F3 /* OSCTweetEntity.m */,
+				CE9CA9CC188D674100C9177C /* OSCActivityEntity.h */,
+				CE9CA9CD188D674100C9177C /* OSCActivityEntity.m */,
 				28B094A9185EDD73003F8789 /* OSCAccountEntity.h */,
 				28B094AA185EDD73003F8789 /* OSCAccountEntity.m */,
 				2897EF961856ECBD000BB6B9 /* OSCUserEntity.h */,
@@ -1444,6 +1464,8 @@
 				CE543D6F18829EF800D18D77 /* OSCRelativeCell.m */,
 				2832C2321883AC25003E96F3 /* OSCTweetCell.h */,
 				2832C2331883AC25003E96F3 /* OSCTweetCell.m */,
+				CE9CA9D0188D67FC00C9177C /* OSCActivityCell.h */,
+				CE9CA9D1188D67FC00C9177C /* OSCActivityCell.m */,
 				28CABA5F188678EE00BFA036 /* OSCPostButtonBar.h */,
 				28CABA60188678EE00BFA036 /* OSCPostButtonBar.m */,
 				28CABA8318867CF900BFA036 /* OSCFriendCell.h */,
@@ -1469,6 +1491,8 @@
 				CE543D771882A89600D18D77 /* OSCForumTimelineModel.m */,
 				2832C22A1883AB51003E96F3 /* OSCTweetTimelineModel.h */,
 				2832C22B1883AB51003E96F3 /* OSCTweetTimelineModel.m */,
+				CE9CA9C8188D641600C9177C /* OSCMyActiveTimelineModel.h */,
+				CE9CA9C9188D641600C9177C /* OSCMyActiveTimelineModel.m */,
 				CEF6F3B81882360C0065F852 /* OSCCommonDetailModel.h */,
 				CEF6F3B91882360D0065F852 /* OSCCommonDetailModel.m */,
 				CEF6F3B0188220890065F852 /* OSCRepliesTimelineModel.h */,
@@ -2211,6 +2235,7 @@
 				28D4EF781858061E00C9C858 /* UIView+findViewController.m in Sources */,
 				CE543DA218840E9F00D18D77 /* OSCNoticeEntity.m in Sources */,
 				CEFEFFE8188215F900D94630 /* OSCBlogEntity.m in Sources */,
+				CE9CA9CA188D641600C9177C /* OSCMyActiveTimelineModel.m in Sources */,
 				CEF6F3AE18821FF20065F852 /* OSCReplyCell.m in Sources */,
 				2897EF9E18571008000BB6B9 /* NSDate+OSChina.m in Sources */,
 				CE9DFAC7185C5BB1007BAE75 /* OSCUserFullEntity.m in Sources */,
@@ -2228,6 +2253,7 @@
 				CE1C519D1880FD76000F216D /* OSCNewsCell.m in Sources */,
 				28B094AB185EDD73003F8789 /* OSCAccountEntity.m in Sources */,
 				2897EF861856E2EA000BB6B9 /* OSCHomeTimelineModel.m in Sources */,
+				CE9CA9C6188D63A500C9177C /* OSCMineC.m in Sources */,
 				CE543D781882A89600D18D77 /* OSCForumTimelineModel.m in Sources */,
 				28CABA9318867E8800BFA036 /* pinyin.c in Sources */,
 				2832C2381883B6EE003E96F3 /* JLFullScreenPhotoBrowseView.m in Sources */,
@@ -2237,6 +2263,7 @@
 				28CABA7918867C3D00BFA036 /* OSCFriendsModel.m in Sources */,
 				2897EF5D1856C422000BB6B9 /* UIWindowAdditions.m in Sources */,
 				28CABA8E18867E6800BFA036 /* SMSectionListBaseEntity.m in Sources */,
+				CE9CA9D2188D67FC00C9177C /* OSCActivityCell.m in Sources */,
 				2832C22C1883AB51003E96F3 /* OSCTweetTimelineModel.m in Sources */,
 				2897EF8F1856E3D2000BB6B9 /* OSCBaseTableModel.m in Sources */,
 				CEF6F39C18821FC20065F852 /* OSCCommonDetailC.m in Sources */,
@@ -2255,6 +2282,7 @@
 				CE543D1A1882498C00D18D77 /* OSCCommonRepliesListC.m in Sources */,
 				28CABA8118867CDF00BFA036 /* OSCFriendListEntity.m in Sources */,
 				2897EF5B1856C422000BB6B9 /* UIViewAdditions.m in Sources */,
+				CE9CA9CE188D674100C9177C /* OSCActivityEntity.m in Sources */,
 				2832C2341883AC25003E96F3 /* OSCTweetCell.m in Sources */,
 				CE593702187D7F4100DC3A55 /* UIViewController+JASidePanel.m in Sources */,
 				287CBCCB1887C1240002F534 /* OSCEmotionMainView.m in Sources */,
@@ -2323,6 +2351,7 @@
 				CE90A0671872E6910030DB1E /* UIView+findViewController.m in Sources */,
 				CE543DA318840E9F00D18D77 /* OSCNoticeEntity.m in Sources */,
 				CEFEFFE9188215F900D94630 /* OSCBlogEntity.m in Sources */,
+				CE9CA9CB188D641600C9177C /* OSCMyActiveTimelineModel.m in Sources */,
 				CEF6F3AF18821FF20065F852 /* OSCReplyCell.m in Sources */,
 				CE90A0691872E6910030DB1E /* NSDate+OSChina.m in Sources */,
 				CE90A06B1872E6910030DB1E /* OSCUserFullEntity.m in Sources */,
@@ -2340,6 +2369,7 @@
 				CE1C519E1880FD76000F216D /* OSCNewsCell.m in Sources */,
 				CE90A07A1872E6910030DB1E /* OSCAccountEntity.m in Sources */,
 				CE90A07B1872E6910030DB1E /* OSCHomeTimelineModel.m in Sources */,
+				CE9CA9C7188D63A500C9177C /* OSCMineC.m in Sources */,
 				CE543D791882A89600D18D77 /* OSCForumTimelineModel.m in Sources */,
 				28CABA9418867E8800BFA036 /* pinyin.c in Sources */,
 				2832C2391883B6EE003E96F3 /* JLFullScreenPhotoBrowseView.m in Sources */,
@@ -2349,6 +2379,7 @@
 				28CABA7A18867C3D00BFA036 /* OSCFriendsModel.m in Sources */,
 				CE90A0821872E6910030DB1E /* UIWindowAdditions.m in Sources */,
 				28CABA8F18867E6800BFA036 /* SMSectionListBaseEntity.m in Sources */,
+				CE9CA9D3188D67FC00C9177C /* OSCActivityCell.m in Sources */,
 				2832C22D1883AB51003E96F3 /* OSCTweetTimelineModel.m in Sources */,
 				CE90A0831872E6910030DB1E /* OSCBaseTableModel.m in Sources */,
 				CEF6F39D18821FC20065F852 /* OSCCommonDetailC.m in Sources */,
@@ -2367,6 +2398,7 @@
 				CE543D1B1882498C00D18D77 /* OSCCommonRepliesListC.m in Sources */,
 				28CABA8218867CDF00BFA036 /* OSCFriendListEntity.m in Sources */,
 				CE90A08E1872E6910030DB1E /* UIViewAdditions.m in Sources */,
+				CE9CA9CF188D674100C9177C /* OSCActivityEntity.m in Sources */,
 				2832C2351883AC25003E96F3 /* OSCTweetCell.m in Sources */,
 				CE593703187D7F4100DC3A55 /* UIViewController+JASidePanel.m in Sources */,
 				287CBCCC1887C1240002F534 /* OSCEmotionMainView.m in Sources */,
