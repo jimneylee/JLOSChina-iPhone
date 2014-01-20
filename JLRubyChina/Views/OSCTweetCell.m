@@ -20,10 +20,6 @@
 #import "OSCTweetC.h"
 //#import "RCUserHomepageC.h"
 
-// 自定义链接协议
-#define PROTOCOL_AT_SOMEONE @"atsomeone://"
-#define PROTOCOL_SHARP_TREND @"sharptrend://"
-
 // 布局字体
 #define TITLE_FONT_SIZE [UIFont systemFontOfSize:18.f]
 #define SUBTITLE_FONT_SIZE [UIFont systemFontOfSize:12.f]
@@ -57,9 +53,9 @@
 #pragma mark - Static
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
-+ (void)addAllLinksInContentLabel:(NIAttributedLabel*)contentLabel
-                       withStatus:(OSCTweetEntity*)o
-                     fromLocation:(NSInteger)location
++ (void)addAllLinksForAtSomeoneInContentLabel:(NIAttributedLabel*)contentLabel
+                                   withStatus:(OSCTweetEntity*)o
+                                 fromLocation:(NSInteger)location
 {
     RCKeywordEntity* keyworkEntity = nil;
     NSString* url = nil;
@@ -67,6 +63,23 @@
         for (int i = 0; i < o.atPersonRanges.count; i++) {
             keyworkEntity = (RCKeywordEntity*)o.atPersonRanges[i];
             url =[NSString stringWithFormat:@"%@%@", PROTOCOL_AT_SOMEONE, [keyworkEntity.keyword urlEncoded]];
+            [contentLabel addLink:[NSURL URLWithString:url]
+                            range:NSMakeRange(keyworkEntity.range.location + location, keyworkEntity.range.length)];
+        }
+    }
+}
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
++ (void)addAllLinksForSharpSoftwareInContentLabel:(NIAttributedLabel*)contentLabel
+                                       withStatus:(OSCTweetEntity*)o
+                                     fromLocation:(NSInteger)location
+{
+    RCKeywordEntity* keyworkEntity = nil;
+    NSString* url = nil;
+    if (o.sharpSoftwareRanges.count) {
+        for (int i = 0; i < o.sharpSoftwareRanges.count; i++) {
+            keyworkEntity = (RCKeywordEntity*)o.sharpSoftwareRanges[i];
+            url =[NSString stringWithFormat:@"%@%@", PROTOCOL_SHARP_SOFTWARE, [keyworkEntity.keyword urlEncoded]];
             [contentLabel addLink:[NSURL URLWithString:url]
                             range:NSMakeRange(keyworkEntity.range.location + location, keyworkEntity.range.length)];
         }
@@ -328,7 +341,8 @@
 
         self.contentLabel.text = o.body;
         
-        [OSCTweetCell addAllLinksInContentLabel:self.contentLabel withStatus:o fromLocation:0];
+        [OSCTweetCell addAllLinksForAtSomeoneInContentLabel:self.contentLabel withStatus:o fromLocation:0];
+        [OSCTweetCell addAllLinksForSharpSoftwareInContentLabel:self.contentLabel withStatus:object fromLocation:0];
         [OSCTweetCell insertAllEmotionsInContentLabel:self.contentLabel withStatus:o];
         
         if (o.smallImageUrl.length) {
@@ -364,6 +378,7 @@
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)commentAction
 {
+#if 0//TODO: not well
     // if logined, and do reply action
     if (0 == self.tweetEntity.repliesCount) {
         UIViewController* superviewC = self.viewController;
@@ -380,6 +395,7 @@
     else {
         [self showRepliesListView];
     }
+#endif
 }
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
@@ -387,7 +403,8 @@
 {
     UIViewController* superviewC = self.viewController;
     OSCCommonRepliesListC* c = [[OSCCommonRepliesListC alloc] initWithTopicId:self.tweetEntity.tweetId
-                                                                    topicType:OSCContentType_Tweet];
+                                                                    topicType:OSCContentType_Tweet
+                                                                 repliesCount:self.tweetEntity.repliesCount];
     [superviewC.navigationController pushViewController:c animated:YES];
     
     // table header view with body
@@ -397,6 +414,7 @@
     CGFloat height = [OSCTweetCell heightForObject:self.tweetEntity atIndexPath:nil tableView:c.tableView];
     bodyCell.height = height;
     c.tableView.tableHeaderView = bodyCell;
+    c.tableHeaderView = bodyCell;
 }
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
@@ -481,6 +499,13 @@ didSelectTextCheckingResult:(NSTextCheckingResult *)result
 //                RCUserHomepageC* c = [[RCUserHomepageC alloc] initWithUserLoginId:self.tweetEntity.lastRepliedUser.loginId];
 //                [superviewC.navigationController pushViewController:c animated:YES];
             }
+        }
+        else if ([url.absoluteString hasPrefix:PROTOCOL_SHARP_SOFTWARE]) {
+            NSString* somesoftware = [url.absoluteString substringFromIndex:PROTOCOL_SHARP_SOFTWARE.length];
+            // TODO: show some mblogs about this trend
+            somesoftware = [somesoftware stringByReplacingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
+            [OSCGlobalConfig HUDShowMessage:somesoftware
+                                addedToView:[UIApplication sharedApplication].keyWindow];
         }
         else {
             if (superviewC) {

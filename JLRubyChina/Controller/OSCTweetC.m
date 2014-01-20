@@ -172,6 +172,24 @@
 }
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
+- (void)showRepliesListViewWithTweetEntity:(OSCTweetEntity*)tweetEntity
+{
+    OSCCommonRepliesListC* c = [[OSCCommonRepliesListC alloc] initWithTopicId:tweetEntity.tweetId
+                                                                    topicType:OSCContentType_Tweet
+                                                                 repliesCount:tweetEntity.repliesCount];
+    [self.navigationController pushViewController:c animated:YES];
+    
+    // table header view with body
+    // TODO: new class OSCTweetBodyView
+    OSCTweetCell* bodyCell = [[OSCTweetCell alloc] initWithFrame:self.view.bounds];
+    [bodyCell shouldUpdateCellWithObject:tweetEntity];
+    CGFloat height = [OSCTweetCell heightForObject:tweetEntity atIndexPath:nil tableView:c.tableView];
+    bodyCell.height = height;
+    c.tableView.tableHeaderView = bodyCell;
+    c.tableHeaderView = bodyCell;
+}
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)popDownReplyView
 {
     if (self.quickReplyC.textView.isFirstResponder) {
@@ -196,16 +214,7 @@
         if ([object isKindOfClass:[OSCTweetEntity class]]) {
             OSCTweetEntity* entity = (OSCTweetEntity*)object;
             if (entity.tweetId > 0) {
-                OSCCommonRepliesListC* c = [[OSCCommonRepliesListC alloc] initWithTopicId:entity.tweetId
-                                                                                topicType:OSCContentType_Tweet];
-                [self.navigationController pushViewController:c animated:YES];
-                // table header view with body
-                // TODO: new class OSCTweetBodyView
-                OSCTweetCell* bodyCell = [[OSCTweetCell alloc] initWithFrame:self.view.bounds];
-                [bodyCell shouldUpdateCellWithObject:entity];
-                CGFloat height = [OSCTweetCell heightForObject:entity atIndexPath:nil tableView:c.tableView];
-                bodyCell.height = height;
-                c.tableView.tableHeaderView = bodyCell;
+                [self showRepliesListViewWithTweetEntity:entity];
             }
             else {
                 [OSCGlobalConfig HUDShowMessage:@"不存在或已被删除！" addedToView:self.view];
@@ -279,6 +288,7 @@
 - (void)scrollViewWillBeginDragging:(UIScrollView *)scrollView
 {
     [self popDownReplyView];
+    [self.navigationController setNavigationBarHidden:NO animated:YES];
 }
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////

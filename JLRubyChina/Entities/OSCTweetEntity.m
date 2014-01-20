@@ -33,7 +33,6 @@
                                                          @"portrait" : [NSString stringFromValue:dic[@"portrait"]]}];
         self.smallImageUrl = [NSString stringFromValue:dic[@"imgSmall"]];
         self.bigImageUrl = [NSString stringFromValue:dic[@"imgBig"]];
-        // 与其每个微博加载都卡，不如这边一次都解析好
         [self parseAllKeywords];
     }
     
@@ -59,7 +58,9 @@
         if (!self.atPersonRanges) {
             self.atPersonRanges = [RCRegularParser keywordRangesOfAtPersonInString:self.body];
         }
-        
+        if (!self.sharpSoftwareRanges) {
+            self.sharpSoftwareRanges = [RCRegularParser keywordRangesOfSharpSoftwareInString:self.body];
+        }
         if (!self.emotionRanges) {
             NSString* trimedString = self.body;
             self.emotionRanges = [RCRegularParser keywordRangesOfEmotionInString:self.body trimedString:&trimedString];

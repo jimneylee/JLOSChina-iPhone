@@ -43,7 +43,7 @@
 #pragma mark - Static
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
-+ (void)addAllLinksInContentLabel:(NIAttributedLabel*)contentLabel
++ (void)addAllLinksForAtSomeoneInContentLabel:(NIAttributedLabel*)contentLabel
                        withStatus:(OSCReplyEntity*)o
                      fromLocation:(NSInteger)location
 {
@@ -53,6 +53,23 @@
         for (int i = 0; i < o.atPersonRanges.count; i++) {
             keyworkEntity = (RCKeywordEntity*)o.atPersonRanges[i];
             url =[NSString stringWithFormat:@"%@%@", PROTOCOL_AT_SOMEONE, [keyworkEntity.keyword urlEncoded]];
+            [contentLabel addLink:[NSURL URLWithString:url]
+                            range:NSMakeRange(keyworkEntity.range.location + location, keyworkEntity.range.length)];
+        }
+    }
+}
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
++ (void)addAllLinksForSharpSoftwareInContentLabel:(NIAttributedLabel*)contentLabel
+                                       withStatus:(OSCReplyEntity*)o
+                                     fromLocation:(NSInteger)location
+{
+    RCKeywordEntity* keyworkEntity = nil;
+    NSString* url = nil;
+    if (o.sharpSoftwareRanges.count) {
+        for (int i = 0; i < o.sharpSoftwareRanges.count; i++) {
+            keyworkEntity = (RCKeywordEntity*)o.sharpSoftwareRanges[i];
+            url =[NSString stringWithFormat:@"%@%@", PROTOCOL_SHARP_SOFTWARE, [keyworkEntity.keyword urlEncoded]];
             [contentLabel addLink:[NSURL URLWithString:url]
                             range:NSMakeRange(keyworkEntity.range.location + location, keyworkEntity.range.length)];
         }
@@ -295,7 +312,8 @@
         self.detailTextLabel.text = [o.createdAtDate formatRelativeTime];
         self.floorLabel.text = o.floorNumberString;
         self.contentLabel.text = o.body;
-        [OSCReplyCell addAllLinksInContentLabel:self.contentLabel withStatus:o fromLocation:0];
+        [OSCReplyCell addAllLinksForAtSomeoneInContentLabel:self.contentLabel withStatus:o fromLocation:0];
+        [OSCReplyCell addAllLinksForSharpSoftwareInContentLabel:self.contentLabel withStatus:object fromLocation:0];
         [OSCReplyCell insertAllEmotionsInContentLabel:self.contentLabel withStatus:o];
     }
     return YES;
@@ -369,6 +387,12 @@ didSelectTextCheckingResult:(NSTextCheckingResult *)result
             someone = [someone stringByReplacingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
             [OSCGlobalConfig HUDShowMessage:someone
                                addedToView:[UIApplication sharedApplication].keyWindow];
+        }
+        else if ([url.absoluteString hasPrefix:PROTOCOL_SHARP_SOFTWARE]) {
+            NSString* somesoftware = [url.absoluteString substringFromIndex:PROTOCOL_SHARP_SOFTWARE.length];
+            somesoftware = [somesoftware stringByReplacingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
+            [OSCGlobalConfig HUDShowMessage:somesoftware
+                                addedToView:[UIApplication sharedApplication].keyWindow];
         }
         else if ([url.absoluteString hasPrefix:PROTOCOL_SHARP_FLOOR]) {
             NSString* somefloor = [url.absoluteString substringFromIndex:PROTOCOL_SHARP_FLOOR.length];

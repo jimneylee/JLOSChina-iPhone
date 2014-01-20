@@ -55,7 +55,9 @@
         if (!self.atPersonRanges) {
             self.atPersonRanges = [RCRegularParser keywordRangesOfAtPersonInString:self.body];
         }
-        
+        if (!self.sharpSoftwareRanges) {
+            self.sharpSoftwareRanges = [RCRegularParser keywordRangesOfSharpSoftwareInString:self.body];
+        }
         if (!self.emotionRanges) {
             NSString* trimedString = self.body;
             self.emotionRanges = [RCRegularParser keywordRangesOfEmotionInString:self.body trimedString:&trimedString];
