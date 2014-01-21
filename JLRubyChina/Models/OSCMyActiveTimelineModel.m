@@ -14,7 +14,6 @@
 #define XML_NOTICE @"notice"
 
 @interface OSCMyActiveTimelineModel()
-
 @end
 
 @implementation OSCMyActiveTimelineModel

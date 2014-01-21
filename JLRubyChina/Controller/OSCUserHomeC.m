@@ -6,41 +6,58 @@
 //  Copyright (c) 2013年 jimneylee. All rights reserved.
 //
 
-#import "OSCMineC.h"
-#import "SDSegmentedControl.h"
+#import "OSCUserHomeC.h"
 
-#import "OSCMyActiveTimelineModel.h"
+#import "OSCUserActiveTimelineModel.h"
 #import "OSCCommonEntity.h"
 #import "OSCCommonDetailC.h"
-#import "OSCMyInfoHeaderView.h"
+#import "OSCUserInfoHeaderView.h"
 
-@interface OSCMineC ()
+@interface OSCUserHomeC ()
 
 @property (nonatomic, assign) OSCContentType contentType;
-@property (nonatomic, strong) SDSegmentedControl *segmentedControl;
-@property (nonatomic, strong) OSCMyInfoHeaderView* homepageHeaderView;
+@property (nonatomic, strong) OSCUserInfoHeaderView* homepageHeaderView;
 
 @end
 
-@implementation OSCMineC
+@implementation OSCUserHomeC
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 #pragma mark - UIViewController
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
+- (id)initWithUserId:(unsigned long)userId
+{
+    self = [self initWithStyle:UITableViewStylePlain];
+    if (self) {
+        ((OSCUserActiveTimelineModel*)self.model).userId = userId;
+    }
+    return self;
+}
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+// 暂时无用
+- (id)initWithUsername:(NSString*)username
+{
+    self = [self initWithStyle:UITableViewStylePlain];
+    if (self) {
+        ((OSCUserActiveTimelineModel*)self.model).username = username;
+    }
+    return self;
+}
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
 - (id)initWithStyle:(UITableViewStyle)style
 {
     self = [super initWithStyle:style];
     if (self) {
-        self.title = @"我的主页";
+        self.title = @"他(她)的主页";
         self.navigationItem.rightBarButtonItems =
         [NSArray arrayWithObjects:
          [OSCGlobalConfig createRefreshBarButtonItemWithTarget:self
                                                        action:@selector(autoPullDownRefreshActionAnimation)],
          nil];
-        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(didLoginNotification)
-                                                     name:DID_LOGIN_NOTIFICATION object:nil];
     }
     return self;
 }
@@ -53,10 +70,6 @@
     self.tableView.separatorColor = [UIColor clearColor];
     self.tableView.backgroundColor = TABLE_VIEW_BG_COLOR;
     self.tableView.backgroundView = nil;
-    
-    [self initSegmentedControl];
-    ((OSCMyActiveTimelineModel*)self.model).activeCatalogType = self.segmentedControl.selectedSegmentIndex;
-    [self updateTopicHeaderView];
 }
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
@@ -76,62 +89,17 @@
 #pragma mark - Private
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
-- (void)updateTopicHeaderView
+- (void)updateTopicHeaderViewWithUserEntity:(OSCUserFullEntity*)userEntity
 {
     if (!_homepageHeaderView) {
-        _homepageHeaderView = [[OSCMyInfoHeaderView alloc] initWithFrame:CGRectMake(0.f, 0.f, self.view.width, 0.f)];
+        _homepageHeaderView = [[OSCUserInfoHeaderView alloc] initWithFrame:CGRectMake(0.f, 0.f, self.view.width, 0.f)];
     }
-    [self.homepageHeaderView updateViewForUser:[OSCGlobalConfig loginedUserEntity]];
+    [self.homepageHeaderView updateViewForUser:userEntity];
     // call layoutSubviews at first to calculte view's height, dif from setNeedsLayout
     [self.homepageHeaderView layoutIfNeeded];
     if (!self.tableView.tableHeaderView) {
         self.tableView.tableHeaderView = self.homepageHeaderView;
     }
-}
-
-///////////////////////////////////////////////////////////////////////////////////////////////////
-- (void)initSegmentedControl
-{
-    if (!_segmentedControl) {
-        // TODO: pull request to author fix this bug: initWithFrame can not call [self commonInit]
-        _segmentedControl = [[SDSegmentedControl alloc] init];
-        _segmentedControl.frame = CGRectMake(0.f, 0.f, self.view.width, _segmentedControl.height);
-        _segmentedControl.interItemSpace = 0.f;
-        [_segmentedControl addTarget:self action:@selector(segmentedDidChange)
-                    forControlEvents:UIControlEventValueChanged];
-    }
-    
-    NSArray* sectionNames = @[@"所有消息", @"@我的", @"评论信息", @"我自己的"];
-    for (int i = 0; i < sectionNames.count; i++) {
-        [self.segmentedControl insertSegmentWithTitle:sectionNames[i]
-                                              atIndex:i
-                                             animated:NO];
-    }
-}
-
-///////////////////////////////////////////////////////////////////////////////////////////////////
-- (void)segmentedDidChange
-{
-    // first cancel request operation
-    [self.model cancelRequstOperation];
-    
-    ((OSCMyActiveTimelineModel*)self.model).activeCatalogType = self.segmentedControl.selectedSegmentIndex;
-    
-    // remove all, sometime crash, fix later on
-//    if (self.model.sections.count > 0) {
-//        [self.model removeSectionAtIndex:0];
-//    }
-    
-    // after scrollToTopAnimated then pull down to refresh, performce perfect
-    [self scrollToTopAnimated:NO];
-    [self performSelector:@selector(autoPullDownRefreshActionAnimation) withObject:self afterDelay:0.1f];
-}
-
-///////////////////////////////////////////////////////////////////////////////////////////////////
-- (void)scrollToTopAnimated:(BOOL)animated
-{
-    [self.tableView scrollRectToVisible:CGRectMake(0.f, 0.f, self.tableView.width, self.tableView.height)
-                               animated:animated];
 }
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
@@ -141,7 +109,7 @@
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (id)tableModelClass
 {
-    return [OSCMyActiveTimelineModel class];
+    return [OSCUserActiveTimelineModel class];
 }
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
@@ -151,9 +119,10 @@
         if ([object isKindOfClass:[OSCCommonEntity class]]) {
             OSCCommonEntity* entity = (OSCCommonEntity*)object;
             if (entity.newsId > 0) {
-                OSCCommonDetailC* c = [[OSCCommonDetailC alloc] initWithTopicId:entity.newsId
-                                                                  topicType:self.segmentedControl.selectedSegmentIndex];
-                [self.navigationController pushViewController:c animated:YES];
+                [OSCGlobalConfig HUDShowMessage:@"TODO it!" addedToView:self.view];
+//                OSCCommonDetailC* c = [[OSCCommonDetailC alloc] initWithTopicId:entity.newsId
+//                                                                  topicType:self.segmentedControl.selectedSegmentIndex];
+//                [self.navigationController pushViewController:c animated:YES];
             }
             else {
                 [OSCGlobalConfig HUDShowMessage:@"帖子不存在或已被删除！" addedToView:self.view];
@@ -161,6 +130,19 @@
         }
         return YES;
     };
+}
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+- (void)didFinishLoadData
+{
+    [super didFinishLoadData];
+    [self updateTopicHeaderViewWithUserEntity:((OSCUserActiveTimelineModel*)self.model).userEntity];
+}
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+- (void)didFailLoadData
+{
+    [super didFailLoadData];
 }
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
@@ -189,31 +171,21 @@
 #pragma mark - UITableViewDelegate
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
-- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
-    return [self.cellFactory tableView:tableView heightForRowAtIndexPath:indexPath model:self.model];
-}
-
-///////////////////////////////////////////////////////////////////////////////////////////////////
 - (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section
 {
-    return self.segmentedControl;
+    CGFloat tableHeaderHeight = 20.f;
+    UILabel* label = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, self.tableView.width, tableHeaderHeight)];
+    label.backgroundColor = TABLE_VIEW_BG_COLOR;
+    label.textColor = [UIColor darkGrayColor];
+    label.text = @"  最新活动";
+    return label;
 }
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
 {
-    CGFloat kDefaultSegemetedControlHeight = 43.f;// see: SDSegmentedControl commonInit
-    return kDefaultSegemetedControlHeight;
-}
-
-///////////////////////////////////////////////////////////////////////////////////////////////////
-///////////////////////////////////////////////////////////////////////////////////////////////////
-#pragma mark - DID_LOGIN_NOTIFICATION
-
-///////////////////////////////////////////////////////////////////////////////////////////////////
-- (void)didLoginNotification
-{
-    [self updateTopicHeaderView];
+    CGFloat tableHeaderHeight = 20.f;
+    return tableHeaderHeight;
 }
 
 @end
