@@ -1,0 +1,35 @@
+//
+//  Prefix header
+//
+//  The contents of this file are implicitly included at the beginning of every source file.
+//
+
+#import <Availability.h>
+
+#ifndef __IPHONE_5_0
+#warning "This project uses features only available in iOS SDK 5.0 and later."
+#endif
+
+#ifdef __OBJC__
+    #import <UIKit/UIKit.h>
+    #import <Foundation/Foundation.h>
+
+    #import "JLNimbusTimeline.h"
+
+    // Nimbus addtional header
+    #import "NimbusPagingScrollView.h"
+
+    #import "MBProgressHUD.h"
+
+    #import "OSCXMLKeys.h"
+    #import "OSCGlobalConfig.h"
+    #import "MacroDefines.h"
+    #import "UIImage+nimbusImageNamed.h"
+#endif
+
+// Debug log switch
+#ifdef DEBUG
+#    define NSLog(...) NSLog(__VA_ARGS__)
+#else
+#    define NSLog(...) {}
+#endif
