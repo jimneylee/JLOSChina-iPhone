@@ -19,6 +19,8 @@
 #import "OSCTweetC.h"
 #import "OSCLeftMenuC.h"
 #import "OSCTweetPostC.h"
+#import "OSCMineC.h"
+
 @interface OSCAppDelegate()<RCNetworkSpyDelegate>
 @end
 
