@@ -339,6 +339,8 @@
 		28B3367C188E1AD800179302 /* OSCUserActiveTimelineModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 28B3367A188E1AD800179302 /* OSCUserActiveTimelineModel.m */; };
 		28B3367F188E1CC800179302 /* OSCUserHomeC.m in Sources */ = {isa = PBXBuildFile; fileRef = 28B3367E188E1CC800179302 /* OSCUserHomeC.m */; };
 		28B33680188E1CC800179302 /* OSCUserHomeC.m in Sources */ = {isa = PBXBuildFile; fileRef = 28B3367E188E1CC800179302 /* OSCUserHomeC.m */; };
+		28B33685188E668100179302 /* UIScrollView+ZoomToPoint.m in Sources */ = {isa = PBXBuildFile; fileRef = 28B33684188E668100179302 /* UIScrollView+ZoomToPoint.m */; };
+		28B33686188E668100179302 /* UIScrollView+ZoomToPoint.m in Sources */ = {isa = PBXBuildFile; fileRef = 28B33684188E668100179302 /* UIScrollView+ZoomToPoint.m */; };
 		28CABA51188621D400BFA036 /* OSCBaseModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 28CABA50188621D400BFA036 /* OSCBaseModel.m */; };
 		28CABA52188621D400BFA036 /* OSCBaseModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 28CABA50188621D400BFA036 /* OSCBaseModel.m */; };
 		28CABA551886760E00BFA036 /* OSCTweetPostC.m in Sources */ = {isa = PBXBuildFile; fileRef = 28CABA541886760E00BFA036 /* OSCTweetPostC.m */; };
@@ -799,6 +801,8 @@
 		28B3367A188E1AD800179302 /* OSCUserActiveTimelineModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OSCUserActiveTimelineModel.m; sourceTree = "<group>"; };
 		28B3367D188E1CC800179302 /* OSCUserHomeC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OSCUserHomeC.h; sourceTree = "<group>"; };
 		28B3367E188E1CC800179302 /* OSCUserHomeC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OSCUserHomeC.m; sourceTree = "<group>"; };
+		28B33683188E668100179302 /* UIScrollView+ZoomToPoint.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIScrollView+ZoomToPoint.h"; sourceTree = "<group>"; };
+		28B33684188E668100179302 /* UIScrollView+ZoomToPoint.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIScrollView+ZoomToPoint.m"; sourceTree = "<group>"; };
 		28CABA4F188621D400BFA036 /* OSCBaseModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OSCBaseModel.h; sourceTree = "<group>"; };
 		28CABA50188621D400BFA036 /* OSCBaseModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OSCBaseModel.m; sourceTree = "<group>"; };
 		28CABA531886760E00BFA036 /* OSCTweetPostC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OSCTweetPostC.h; sourceTree = "<group>"; };
@@ -1262,6 +1266,7 @@
 		2897EF291856C40F000BB6B9 /* Vendor */ = {
 			isa = PBXGroup;
 			children = (
+				28B33682188E668100179302 /* UIScrollView+ZoomToPoint */,
 				28CABAA518867F1B00BFA036 /* NYXImagesKit */,
 				28CABA9018867E8800BFA036 /* Pinyin */,
 				CE543D69188275D700D18D77 /* RTLabel */,
@@ -1535,6 +1540,16 @@
 				28B33672188E0A1F00179302 /* OSCMyInfoModel.m */,
 			);
 			path = Models;
+			sourceTree = "<group>";
+		};
+		28B33682188E668100179302 /* UIScrollView+ZoomToPoint */ = {
+			isa = PBXGroup;
+			children = (
+				28B33683188E668100179302 /* UIScrollView+ZoomToPoint.h */,
+				28B33684188E668100179302 /* UIScrollView+ZoomToPoint.m */,
+			);
+			name = "UIScrollView+ZoomToPoint";
+			path = "vendor/UIScrollView+ZoomToPoint";
 			sourceTree = "<group>";
 		};
 		28CABA8718867E6800BFA036 /* JLSortBaseEntity */ = {
@@ -2289,6 +2304,7 @@
 				2897EF861856E2EA000BB6B9 /* OSCHomeTimelineModel.m in Sources */,
 				CE9CA9C6188D63A500C9177C /* OSCMineC.m in Sources */,
 				CE543D781882A89600D18D77 /* OSCForumTimelineModel.m in Sources */,
+				28B33685188E668100179302 /* UIScrollView+ZoomToPoint.m in Sources */,
 				28CABA9318867E8800BFA036 /* pinyin.c in Sources */,
 				2832C2381883B6EE003E96F3 /* JLFullScreenPhotoBrowseView.m in Sources */,
 				28CABA8518867CF900BFA036 /* OSCFriendCell.m in Sources */,
@@ -2410,6 +2426,7 @@
 				CE90A07B1872E6910030DB1E /* OSCHomeTimelineModel.m in Sources */,
 				CE9CA9C7188D63A500C9177C /* OSCMineC.m in Sources */,
 				CE543D791882A89600D18D77 /* OSCForumTimelineModel.m in Sources */,
+				28B33686188E668100179302 /* UIScrollView+ZoomToPoint.m in Sources */,
 				28CABA9418867E8800BFA036 /* pinyin.c in Sources */,
 				2832C2391883B6EE003E96F3 /* JLFullScreenPhotoBrowseView.m in Sources */,
 				28CABA8618867CF900BFA036 /* OSCFriendCell.m in Sources */,
