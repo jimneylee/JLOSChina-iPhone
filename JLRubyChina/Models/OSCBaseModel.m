@@ -81,6 +81,33 @@
 }
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
+- (void)getParams:(NSDictionary*)params errorBlock:(void(^)(OSCErrorEntity* errorEntity))errorBlock
+{
+    NSString* path = [self relativePath];
+    OSCAPIClient *httpClient = [[OSCAPIClient alloc] initWithBaseURL:[NSURL URLWithString:kAPIBaseURLString]];
+    [httpClient getPath:path parameters:params
+                 success:^(AFHTTPRequestOperation *operation, id responseObject) {
+                     if ([responseObject isKindOfClass:[NSXMLParser class]]) {
+                         NSXMLParser* parser = (NSXMLParser*)responseObject;
+                         [parser setShouldProcessNamespaces:YES];
+                         parser.delegate = self;
+                         [parser parse];
+                     }
+                     else {
+                         if (errorBlock) {
+                             OSCErrorEntity* errorEntity = [[OSCErrorEntity alloc] init];
+                             errorBlock(errorEntity);
+                         }
+                     }
+                 } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+                     if (errorBlock) {
+                         OSCErrorEntity* errorEntity = [[OSCErrorEntity alloc] init];
+                         errorBlock(errorEntity);
+                     }
+                 }];
+}
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)parseDataDictionary
 {
     

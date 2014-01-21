@@ -21,6 +21,7 @@
 @property (nonatomic, strong) NSMutableDictionary* dataDictionary;
 
 - (void)postParams:(NSDictionary*)params errorBlock:(void(^)(OSCErrorEntity* errorEntity))block;
+- (void)getParams:(NSDictionary*)params errorBlock:(void(^)(OSCErrorEntity* errorEntity))errorBlock;
 - (void)parseDataDictionary;
 
 @end
