@@ -111,6 +111,14 @@
                                             pageCounter:(unsigned int)pageCounter
                                            perpageCount:(unsigned int)perpageCount;
 
++ (NSString*)relativePathForMyInfoWithLoginedUserId:(unsigned long)uid;
+
++ (NSString*)relativePathForUserActiveListWithUserId:(unsigned long)uid
+                                          orUsername:(NSString*)username
+                                       loginedUserId:(unsigned long)loginUserId
+                                         pageCounter:(unsigned int)pageCounter
+                                        perpageCount:(unsigned int)perpageCount;
+
 //================================================================================
 // topic write
 //================================================================================

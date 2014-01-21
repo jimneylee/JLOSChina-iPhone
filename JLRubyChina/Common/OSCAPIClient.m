@@ -138,13 +138,35 @@ NSString *const kAPIBaseURLString = @"http://www.oschina.net/action/api/";
 }
 
 // 活动状态：所有、@我、评论、我的
-+ (NSString*)relativePathForActiveListWithLoginedUserId:(unsigned long)uid
++ (NSString*)relativePathForActiveListWithLoginedUserId:(unsigned long)loginUserId
                                       activeCatalogType:(OSCMyActiveCatalogType)activeCatalogType
                                             pageCounter:(unsigned int)pageCounter
                                            perpageCount:(unsigned int)perpageCount
 {
     return [NSString stringWithFormat:@"active_list?uid=%ld&catalog=%u&pageIndex=%u&pageSize=%u",
-            uid, activeCatalogType, pageCounter, perpageCount];
+            loginUserId, activeCatalogType, pageCounter, perpageCount];
+}
+
++ (NSString*)relativePathForMyInfoWithLoginedUserId:(unsigned long)loginUserId
+{
+    return [NSString stringWithFormat:@"my_information?uid=%ld", loginUserId];
+}
+
++ (NSString*)relativePathForUserActiveListWithUserId:(unsigned long)uid
+                                          orUsername:(NSString*)username
+                                       loginedUserId:(unsigned long)loginUserId
+                                         pageCounter:(unsigned int)pageCounter
+                                        perpageCount:(unsigned int)perpageCount
+{
+    if (username.length) {
+        // 这个借口貌似无用
+        return [NSString stringWithFormat:@"user_information?uid=%ld&hisname=%@&pageIndex=%u&pageSize=%u",
+                loginUserId, [username urlEncoded], pageCounter, perpageCount];
+    }
+    else {
+        return [NSString stringWithFormat:@"user_information?uid=%ld&hisuid=%ld&pageIndex=%u&pageSize=%u",
+                loginUserId, uid, pageCounter, perpageCount];
+    }
 }
 
 //================================================================================
