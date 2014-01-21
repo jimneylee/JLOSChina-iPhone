@@ -1176,8 +1176,8 @@
 				2897EF731856C60A000BB6B9 /* README.md */,
 				CE13258F185F4F5800208653 /* CHANGES.md */,
 				2897EF291856C40F000BB6B9 /* Vendor */,
-				2897EEFA1856BE94000BB6B9 /* JLRubyChina */,
-				2897EF191856BE94000BB6B9 /* JLRubyChinaTests */,
+				2897EEFA1856BE94000BB6B9 /* JLOSChina */,
+				2897EF191856BE94000BB6B9 /* JLOSChinaTests */,
 				2897EEF31856BE94000BB6B9 /* Frameworks */,
 				2897EEF21856BE94000BB6B9 /* Products */,
 				BECB55DCFAF84993AE6D89A6 /* Pods.xcconfig */,
@@ -1208,7 +1208,7 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
-		2897EEFA1856BE94000BB6B9 /* JLRubyChina */ = {
+		2897EEFA1856BE94000BB6B9 /* JLOSChina */ = {
 			isa = PBXGroup;
 			children = (
 				2897EF031856BE94000BB6B9 /* OSCAppDelegate.h */,
@@ -1225,7 +1225,7 @@
 				2897EF711856C54B000BB6B9 /* Views */,
 				2897EEFB1856BE94000BB6B9 /* Supporting Files */,
 			);
-			path = JLRubyChina;
+			path = JLOSChina;
 			sourceTree = "<group>";
 		};
 		2897EEFB1856BE94000BB6B9 /* Supporting Files */ = {
@@ -1241,13 +1241,13 @@
 			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
-		2897EF191856BE94000BB6B9 /* JLRubyChinaTests */ = {
+		2897EF191856BE94000BB6B9 /* JLOSChinaTests */ = {
 			isa = PBXGroup;
 			children = (
 				2897EF1F1856BE94000BB6B9 /* JLRubyChinaTests.m */,
 				2897EF1A1856BE94000BB6B9 /* Supporting Files */,
 			);
-			path = JLRubyChinaTests;
+			path = JLOSChinaTests;
 			sourceTree = "<group>";
 		};
 		2897EF1A1856BE94000BB6B9 /* Supporting Files */ = {
@@ -2566,8 +2566,8 @@
 			buildSettings = {
 				ARCHS = "$(ARCHS_STANDARD)";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "JLRubyChina/JLOSChina-Prefix.pch";
-				INFOPLIST_FILE = "JLRubyChina/JLOSChina-Info.plist";
+				GCC_PREFIX_HEADER = "JLOSChina/JLOSChina-Prefix.pch";
+				INFOPLIST_FILE = "JLOSChina/JLOSChina-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
 				LIBRARY_SEARCH_PATHS = (
 					"/Users/jimneylee/Desktop/Source/OpenSource/RubyChina/JLRubyChina-iPhone/vendor/TestFlightSDK/TestFlightSDK2.1.3",
@@ -2585,8 +2585,8 @@
 			buildSettings = {
 				ARCHS = "$(ARCHS_STANDARD)";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "JLRubyChina/JLOSChina-Prefix.pch";
-				INFOPLIST_FILE = "JLRubyChina/JLOSChina-Info.plist";
+				GCC_PREFIX_HEADER = "JLOSChina/JLOSChina-Prefix.pch";
+				INFOPLIST_FILE = "JLOSChina/JLOSChina-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
 				LIBRARY_SEARCH_PATHS = (
 					"/Users/jimneylee/Desktop/Source/OpenSource/RubyChina/JLRubyChina-iPhone/vendor/TestFlightSDK/TestFlightSDK2.1.3",
@@ -2648,8 +2648,8 @@
 				CODE_SIGN_IDENTITY = "iPhone Distribution: XiaoMin Chen (655CUC95QK)";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: XiaoMin Chen (655CUC95QK)";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "JLRubyChina/JLRubyChina-Prefix.pch";
-				INFOPLIST_FILE = "JLRubyChina/JLOSChina-Dis-Info.plist";
+				GCC_PREFIX_HEADER = "JLOSChina/JLRubyChina-Prefix.pch";
+				INFOPLIST_FILE = "JLOSChina/JLOSChina-Dis-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
 				LIBRARY_SEARCH_PATHS = (
 					"/Users/jimneylee/Desktop/Source/OpenSource/RubyChina/JLRubyChina-iPhone/vendor/TestFlightSDK/TestFlightSDK2.1.3",
@@ -2669,8 +2669,8 @@
 				ARCHS = "$(ARCHS_STANDARD)";
 				CODE_SIGN_IDENTITY = "iPhone Distribution: XiaoMin Chen (655CUC95QK)";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "JLRubyChina/JLRubyChina-Prefix.pch";
-				INFOPLIST_FILE = "JLRubyChina/JLOSChina-Dis-Info.plist";
+				GCC_PREFIX_HEADER = "JLOSChina/JLRubyChina-Prefix.pch";
+				INFOPLIST_FILE = "JLOSChina/JLOSChina-Dis-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
 				LIBRARY_SEARCH_PATHS = (
 					"/Users/jimneylee/Desktop/Source/OpenSource/RubyChina/JLRubyChina-iPhone/vendor/TestFlightSDK/TestFlightSDK2.1.3",
