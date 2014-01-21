@@ -18,7 +18,7 @@
 #import "JLFullScreenPhotoBrowseView.h"
 #import "OSCCommonRepliesListC.h"
 #import "OSCTweetC.h"
-//#import "RCUserHomepageC.h"
+#import "OSCUserHomeC.h"
 
 // 布局字体
 #define TITLE_FONT_SIZE [UIFont systemFontOfSize:18.f]
@@ -365,10 +365,10 @@
     UIViewController* superviewC = self.viewController;
     [OSCGlobalConfig HUDShowMessage:self.tweetEntity.user.authorName
                        addedToView:[UIApplication sharedApplication].keyWindow];
-//    if (superviewC) {
-//        RCUserHomepageC* c = [[RCUserHomepageC alloc] initWithUserLoginId:self.tweetEntity.user.loginId];
-//        [superviewC.navigationController pushViewController:c animated:YES];
-//    }
+    if (superviewC) {
+        OSCUserHomeC* c = [[OSCUserHomeC alloc] initWithUserId:self.tweetEntity.user.authorId];
+        [superviewC.navigationController pushViewController:c animated:YES];
+    }
 }
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
@@ -493,11 +493,12 @@ didSelectTextCheckingResult:(NSTextCheckingResult *)result
         if ([url.absoluteString hasPrefix:PROTOCOL_AT_SOMEONE]) {
             NSString* someone = [url.absoluteString substringFromIndex:PROTOCOL_AT_SOMEONE.length];
             someone = [someone stringByReplacingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
-            [OSCGlobalConfig HUDShowMessage:someone
+            [OSCGlobalConfig HUDShowMessage:[NSString stringWithFormat:@"%@，暂时接口不支持", someone]
                                addedToView:[UIApplication sharedApplication].keyWindow];
             if (superviewC) {
-//                RCUserHomepageC* c = [[RCUserHomepageC alloc] initWithUserLoginId:self.tweetEntity.lastRepliedUser.loginId];
-//                [superviewC.navigationController pushViewController:c animated:YES];
+                //TODO:
+                //OSCUserHomeC* c = [[OSCUserHomeC alloc] initWithUsername:someone];
+                //[superviewC.navigationController pushViewController:c animated:YES];
             }
         }
         else if ([url.absoluteString hasPrefix:PROTOCOL_SHARP_SOFTWARE]) {

@@ -12,7 +12,7 @@
 #import "NIWebController.h"
 #import "UIView+findViewController.h"
 #import "UIImage+nimbusImageNamed.h"
-//#import "RCUserHomepageC.h"
+#import "OSCUserHomeC.h"
 //#import "RCContentPhotoBrowerC.h"
 #import "OSCCommonRepliesListC.h"
 #import "OSCReplyEntity.h"
@@ -348,10 +348,10 @@
     UIViewController* superviewC = self.viewController;
     [OSCGlobalConfig HUDShowMessage:self.replyEntity.user.authorName
                        addedToView:[UIApplication sharedApplication].keyWindow];
-//    if (superviewC) {
-//        RCUserHomepageC* c = [[RCUserHomepageC alloc] initWithUserLoginId:self.replyEntity.user.loginId];
-//        [superviewC.navigationController pushViewController:c animated:YES];
-//    }
+    if (superviewC) {
+        OSCUserHomeC* c = [[OSCUserHomeC alloc] initWithUserId:self.replyEntity.user.authorId];
+        [superviewC.navigationController pushViewController:c animated:YES];
+    }
 }
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
@@ -387,6 +387,10 @@ didSelectTextCheckingResult:(NSTextCheckingResult *)result
             someone = [someone stringByReplacingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
             [OSCGlobalConfig HUDShowMessage:someone
                                addedToView:[UIApplication sharedApplication].keyWindow];
+            if (superviewC) {
+                OSCUserHomeC* c = [[OSCUserHomeC alloc] initWithUsername:someone];
+                [superviewC.navigationController pushViewController:c animated:YES];
+            }
         }
         else if ([url.absoluteString hasPrefix:PROTOCOL_SHARP_SOFTWARE]) {
             NSString* somesoftware = [url.absoluteString substringFromIndex:PROTOCOL_SHARP_SOFTWARE.length];

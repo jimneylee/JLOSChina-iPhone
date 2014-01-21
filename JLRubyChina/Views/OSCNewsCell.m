@@ -15,7 +15,7 @@
 #import "UIImage+nimbusImageNamed.h"
 #import "OSCCommonEntity.h"
 //#import "RCForumTopicsC.h"
-//#import "RCUserHomepageC.h"
+#import "OSCUserHomeC.h"
 
 #define TITLE_FONT_SIZE [UIFont systemFontOfSize:18.f]
 #define CREATED_FONT_SIZE [UIFont systemFontOfSize:15.f]
@@ -204,10 +204,10 @@
     UIViewController* superviewC = self.viewController;
     [OSCGlobalConfig HUDShowMessage:self.topicEntity.user.authorName
                        addedToView:[UIApplication sharedApplication].keyWindow];
-//    if (superviewC) {
-//        RCUserHomepageC* c = [[RCUserHomepageC alloc] initWithUserLoginId:self.topicEntity.user.loginId];
-//        [superviewC.navigationController pushViewController:c animated:YES];
-//    }
+    if (superviewC) {
+        OSCUserHomeC* c = [[OSCUserHomeC alloc] initWithUserId:self.topicEntity.user.authorId];
+        [superviewC.navigationController pushViewController:c animated:YES];
+    }
 }
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
@@ -231,11 +231,12 @@ didSelectTextCheckingResult:(NSTextCheckingResult *)result
         if ([url.absoluteString hasPrefix:PROTOCOL_AT_SOMEONE]) {
             NSString* someone = [url.absoluteString substringFromIndex:PROTOCOL_AT_SOMEONE.length];
             someone = [someone stringByReplacingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
-            [OSCGlobalConfig HUDShowMessage:someone
+            [OSCGlobalConfig HUDShowMessage:[NSString stringWithFormat:@"%@，暂时接口不支持", someone]
                                addedToView:[UIApplication sharedApplication].keyWindow];
             if (superviewC) {
-//                RCUserHomepageC* c = [[RCUserHomepageC alloc] initWithUserLoginId:self.topicEntity.lastRepliedUser.loginId];
-//                [superviewC.navigationController pushViewController:c animated:YES];
+                //TODO:
+                //OSCUserHomeC* c = [[OSCUserHomeC alloc] initWithUsername:someone];
+                //[superviewC.navigationController pushViewController:c animated:YES];
             }
         }
         else if ([url.absoluteString hasPrefix:PROTOCOL_NODE]) {

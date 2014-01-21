@@ -13,7 +13,7 @@
 #import "NIWebController.h"
 #import "UIView+findViewController.h"
 #import "MTStatusBarOverlay.h"
-//#import "RCUserHomepageC.h"
+#import "OSCUserHomeC.h"
 //#import "RCContentPhotoBrowerC.h"
 #import "RCKeywordEntity.h"
 //#import "RCTopicActionModel.h"
@@ -431,10 +431,10 @@
     UIViewController* superviewC = self.viewController;
     [OSCGlobalConfig HUDShowMessage:self.topicDetailEntity.user.authorName
                        addedToView:[UIApplication sharedApplication].keyWindow];
-//    if (superviewC) {
-//        RCUserHomepageC* c = [[RCUserHomepageC alloc] initWithUserLoginId:self.topicDetailEntity.user.loginId];
-//        [superviewC.navigationController pushViewController:c animated:YES];
-//    }
+    if (superviewC) {
+        OSCUserHomeC* c = [[OSCUserHomeC alloc] initWithUserId:self.topicDetailEntity.user.authorId];
+        [superviewC.navigationController pushViewController:c animated:YES];
+    }
 }
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
