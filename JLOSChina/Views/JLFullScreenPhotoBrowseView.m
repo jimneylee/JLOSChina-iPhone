@@ -162,13 +162,14 @@
     }];
 }
 
+
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)scaleImageView:(UITapGestureRecognizer*)tapGesture
 {
     CGPoint tapPoint = [tapGesture locationInView:self.scrollView];
     if (self.scrollView.zoomScale > 1.f) {
-        //[self.scrollView setZoomScale:1.f animated:YES];
-        [self.scrollView zoomToPoint:tapPoint withScale:1.f animated:YES];
+        [self.scrollView setZoomScale:1.f animated:YES];
+        //[self.scrollView zoomToPoint:tapPoint withScale:1.f animated:YES];
     }
     else {
         //[self.scrollView setZoomScale:2.f animated:YES];
@@ -265,6 +266,7 @@
     [self.progressIndicator removeFromSuperview];
     self.isOriginPhotoLoaded = YES;
     self.saveBtn.enabled = YES;
+    self.scrollView.contentSize = imageView.bounds.size;
 }
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
