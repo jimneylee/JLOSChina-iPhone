@@ -14,7 +14,7 @@
 #import "OSCCommonDetailC.h"
 #import "OSCQuickReplyC.h"
 #import "OSCCommonRepliesListC.h"
-#import "OSCTweetCell.h"
+#import "OSCTweetBodyView.h"
 #import "OSCTweetPostC.h"
 
 @interface OSCTweetC ()<RCQuickReplyDelegate>
@@ -180,13 +180,10 @@
     [self.navigationController pushViewController:c animated:YES];
     
     // table header view with body
-    // TODO: new class OSCTweetBodyView
-    OSCTweetCell* bodyCell = [[OSCTweetCell alloc] initWithFrame:self.view.bounds];
-    [bodyCell shouldUpdateCellWithObject:tweetEntity];
-    CGFloat height = [OSCTweetCell heightForObject:tweetEntity atIndexPath:nil tableView:c.tableView];
-    bodyCell.height = height;
-    c.tableView.tableHeaderView = bodyCell;
-    c.tableHeaderView = bodyCell;
+    OSCTweetBodyView* bodyView = [[OSCTweetBodyView alloc] initWithFrame:self.view.bounds];
+    bodyView.height = [OSCTweetBodyView heightForObject:tweetEntity withViewWidth:self.view.width];
+    [bodyView shouldUpdateCellWithObject:tweetEntity];
+    c.tableView.tableHeaderView = bodyView;
 }
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////

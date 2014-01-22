@@ -457,6 +457,8 @@
 		CE1C519A1880ECEB000F216D /* Icon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CE1C51901880ECEB000F216D /* Icon@2x.png */; };
 		CE1C519D1880FD76000F216D /* OSCNewsCell.m in Sources */ = {isa = PBXBuildFile; fileRef = CE1C519C1880FD76000F216D /* OSCNewsCell.m */; };
 		CE1C519E1880FD76000F216D /* OSCNewsCell.m in Sources */ = {isa = PBXBuildFile; fileRef = CE1C519C1880FD76000F216D /* OSCNewsCell.m */; };
+		CE329B241890024E0045AC0D /* OSCTweetBodyView.m in Sources */ = {isa = PBXBuildFile; fileRef = CE329B231890024E0045AC0D /* OSCTweetBodyView.m */; };
+		CE329B251890024E0045AC0D /* OSCTweetBodyView.m in Sources */ = {isa = PBXBuildFile; fileRef = CE329B231890024E0045AC0D /* OSCTweetBodyView.m */; };
 		CE543D1218823EAA00D18D77 /* OSCRelativeEntity.m in Sources */ = {isa = PBXBuildFile; fileRef = CE543D1118823EAA00D18D77 /* OSCRelativeEntity.m */; };
 		CE543D1318823EAA00D18D77 /* OSCRelativeEntity.m in Sources */ = {isa = PBXBuildFile; fileRef = CE543D1118823EAA00D18D77 /* OSCRelativeEntity.m */; };
 		CE543D16188240E300D18D77 /* NSString+TypeScan.m in Sources */ = {isa = PBXBuildFile; fileRef = CE543D15188240E300D18D77 /* NSString+TypeScan.m */; };
@@ -892,6 +894,8 @@
 		CE1C51901880ECEB000F216D /* Icon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Icon@2x.png"; sourceTree = "<group>"; };
 		CE1C519B1880FD76000F216D /* OSCNewsCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OSCNewsCell.h; sourceTree = "<group>"; };
 		CE1C519C1880FD76000F216D /* OSCNewsCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OSCNewsCell.m; sourceTree = "<group>"; };
+		CE329B221890024E0045AC0D /* OSCTweetBodyView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OSCTweetBodyView.h; sourceTree = "<group>"; };
+		CE329B231890024E0045AC0D /* OSCTweetBodyView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OSCTweetBodyView.m; sourceTree = "<group>"; };
 		CE543D1018823EAA00D18D77 /* OSCRelativeEntity.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OSCRelativeEntity.h; sourceTree = "<group>"; };
 		CE543D1118823EAA00D18D77 /* OSCRelativeEntity.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OSCRelativeEntity.m; sourceTree = "<group>"; };
 		CE543D14188240E300D18D77 /* NSString+TypeScan.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+TypeScan.h"; sourceTree = "<group>"; };
@@ -1491,6 +1495,8 @@
 				CE543D6F18829EF800D18D77 /* OSCRelativeCell.m */,
 				2832C2321883AC25003E96F3 /* OSCTweetCell.h */,
 				2832C2331883AC25003E96F3 /* OSCTweetCell.m */,
+				CE329B221890024E0045AC0D /* OSCTweetBodyView.h */,
+				CE329B231890024E0045AC0D /* OSCTweetBodyView.m */,
 				CE9CA9D0188D67FC00C9177C /* OSCActivityCell.h */,
 				CE9CA9D1188D67FC00C9177C /* OSCActivityCell.m */,
 				28CABA5F188678EE00BFA036 /* OSCPostButtonBar.h */,
@@ -2314,6 +2320,7 @@
 				2897EF5D1856C422000BB6B9 /* UIWindowAdditions.m in Sources */,
 				28CABA8E18867E6800BFA036 /* SMSectionListBaseEntity.m in Sources */,
 				CE9CA9D2188D67FC00C9177C /* OSCActivityCell.m in Sources */,
+				CE329B241890024E0045AC0D /* OSCTweetBodyView.m in Sources */,
 				2832C22C1883AB51003E96F3 /* OSCTweetTimelineModel.m in Sources */,
 				2897EF8F1856E3D2000BB6B9 /* OSCBaseTableModel.m in Sources */,
 				CEF6F39C18821FC20065F852 /* OSCCommonDetailC.m in Sources */,
@@ -2436,6 +2443,7 @@
 				CE90A0821872E6910030DB1E /* UIWindowAdditions.m in Sources */,
 				28CABA8F18867E6800BFA036 /* SMSectionListBaseEntity.m in Sources */,
 				CE9CA9D3188D67FC00C9177C /* OSCActivityCell.m in Sources */,
+				CE329B251890024E0045AC0D /* OSCTweetBodyView.m in Sources */,
 				2832C22D1883AB51003E96F3 /* OSCTweetTimelineModel.m in Sources */,
 				CE90A0831872E6910030DB1E /* OSCBaseTableModel.m in Sources */,
 				CEF6F39D18821FC20065F852 /* OSCCommonDetailC.m in Sources */,

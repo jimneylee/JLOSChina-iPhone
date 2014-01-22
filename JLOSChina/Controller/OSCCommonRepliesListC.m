@@ -313,10 +313,6 @@
                 NSArray* indexPaths = [self.model insertObject:replyEntity atRow:0 inSection:0];
                 if (indexPaths.count) {
                     [self.tableView insertRowsAtIndexPaths:indexPaths withRowAnimation:UITableViewRowAnimationAutomatic];
-                    // fix bug: tableHeaderView disappear after insert a cell at first index
-                    if (self.tableHeaderView) {
-                        self.tableView.tableHeaderView = self.tableHeaderView;
-                    }
                 }
             }
         }

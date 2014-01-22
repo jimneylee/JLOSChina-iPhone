@@ -10,7 +10,6 @@
 
 // TODO:楼层调转
 @interface OSCCommonRepliesListC : JLNimbusTableViewController
-@property (nonatomic, strong) UIView* tableHeaderView;
 
 - (id)initWithTopicId:(unsigned long)topicId
             topicType:(OSCContentType)topicType

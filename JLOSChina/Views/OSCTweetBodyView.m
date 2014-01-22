@@ -6,7 +6,7 @@
 //  Copyright (c) 2013 jimneylee. All rights reserved.
 //
 
-#import "OSCTweetCell.h"
+#import "OSCTweetBodyView.h"
 #import <QuartzCore/QuartzCore.h>
 #import "NimbusNetworkImage.h"
 #import "NIAttributedLabel.h"
@@ -19,7 +19,6 @@
 #import "OSCCommonRepliesListC.h"
 #import "OSCTweetC.h"
 #import "OSCUserHomeC.h"
-#import "OSCTweetBodyView.h"
 
 // 布局字体
 #define TITLE_FONT_SIZE [UIFont systemFontOfSize:18.f]
@@ -36,10 +35,13 @@
 #define CONTENT_IMAGE_HEIGHT 160
 #define BUTTON_SIZE CGSizeMake(65.f, 25.f)
 
-@interface OSCTweetCell()<NIAttributedLabelDelegate>
+@interface OSCTweetBodyView()<NIAttributedLabelDelegate>
 // data entity
 @property (nonatomic, strong) OSCTweetEntity* tweetEntity;
 // content
+@property (nonatomic, strong) UIView* contentView;
+@property (nonatomic, strong) UILabel* textLabel;
+@property (nonatomic, strong) UILabel* detailTextLabel;
 @property (nonatomic, strong) NINetworkImageView* headView;
 @property (nonatomic, strong) NIAttributedLabel* contentLabel;
 @property (nonatomic, strong) NINetworkImageView* contentImageView;
@@ -47,7 +49,7 @@
 @property (nonatomic, strong) UIButton* commentBtn;
 @end
 
-@implementation OSCTweetCell
+@implementation OSCTweetBodyView
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 ///////////////////////////////////////////////////////////////////////////////////////////////////
@@ -129,7 +131,7 @@
     }
     
     contentLabel.text = o.body;
-    [OSCTweetCell insertAllEmotionsInContentLabel:contentLabel withStatus:o];
+    [OSCTweetBodyView insertAllEmotionsInContentLabel:contentLabel withStatus:o];
     //[contentLabel sizeToFit];
     CGSize contentSize = [contentLabel sizeThatFits:CGSizeMake(width, CGFLOAT_MAX)];
     if (contentSize.height < CONTENT_LINE_HEIGHT) {
@@ -139,7 +141,7 @@
 }
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
-+ (CGFloat)heightForObject:(id)object atIndexPath:(NSIndexPath *)indexPath tableView:(UITableView *)tableView
++ (CGFloat)heightForObject:(id)object withViewWidth:(CGFloat)viewWidth
 {
     if ([object isKindOfClass:[OSCTweetEntity class]]) {
         CGFloat cellMargin = CELL_PADDING_4;
@@ -154,7 +156,7 @@
         
         // content
         OSCTweetEntity* o = (OSCTweetEntity*)object;
-        CGFloat kContentLength = tableView.width - sideMargin * 2;
+        CGFloat kContentLength = viewWidth - sideMargin * 2;
         
 #if 0// sizeWithFont
         CGSize contentSize = [o.text sizeWithFont:CONTENT_FONT_SIZE
@@ -180,11 +182,15 @@
 }
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
-- (id)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier
+- (id)initWithFrame:(CGRect)frame
 {
-    self = [super initWithStyle:style reuseIdentifier:reuseIdentifier];
+    self = [super initWithFrame:frame];
     if (self) {
-        self.selectionStyle = UITableViewCellSelectionStyleBlue;
+        // content
+        UIView* contentView = [[UIView alloc] initWithFrame:self.bounds];
+        contentView.backgroundColor = [UIColor whiteColor];
+        [self addSubview:contentView];
+        self.contentView = contentView;
         
         // head image
         self.headView = [[NINetworkImageView alloc] initWithFrame:CGRectMake(0, 0, HEAD_IAMGE_HEIGHT,
@@ -192,11 +198,13 @@
         [self.contentView addSubview:self.headView];
         
         // name
+        self.textLabel = [[UILabel alloc] initWithFrame:CGRectZero];
         self.textLabel.font = TITLE_FONT_SIZE;
         self.textLabel.textColor = [UIColor blackColor];
         self.textLabel.highlightedTextColor = self.textLabel.textColor;
         
         // source from & date
+        self.detailTextLabel = [[UILabel alloc] initWithFrame:CGRectZero];
         self.detailTextLabel.font = SUBTITLE_FONT_SIZE;
         self.detailTextLabel.textColor = [UIColor grayColor];
         self.detailTextLabel.highlightedTextColor = self.detailTextLabel.textColor;
@@ -239,19 +247,6 @@
 
     }
     return self;
-}
-
-///////////////////////////////////////////////////////////////////////////////////////////////////
-- (void)prepareForReuse
-{
-    [super prepareForReuse];
-    
-    if (self.headView.image) {
-        [self.headView setImage:nil];
-    }
-    if (self.contentImageView.image) {
-        [self.contentImageView setImage:nil];
-    }
 }
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
@@ -317,7 +312,6 @@
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (BOOL)shouldUpdateCellWithObject:(id)object
 {
-    [super shouldUpdateCellWithObject:object];
     if ([object isKindOfClass:[OSCTweetEntity class]]) {
         OSCTweetEntity* o = (OSCTweetEntity*)object;
         self.tweetEntity = o;
@@ -332,7 +326,7 @@
         self.detailTextLabel.text = [NSString stringWithFormat:@"%@",
                                      [o.createdAtDate formatRelativeTime]];// 解决动态计算时间
         if (o.repliesCount > 0) {
-            [self.commentBtn setTitle:[NSString stringWithFormat:@"%ld回复", o.repliesCount]
+            [self.commentBtn setTitle:[NSString stringWithFormat:@"回复%ld", o.repliesCount]
                              forState:UIControlStateNormal];
         }
         else {
@@ -342,9 +336,9 @@
 
         self.contentLabel.text = o.body;
         
-        [OSCTweetCell addAllLinksForAtSomeoneInContentLabel:self.contentLabel withStatus:o fromLocation:0];
-        [OSCTweetCell addAllLinksForSharpSoftwareInContentLabel:self.contentLabel withStatus:object fromLocation:0];
-        [OSCTweetCell insertAllEmotionsInContentLabel:self.contentLabel withStatus:o];
+        [OSCTweetBodyView addAllLinksForAtSomeoneInContentLabel:self.contentLabel withStatus:o fromLocation:0];
+        [OSCTweetBodyView addAllLinksForSharpSoftwareInContentLabel:self.contentLabel withStatus:object fromLocation:0];
+        [OSCTweetBodyView insertAllEmotionsInContentLabel:self.contentLabel withStatus:o];
         
         if (o.smallImageUrl.length) {
             self.contentImageView.hidden = NO;
@@ -397,22 +391,6 @@
         [self showRepliesListView];
     }
 #endif
-}
-
-///////////////////////////////////////////////////////////////////////////////////////////////////
-- (void)showRepliesListView
-{
-    UIViewController* superviewC = self.viewController;
-    OSCCommonRepliesListC* c = [[OSCCommonRepliesListC alloc] initWithTopicId:self.tweetEntity.tweetId
-                                                                    topicType:OSCContentType_Tweet
-                                                                 repliesCount:self.tweetEntity.repliesCount];
-    [superviewC.navigationController pushViewController:c animated:YES];
-    
-    // table header view with body
-    OSCTweetBodyView* bodyView = [[OSCTweetBodyView alloc] initWithFrame:self.bounds];
-    bodyView.height = [OSCTweetBodyView heightForObject:self.tweetEntity withViewWidth:self.width];
-    [bodyView shouldUpdateCellWithObject:self.tweetEntity];
-    c.tableView.tableHeaderView = bodyView;
 }
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
